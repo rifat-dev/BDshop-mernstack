@@ -1,0 +1,32 @@
+{
+    "name": "bdshop",
+    "version": "1.0.0",
+    "description": "Bdshop Ecommarce Project",
+    "main": "server/server.js",
+    "scripts": {
+        "start": "node server/server.js",
+        "server": "nodemon server/server.js --ignore client",
+        "client": "npm start --prefix client",
+        "dev": "concurrently \"npm run server\" \"npm run client\""
+    },
+    "keywords": [],
+    "author": "Tajul Islam Rifat",
+    "license": "ISC",
+    "dependencies": {
+        "bcrypt": "^5.0.1",
+        "body-parser": "^1.19.0",
+        "cloudinary": "^1.25.1",
+        "concurrently": "^6.0.2",
+        "cookie-parser": "^1.4.5",
+        "cors": "^2.8.5",
+        "dotenv": "^8.2.0",
+        "express": "^4.17.1",
+        "express-fileupload": "^1.2.1",
+        "jsonwebtoken": "^8.5.1",
+        "mongoose": "^5.12.5",
+        "morgan": "^1.10.0"
+    },
+    "devDependencies": {
+        "nodemon": "^2.0.7"
+    }
+}
