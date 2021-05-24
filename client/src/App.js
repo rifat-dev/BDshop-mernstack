@@ -8,9 +8,10 @@ import NavBar from './components/layouts/Header/NavBar'
 function App() {
   return (
     <div className="App">
+
       <Router>
+        <NavBar />
         <Switch>
-          <NavBar />
           <div className="container">
             <Route path='/' component={Home} exact />
             <Route path='/login' component={Login} exact />

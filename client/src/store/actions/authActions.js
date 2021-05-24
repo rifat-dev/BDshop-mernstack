@@ -7,7 +7,10 @@ import {
     CLEAR_ERROR,
     LOGIN_USER_FAIL,
     LOGIN_USER_REQUEST,
-    LOGIN_USER_SUCCESS
+    LOGIN_USER_SUCCESS,
+    LOGOUT_USER_REQUEST,
+    LOGOUT_USER_SUCCESS,
+    LOGOUT_USER_FAIL
 } from '../Types/authType'
 
 
@@ -54,6 +57,24 @@ export const userLogin = (email, password) => async(dispatch) => {
     }
 }
 
+export const userLogout = () => async(dispatch) => {
+    try {
+        dispatch({ type: LOGOUT_USER_REQUEST })
+
+        await axios.get('/api/user/logout')
+
+        dispatch({
+            type: LOGOUT_USER_SUCCESS
+        })
+
+    } catch (e) {
+        dispatch({
+            type: LOGOUT_USER_FAIL,
+            payload: e.response.data.message
+        })
+    }
+
+}
 export const clearError = () => dispatch => {
     dispatch({ type: CLEAR_ERROR })
 }
