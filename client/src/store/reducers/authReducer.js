@@ -11,7 +11,19 @@ import {
     LOGOUT_USER_REQUEST,
     LOGOUT_USER_SUCCESS,
     LOGOUT_USER_FAIL,
-    CLEAR_ERROR
+    CLEAR_ERROR,
+    UPDATE_PASSWORD_REQUEST,
+    UPDATE_PROFILE_REQUEST,
+    DELETE_USER_REQUEST,
+    UPDATE_PASSWORD_SUCCESS,
+    UPDATE_PROFILE_SUCCESS,
+    DELETE_USER_SUCCESS,
+    UPDATE_PASSWORD_RESET,
+    UPDATE_PROFILE_RESET,
+    DELETE_USER_RESET,
+    UPDATE_PASSWORD_FAIL,
+    UPDATE_PROFILE_FAIL,
+    DELETE_USER_FAIL
 } from '../Types/authType'
 
 
@@ -53,6 +65,57 @@ export const authReducer = (state = { user: {}, isAuthenticated: false, loading:
         case LOGOUT_USER_FAIL:
             return {
                 ...state,
+                error: action.payload
+            }
+        case CLEAR_ERROR:
+            return {
+                ...state,
+                error: null
+            }
+        default:
+            return state
+    }
+}
+
+export const userReducer = (state = {}, action) => {
+    switch (action.type) {
+        case UPDATE_PASSWORD_REQUEST:
+        case UPDATE_PROFILE_REQUEST:
+        case DELETE_USER_REQUEST:
+            return {
+                ...state,
+                loading: true,
+            }
+        case UPDATE_PASSWORD_SUCCESS:
+        case UPDATE_PROFILE_SUCCESS:
+            return {
+                ...state,
+                loading: false,
+                isUpdated: action.payload
+            }
+        case DELETE_USER_SUCCESS:
+            return {
+                ...state,
+                loading: false,
+                isDeleted: action.payload
+            }
+        case UPDATE_PASSWORD_RESET:
+        case UPDATE_PROFILE_RESET:
+            return {
+                ...state,
+                isUpdated: false
+            }
+        case DELETE_USER_RESET:
+            return {
+                ...state,
+                isDeleted: false
+            }
+        case UPDATE_PASSWORD_FAIL:
+        case UPDATE_PROFILE_FAIL:
+        case DELETE_USER_FAIL:
+            return {
+                ...state,
+                loading: false,
                 error: action.payload
             }
         case CLEAR_ERROR:

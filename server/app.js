@@ -31,7 +31,7 @@ const order = require('./routers/orderRoute')
 app.use('/api/user', user)
 app.use('/api/admin', admin)
 app.use('/api/products', product)
-app.use('/api/order', order)
+app.use('/api/orders', order)
 
 
 // exports app for listen server

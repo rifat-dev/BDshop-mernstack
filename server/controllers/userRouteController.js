@@ -80,7 +80,7 @@ exports.loginUser = async(req, res, next) => {
     }
 }
 
-// getUser user -> '/api/user/'
+// getUser user -> '/api/user/me'
 exports.getUser = async(req, res, next) => {
 
     try {
