@@ -51,7 +51,7 @@ const NavBar = () => {
                                         {user && user.roal === "admin" && (
                                             <Link to="/dashbord" class="dropdown-item" >Dashbord</Link>
                                         )}
-                                        <Link to="/profile" class="dropdown-item" >Profile</Link>
+                                        <Link to="/profile/me" class="dropdown-item" >Profile</Link>
                                         <Link
                                             to="/"
                                             class="dropdown-item text-danger"
