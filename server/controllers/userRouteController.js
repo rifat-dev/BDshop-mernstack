@@ -95,16 +95,17 @@ exports.getUser = async(req, res, next) => {
     }
 }
 
-// updateUser user -> '/api/user/'update
+// updateUser user -> '/api/user/update/profile'
 exports.updateUser = async(req, res, next) => {
 
     try {
 
+        // console.log(req.body)
         const { name, email } = req.body
         let user = req.user
 
         if (req.body.avatar) {
-            await clud.uploader.destroy(req.user.avatar.publicId)
+            await clud.uploader.destroy(user.avatar.publicId)
             const result = await clud.uploader.upload(req.body.avatar, {
                 folder: 'avatars',
                 width: 150,
@@ -124,7 +125,7 @@ exports.updateUser = async(req, res, next) => {
 
         res.status(200).json({
             success: true,
-            user
+            // user
         })
 
     } catch (e) {
@@ -145,7 +146,7 @@ exports.updateUserPassword = async(req, res, next) => {
         if (!match) {
             return res.status(400).json({
                 success: false,
-                message: 'Your password is incorrect'
+                message: 'Your old password is incorrect'
             })
         }
 

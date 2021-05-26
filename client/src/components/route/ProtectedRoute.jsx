@@ -12,13 +12,12 @@ const ProtectedRoute = ({ isAdmin, component: Component, ...rest }) => {
             {!loading && (
                 <Route
                     {...rest}
-                    render={({ location }) =>
+                    render={(props) =>
                         !isAuthenticated ? (
                             alert.error("please login first"),
                             <Redirect
                                 to={{
                                     pathname: '/login',
-                                    state: { from: location }
                                 }}
                             />
                         ) : isAdmin && user.roal !== 'admin' ? (
@@ -27,7 +26,7 @@ const ProtectedRoute = ({ isAdmin, component: Component, ...rest }) => {
                                 to="/"
                             />
                         ) : (
-                            <Component />
+                            <Component {...props} />
                         )
                     }
                 />

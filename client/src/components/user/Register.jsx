@@ -65,7 +65,7 @@ const Register = ({ history }) => {
             {loading ? <Loader /> : (
                 <Fragment>
                     <MetaData title="Registation New Account" />
-                    <div className=" div-center ">
+                    <div className=" div-center my-4">
                         <MDBCol className="z-depth-5 p-4" md="6">
                             <form onSubmit={submitForm} >
                                 <h1 className="h1 text-center mb-4">Register User</h1>

@@ -13,7 +13,13 @@ import {
     LOGOUT_USER_FAIL,
     GET_USER_FAIL,
     GET_USER_REQUEST,
-    GET_USER_SUCCESS
+    GET_USER_SUCCESS,
+    UPDATE_PROFILE_FAIL,
+    UPDATE_PROFILE_REQUEST,
+    UPDATE_PROFILE_SUCCESS,
+    UPDATE_PASSWORD_FAIL,
+    UPDATE_PASSWORD_REQUEST,
+    UPDATE_PASSWORD_SUCCESS
 } from '../Types/authType'
 
 
@@ -95,6 +101,53 @@ export const getUser = () => async(dispatch) => {
     } catch (e) {
         dispatch({
             type: GET_USER_FAIL,
+            payload: e.response.data.message
+        })
+    }
+}
+
+export const updateProfile = (formData) => async(dispatch) => {
+    try {
+
+        dispatch({ type: UPDATE_PROFILE_REQUEST })
+
+        const config = {
+            headers: {
+                'Content-Type': 'multipart/form-data'
+            }
+        }
+
+        const { data } = await axios.put('/api/user/update/profile', formData, config)
+
+        dispatch({
+            type: UPDATE_PROFILE_SUCCESS,
+            payload: data.success
+        })
+
+
+    } catch (e) {
+        dispatch({
+            type: UPDATE_PROFILE_FAIL,
+            payload: e.response.data.message
+        })
+    }
+}
+
+export const updateUserPassword = (formData) => async(dispatch) => {
+    try {
+
+        dispatch({ type: UPDATE_PASSWORD_REQUEST })
+
+        const { data } = await axios.put('/api/user/update/password', formData)
+
+        dispatch({
+            type: UPDATE_PASSWORD_SUCCESS,
+            payload: data.success
+        })
+
+    } catch (e) {
+        dispatch({
+            type: UPDATE_PASSWORD_FAIL,
             payload: e.response.data.message
         })
     }
