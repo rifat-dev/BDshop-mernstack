@@ -32,7 +32,8 @@ const Cart = () => {
 
     return (
         <div className="table-responsive">
-            {cartItems.length === 0 ? <h1>No Items Found</h1> : (
+            <MetaData title={'Chart Items'} />
+            {cartItems.length === 0 ? <h1>Your cart is empty <Link to='/'>Go Back</Link></h1> : (
                 <Fragment>
                     <table className="table product-table">
                         <thead>
@@ -60,7 +61,7 @@ const Cart = () => {
                                     </th>
                                     <td>
                                         <h5><strong>{product.name}</strong></h5>
-                                        {/* <p className="text-muted">by FifeSteps</p> */}
+
                                     </td>
                                     <td>{product.price}</td>
                                     <td>{product.quantity}</td>
@@ -98,14 +99,13 @@ const Cart = () => {
 
                             {/* bottom section */}
                             <tr>
-                                {/* <td colspan=""></td> */}
                                 <td>
                                     <h4><strong>Total</strong></h4></td>
                                 <td colSpan="2" >
                                     <h4><strong>{totalPrice} $</strong></h4></td>
                                 <td colSpan="4">
                                     {isAuthenticated ?
-                                        <Link>
+                                        <Link to='/shipping' >
                                             <button type="button" className="btn btn-primary">Complete purchase  <i className="fa fa-angle-right right"></i></button>
                                         </Link>
                                         : <Link to='/login' >

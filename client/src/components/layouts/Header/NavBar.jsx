@@ -16,7 +16,7 @@ const NavBar = () => {
         alert.success("User Logged Out Successfully")
     }
     return (
-        <nav className="navbar navbar-expand-lg navbar-light bg-light">
+        <nav className="navbar navbar-expand-lg navbar-light">
 
             <div className="container">
                 <Link to='/' style={{ color: 'black' }} >
@@ -27,16 +27,18 @@ const NavBar = () => {
                 </button>
 
                 <div className="collapse navbar-collapse" id="navbarContent">
-                    <ul className="navbar-nav mr-auto">
-                        <li className="nav-item active">
-                            <Link to='/' >
-                                <a className="nav-link">Home <span class="sr-only">(current)</span></a>
-                            </Link>
-                        </li>
-                    </ul>
 
+                    <div className="navbar-nav ml-auto d-flex align-items-center" >
+                        <Link to='/' >
+                            <a className="nav_text">Home <span class="sr-only">(current)</span></a>
+                        </Link>
 
-                    <div className="my-lg-0" >
+                        <Link to="/cart" >
+                            <a className="bi bi-cart-check-fill  nav_text">
+                                <span style={{ fontSize: '18px' }} className={cartItems.length > 0 ? "cart-num" : "cart-num"}  >{cartItems.length > 0 ? cartItems.length : 0}</span>
+                            </a>
+                        </Link>
+
                         <ul className="navbar-nav">
                             {isAuthenticated && (
                                 <li className="nav-item dropdown">
@@ -50,39 +52,34 @@ const NavBar = () => {
                                     </a>
                                     <div className="dropdown-menu" aria-labelledby="navbarDropdown">
                                         {user && user.roal === "admin" && (
-                                            <Link to="/dashbord" className="dropdown-item" >Dashbord</Link>
+                                            <Link to="/admin/dashboard" className="dropdown-item" >Dashbord</Link>
                                         )}
                                         <Link to="/profile/me" className="dropdown-item" >Profile</Link>
                                         <Link
                                             to="/"
-                                            className="dropdown-item text-danger"
+                                            className="dropdown-item"
                                             onClick={e => logoutHandeler()}
                                         >Logout</Link>
                                     </div>
                                 </li>
                             )}
-                            <Link className="nav-item mt-3" to="/cart" >
-                                <a className="nav-link">
-                                    Cart
-                                    <span className={cartItems.length > 0 ? "cart-num text-danger" : "cart-num"}  >{cartItems.length > 0 ? cartItems.length : 0}</span>
-                                </a>
-                            </Link>
                         </ul>
+
+                        {!isAuthenticated && (
+                            <ul className="navbar-nav">
+                                <li className="nav-item" >
+                                    <Link to="/login" >
+                                        <a className="nav-link">
+                                            <button className="signin_btn " >LogIn</button>
+                                        </a>
+                                    </Link>
+                                </li>
+                            </ul>
+                        )}
+
                     </div>
-                    {!isAuthenticated && (
-                        <ul className="navbar-nav">
-                            <li className="nav-item" >
-                                <Link to="/login" >
-                                    <a className="nav-link">
-                                        <button className="btn " >LogIn</button>
-                                    </a>
-                                </Link>
-                            </li>
-                        </ul>
-                    )}
                 </div>
             </div>
-
         </nav>
     );
 }

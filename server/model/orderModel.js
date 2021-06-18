@@ -11,10 +11,6 @@ const orderSchema = Schema({
             type: String,
             required: true
         },
-        phoneNo: {
-            type: String,
-            required: true
-        },
         country: {
             type: String,
             required: true
@@ -42,7 +38,7 @@ const orderSchema = Schema({
             type: Number,
             required: true
         },
-        product: {
+        _id: {
             type: Schema.Types.ObjectId,
             required: true,
             ref: 'Product'

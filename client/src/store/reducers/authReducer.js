@@ -77,7 +77,7 @@ export const authReducer = (state = { user: {}, isAuthenticated: false, loading:
     }
 }
 
-export const userReducer = (state = {}, action) => {
+export const userReducer = (state = { isUpdated: false, loading: false, error: null }, action) => {
     switch (action.type) {
         case UPDATE_PASSWORD_REQUEST:
         case UPDATE_PROFILE_REQUEST:

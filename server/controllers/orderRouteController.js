@@ -5,6 +5,8 @@ const Order = require('../model/orderModel')
 // create user order => '/api/order/new'
 exports.newOrder = async(req, res, next) => {
     try {
+
+
         const {
             orderItems,
             shippingInfo,
@@ -13,7 +15,6 @@ exports.newOrder = async(req, res, next) => {
             shippingPrice,
             totalPrice,
             paymentInfo
-
         } = req.body;
 
         const order = await Order.create({
@@ -24,6 +25,7 @@ exports.newOrder = async(req, res, next) => {
             shippingPrice,
             totalPrice,
             paymentInfo,
+            deliveredAt: Date.now() + 6,
             paidAt: Date.now(),
             user: req.user._id
         })
@@ -42,7 +44,8 @@ exports.newOrder = async(req, res, next) => {
 // getUserOrders order => '/api/order/my'
 exports.getMyorders = async(req, res, next) => {
     try {
-        const orders = await Order.find()
+
+        const orders = await Order.find({ user: req.user._id })
 
         res.status(200).json({
             success: true,

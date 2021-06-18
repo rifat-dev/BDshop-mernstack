@@ -8,7 +8,7 @@ exports.isAuthintecated = async(req, res, next) => {
 
         const { token } = req.signedCookies;
 
-        if (Object.keys(token).length === 0) {
+        if (!token) {
             return res.status(403).json({
                 success: false,
                 message: 'Please login first'

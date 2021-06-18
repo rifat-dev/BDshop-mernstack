@@ -1,9 +1,50 @@
 const Product = require('../model/productModel')
-
+const User = require('../model/userModel')
+const Order = require('../model/orderModel')
 const clud = require('cloudinary').v2
 
 
+//*** */
+// admin users routs section
+//**** */
+// Get Users -> 'api/admin/users'
+exports.adminGetUsers = async(req, res, nex) => {
 
+    try {
+
+        const users = await User.find()
+        res.status(200).json({
+            success: true,
+            users
+        })
+    } catch (e) {
+        next(e)
+    }
+}
+
+exports.adminGetSingleUser = async(req, res, next) => {
+    try {
+        const { id } = req.params
+
+        const { user } = await User.findById(id)
+
+        if (!user) {
+            return res.status(404).json({
+                success: false,
+                message: "User Not Found"
+            })
+        }
+
+        res.status(200).json({
+            success: true,
+            user
+        })
+
+
+    } catch (e) {
+        next(e)
+    }
+}
 
 //*** */
 // admin products routs section
@@ -59,6 +100,55 @@ exports.getAdminProducts = async(req, res, next) => {
             success: true,
             products
         })
+    } catch (e) {
+        next(e)
+    }
+}
+
+
+//*** */
+// admin orders routs section
+//**** */
+exports.adminGetAllOrders = async(req, res, next) => {
+
+    try {
+        const orders = await Order.find()
+
+        let totalAmount = 0;
+        orders.forEach(element => {
+            totalAmount = element.totalPrice + totalAmount
+        });
+
+        res.status(200).json({
+            success: true,
+            orders,
+            totalAmount
+        })
+
+    } catch (e) {
+        next(e)
+    }
+}
+
+exports.adminGetSingleOrder = async(req, res, next) => {
+
+    try {
+        const { id } = req.params
+        const { order } = await Order.findById(id)
+
+
+        if (!order) {
+            return res.status(404).json({
+                success: false,
+                message: "There Is No Order Found"
+            })
+        }
+
+        res.status(200).json({
+            success: true,
+            order
+        })
+
     } catch (e) {
         next(e)
     }

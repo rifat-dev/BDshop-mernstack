@@ -28,7 +28,7 @@ const Profile = () => {
                             <p>{String(user.createdAt).substring(0, 10)}</p>
 
                             {user.roal !== 'admin' && (
-                                <Link to="/orders/me" className="btn btn-danger btn-block mt-5">
+                                <Link to="/profile/me/orders" className="btn btn-danger btn-block mt-5">
                                     My Orders
                                 </Link>
                             )}

@@ -13,6 +13,16 @@ import {
 
 // Cart reducers import
 import { cartReducer } from './cartReducer'
+
+// Order Reducers
+import { newOrder, myOrders, singleOrderDetails } from './orderReducer'
+
+// admin Reducers
+import {
+    adminAllUsersReducer,
+    adminAllProductsReducer,
+    adminAllOrdersReducer
+} from './adminReducer'
 const rootReducer = combineReducers({
     // user reducers
     auth: authReducer,
@@ -23,7 +33,16 @@ const rootReducer = combineReducers({
     singleProduct: singleProduct,
 
     // cart reducers
-    cart: cartReducer
+    cart: cartReducer,
+    // Order Reducers
+    newOrder: newOrder,
+    myOrders: myOrders,
+    singleOrderDetails: singleOrderDetails,
+
+    // admin reducers
+    adminAllUsers: adminAllUsersReducer,
+    adminAllProducts: adminAllProductsReducer,
+    adminAllOrders: adminAllOrdersReducer
 
 })
 
