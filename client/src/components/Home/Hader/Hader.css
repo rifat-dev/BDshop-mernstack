@@ -1,0 +1,56 @@
+#hader {
+    background-image: url('../../../assets/bg.jpg');
+    height: 100vh;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.hader_text_box {
+    background-color: rgba(214, 212, 212, 0.7);
+    width: 800px;
+    height: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+}
+
+.hader_text_box h1 {
+    color: #12151F;
+    font-weight: 800;
+}
+
+.hader_text_box h1 span {
+    color: #BD1E51;
+    font-weight: 800;
+}
+
+.hader_text_box h3 {
+    color: #12151F;
+    font-weight: 800;
+}
+
+.hader_btn {
+    text-decoration: none;
+    border: none;
+    padding: 6px 35px;
+    font-size: 18px;
+    background: #BD1E51;
+    color: white;
+    border-radius: 20px;
+    transition: transform 1s;
+    border-bottom-right-radius: 0;
+}
+
+.hader_btn:focus {
+    outline: none;
+}
+
+.hader_btn:hover {
+    transform: scale(1.05);
+}

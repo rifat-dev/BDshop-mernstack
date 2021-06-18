@@ -70,7 +70,10 @@ const NavBar = () => {
                                 <li className="nav-item" >
                                     <Link to="/login" >
                                         <a className="nav-link">
-                                            <button className="signin_btn " >LogIn</button>
+                                            <button className="signin_btn " >
+                                                LogIn
+                                                <i className="bi bi-arrow-right-circle-fill ml-1 "></i>
+                                            </button>
                                         </a>
                                     </Link>
                                 </li>

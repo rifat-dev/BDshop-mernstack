@@ -20,8 +20,8 @@
     border: none;
     padding: 6px 35px;
     font-size: 18px;
-    background: rgb(231, 10, 10);
-    color: wheat;
+    background: #BD1E51;
+    color: white;
     border-radius: 20px;
     transition: transform 1s;
 }

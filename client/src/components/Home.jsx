@@ -3,13 +3,14 @@ import { useSelector, useDispatch } from 'react-redux'
 import { useAlert } from 'react-alert'
 
 
-import SearchBar from './layouts/SearchBar';
+import Hader from './Home/Hader/Hader'
+
 import ProductCard from './products/ProductCard'
 
 import Loader from '../components/layouts/Loader/Loader'
 import MetaData from '../components/layouts/MetaData'
 import { getAllProducts, clearError } from '../store/actions/productActions'
-import ProductCarousel from './products/ProductCarousel';
+
 
 const Home = () => {
 
@@ -30,12 +31,7 @@ const Home = () => {
             {loading ? <Loader /> : (
                 <Fragment>
                     <MetaData title={"Home-BDShop"} />
-                    <div className="my-4" >
-                        <SearchBar />
-                    </div>
-                    <div className="my-4" >
-                        <ProductCarousel products={products} />
-                    </div>
+                    <Hader />
                     <h2 className="my-2" >Latest Product</h2>
                     <div className="row product-section my-4">
                         {products.map((product => (
