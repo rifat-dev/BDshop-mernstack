@@ -11,31 +11,33 @@ const Profile = () => {
             {loading ? <Loader /> : (
                 <>
                     <MetaData title={'Your Profile - BDShop'} />
-                    <h2 className="mt-4" >Your Profile</h2>
-                    <div className="row" >
-                        <div className="col-12 col-md-6 mb-4" >
-                            <img style={{ width: '100%' }} className="img-thumbnail img-fluid" src={user.avatar.url} alt={user.name} />
-                            <Link to="/profile/me/edit-profile" className="btn btn-block mt-4" >Edit Your Profile</Link>
-                        </div>
-                        <div className="col-12 col-md-6">
-                            <h4>Full Name</h4>
-                            <p>{user.name}</p>
+                    <div className="container">
+                        <h2 className="mt-4" >Your Profile</h2>
+                        <div className="row" >
+                            <div className="col-12 col-md-6 mb-4" >
+                                <img style={{ width: '100%' }} className="img-thumbnail img-fluid" src={user.avatar.url} alt={user.name} />
+                                <Link to="/profile/me/edit-profile" className="my_btn text-center btn-block mt-4" >Edit Your Profile</Link>
+                            </div>
+                            <div className="col-12 col-md-6">
+                                <h4>Full Name</h4>
+                                <p>{user.name}</p>
 
-                            <h4>Email Address</h4>
-                            <p>{user.email}</p>
+                                <h4>Email Address</h4>
+                                <p>{user.email}</p>
 
-                            <h4>Joined On</h4>
-                            <p>{String(user.createdAt).substring(0, 10)}</p>
+                                <h4>Joined On</h4>
+                                <p>{String(user.createdAt).substring(0, 10)}</p>
 
-                            {user.roal !== 'admin' && (
-                                <Link to="/profile/me/orders" className="btn btn-danger btn-block mt-5">
-                                    My Orders
+                                {user.roal !== 'admin' && (
+                                    <Link to="/profile/me/orders" className="my_btn btn-block mt-5 text-center">
+                                        My Orders
+                                    </Link>
+                                )}
+
+                                <Link to="/profile/me/update-password" className="my_btn btn-block mt-3 text-center">
+                                    Change Password
                                 </Link>
-                            )}
-
-                            <Link to="/profile/me/update-password" className="btn btn-primary btn-block mt-3">
-                                Change Password
-                            </Link>
+                            </div>
                         </div>
                     </div>
                 </>

@@ -46,24 +46,29 @@ const UpdatePassword = ({ history }) => {
             {loading ? <Loader /> : (
                 <Fragment>
                     <MetaData title={'Update Your Password On BDshop'} />
-                    <div className="col-12 col-md-6 offset-md-3 my-5" >
-                        <MDBCol className="z-depth-5 p-4">
-                            <form onSubmit={submitForm} >
-                                <h1 className="h1 mb-4">Update Your Password</h1>
-                                <div className="grey-text">
+                    <div className="container">
+                        <div className="col-12 col-md-6 offset-md-3 my-5" >
+                            <MDBCol className="p-4">
+                                <form onSubmit={submitForm} >
+                                    <h1 className="h1 mb-4">Update Your Password</h1>
+                                    <div className="grey-text">
 
-                                    <MDBInput name="password" label="Type your old password" icon="lock" group type="password" validate
-                                        value={oldPassword}
-                                        onChange={(e) => setOldPassword(e.target.value)} />
-                                    <MDBInput name="password" label="Type your new password" icon="lock" group type="password" validate
-                                        value={password}
-                                        onChange={(e) => setPassword(e.target.value)} />
-                                </div>
-                                <div className="text-center">
-                                    <MDBBtn type="submit"  >Update Password</MDBBtn>
-                                </div>
-                            </form>
-                        </MDBCol>
+                                        <MDBInput name="password" label="Type your old password" icon="lock" group type="password" validate
+                                            value={oldPassword}
+                                            onChange={(e) => setOldPassword(e.target.value)} />
+                                        <MDBInput name="password" label="Type your new password" icon="lock" group type="password" validate
+                                            value={password}
+                                            onChange={(e) => setPassword(e.target.value)} />
+                                    </div>
+                                    <div className="text-center">
+                                        <button className="my_btn btn-block" type="submit"  >
+                                            <i className="bi bi-key-fill mr-2"></i>
+                                            Update Password
+                                        </button>
+                                    </div>
+                                </form>
+                            </MDBCol>
+                        </div>
                     </div>
                 </Fragment>
             )}

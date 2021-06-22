@@ -24,44 +24,46 @@ const Orders = () => {
                     {orders.length > 0 ? (
                         <Fragment>
                             <MetaData title={"My Orders List-BDShop"} />
-                            <table className="table product-table my-4">
-                                <thead>
-                                    <tr>
-                                        <th>Order Id</th>
-                                        <th>NumOfItems</th>
-                                        <th>Amount</th>
-                                        <th>Status</th>
-                                        <th>Action</th>
-                                    </tr>
-                                </thead>
-
-                                <tbody>
-                                    {orders.map(order => (
+                            <div className="container">
+                                <table className="table product-table my-4">
+                                    <thead>
                                         <tr>
-                                            <td>
-                                                <h5><strong>{order._id}</strong></h5>
-                                            </td>
-                                            <td>{order.orderItems.length}</td>
-                                            <td>{order.totalPrice}</td>
-                                            <td>
-                                                <p
-                                                    className={`${order.orderStatus === 'Processing' ?
-                                                        'text-danger' : order.orderStatus === 'Shipping' ?
-                                                            'text-primary' : 'text-success'
-                                                        }`}
-                                                >
-                                                    {order.orderStatus}
-                                                </p>
-                                            </td>
-                                            <td>
-                                                <Link to={`/profile/me/orders/${order._id}`} className="btn btn-primary">
-                                                    <i className="fa fa-eye"></i>
-                                                </Link>
-                                            </td>
+                                            <th>Order Id</th>
+                                            <th>NumOfItems</th>
+                                            <th>Amount</th>
+                                            <th>Status</th>
+                                            <th>Action</th>
                                         </tr>
-                                    ))}
-                                </tbody>
-                            </table>
+                                    </thead>
+
+                                    <tbody>
+                                        {orders.map(order => (
+                                            <tr>
+                                                <td>
+                                                    <h5><strong>{order._id}</strong></h5>
+                                                </td>
+                                                <td>{order.orderItems.length}</td>
+                                                <td>{order.totalPrice}</td>
+                                                <td>
+                                                    <p
+                                                        className={`${order.orderStatus === 'Processing' ?
+                                                            'text-danger' : order.orderStatus === 'Shipping' ?
+                                                                'text-primary' : 'text-success'
+                                                            }`}
+                                                    >
+                                                        {order.orderStatus}
+                                                    </p>
+                                                </td>
+                                                <td>
+                                                    <Link to={`/profile/me/orders/${order._id}`} className="my_btn">
+                                                        <i className="fa fa-eye"></i>
+                                                    </Link>
+                                                </td>
+                                            </tr>
+                                        ))}
+                                    </tbody>
+                                </table>
+                            </div>
                         </Fragment>
                     ) : (
                         <h1> Your Order List Is Empty </h1>

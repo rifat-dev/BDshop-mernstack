@@ -1,0 +1,153 @@
+.footer {
+    background-color: #BD1E51;
+}
+
+.footer_top_part {
+    padding: 60px 0;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.footerLogo {
+    width: 150px;
+    height: 40px;
+    -o-object-fit: cover;
+    object-fit: cover;
+    -o-object-position: center;
+    object-position: center;
+}
+
+.footer_nav_link_container {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.footer_top_link li {
+    list-style-type: none;
+    text-align: start;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    transition: .5s;
+}
+
+.footer_top_link li:hover {
+    padding-left: 10px;
+}
+
+.footer_top_link li a {
+    text-decoration: none;
+    color: #ffffff;
+}
+
+.footer_top_link li a:hover {
+    color: #12151F;
+}
+
+.footer_bottom_part {
+    padding-bottom: 10px;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.copyright p {
+    color: gray;
+}
+
+.footer_bottom_link {
+    margin-left: auto;
+}
+
+.footer_bottom_link a {
+    text-decoration: none;
+    color: #ffffff;
+    margin: 0 20px;
+}
+
+.search_input {
+    margin: 0 auto;
+    display: inline;
+}
+
+.search_input .form_control {
+    border: none;
+    padding: 7px 20px;
+    border-radius: 25px;
+}
+
+.search_input .form_control:focus {
+    border: none !important;
+    outline: none;
+}
+
+.search_input .search_btn {
+    background-color: #12151F;
+    border: none;
+    border-radius: 25px;
+    padding: 7px 30px;
+    margin-left: -30px;
+    color: rgb(255, 255, 255);
+}
+
+.search_input:focus {
+    outline: none;
+}
+
+.search_input .search_btn:focus {
+    outline: none;
+}
+
+.footer_bottom_link a:hover {
+    color: #12151F;
+}
+
+.copyright p {
+    color: #12151F;
+}
+
+@media only screen and (max-width: 992px) {
+    .footer_top_link {
+        width: 100% !important;
+        padding-left: 0;
+    }
+    .subscribe input {
+        width: 70% !important;
+    }
+    .subscribe button {
+        width: 50% !important;
+    }
+    .copyright {
+        width: 30%;
+    }
+    .footer_bottom_link {
+        width: 70%;
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    .footer_nav_link_container {
+        margin-top: 50px;
+    }
+    .footerLogo {
+        margin: 0 auto;
+    }
+    .footer_top_link li {
+        text-align: center;
+    }
+    .footer_bottom_link {
+        width: 100%;
+    }
+    .footer_bottom_link a {
+        margin: 0 10px;
+    }
+    .copyright {
+        width: 100%;
+    }
+    .subscribe input {
+        width: 50% !important;
+        margin-left: auto;
+    }
+    .subscribe button {
+        width: 40% !important;
+        margin-right: auto;
+    }
+}

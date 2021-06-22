@@ -1,12 +1,17 @@
+import { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 
-const SideNav = ({ id }) => {
+const SideNav = ({ id, show }) => {
+
+
 
     return (
-        <div className="sidebar-wrapper">
-            <nav id="sidebar">
+        <div id="sideBar" className={show ? 'active sidebar-wrapper' : 'sidebar-wrapper'}  >
+            <nav id="sidebar"  >
                 <div className="sidebar-header">
-                    <p>BDShop</p>
+                    <Link to="/" >
+                        <p>BDShop</p>
+                    </Link>
                 </div>
                 <ul className="list-unstyled components">
                     <li >

@@ -32,7 +32,11 @@ export const userRegister = (formData) => async(dispatch) => {
                 'Content-Type': 'multipart/form-data'
             }
         }
+
         const { data } = await axios.post('/api/user/register', formData, config)
+
+        localStorage.setItem("user", JSON.stringify(data));
+
         dispatch({
             type: REGISTER_USER_SUCCESS,
             payload: data.user
@@ -47,11 +51,13 @@ export const userRegister = (formData) => async(dispatch) => {
     }
 }
 
-export const userLogin = (email, password) => async(dispatch) => {
+export const userLogin = (email, password) => async(dispatch, getState) => {
     try {
         dispatch({ type: LOGIN_USER_REQUEST })
 
         const { data } = await axios.post('/api/user/login', { email, password })
+
+        localStorage.setItem("user", JSON.stringify(data));
 
         dispatch({
             type: LOGIN_USER_SUCCESS,
@@ -76,6 +82,8 @@ export const userLogout = () => async(dispatch) => {
             type: LOGOUT_USER_SUCCESS
         })
 
+        localStorage.removeItem("user")
+
     } catch (e) {
         dispatch({
             type: LOGOUT_USER_FAIL,
@@ -92,6 +100,8 @@ export const getUser = () => async(dispatch) => {
         dispatch({ type: GET_USER_REQUEST })
 
         const { data } = await axios.get('/api/user/me')
+
+        localStorage.setItem("user", JSON.stringify(data))
 
         dispatch({
             type: GET_USER_SUCCESS,

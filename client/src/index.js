@@ -8,6 +8,8 @@ import 'mdbreact/dist/css/mdb.css';
 import { transitions, positions, Provider as AlertProvider } from 'react-alert'
 import AlertTemplate from 'react-alert-template-basic'
 
+import { SET_USER } from './store/Types/authType'
+
 import App from './App';
 import store from './store/store'
 import { Provider } from 'react-redux'
@@ -18,6 +20,17 @@ const options = {
   offset: '30px',
   transition: transitions.SCALE
 }
+
+
+const user = localStorage.getItem("user")
+
+if (user) {
+  store.dispatch({
+    type: SET_USER,
+    payload: JSON.parse(user).user
+  })
+}
+
 
 ReactDOM.render(
   <React.StrictMode>

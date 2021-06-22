@@ -1,0 +1,12 @@
+.empty_cart {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.empty_cart_body img {
+    width: 400px;
+    height: 400px;
+}

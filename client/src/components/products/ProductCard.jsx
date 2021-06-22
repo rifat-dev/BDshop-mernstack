@@ -1,37 +1,66 @@
+import { Fragment, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { Card } from 'react-bootstrap'
+import { useDispatch, useSelector } from 'react-redux'
+
+import './Card.css'
 import ProductRating from './ProductRating'
 
+
+import { addToCartItem } from '../../store/actions/cartActions'
+
+
 const ProductCard = ({ product }) => {
+
+    const [addProduct, setAddProduct] = useState(false)
+
+
+    const dispatch = useDispatch()
+
     return (
-        <Card className='my-3 p-3 rounded '>
-            <Link to={`/product/${product._id}`}>
-                <Card.Img
-                    style={{ height: '200px', objectFit: 'contain' }}
-                    src={product.images[0].url}
-                    variant='top' />
-            </Link>
+        <Fragment>
+            <div className="product_card" >
+                <div className="product_card_hader">
+                    <img src={product.images[0].url} alt="product" />
+                </div>
+                <div className="product_card_body">
+                    <Link to={`/product/${product._id}`} >
+                        <h5>
+                            {product.name}
+                        </h5>
+                    </Link>
+                    <h5>
+                        {`price $${product.price}`}
+                    </h5>
+                    <ProductRating value={product.ratings} text={` (${product.ratings})`} />
+                    <p>
+                        Catagory:
+                        <span>{` ${product.category}`}</span>
+                    </p>
 
-            <Card.Body>
-                <Link to={`/product/${product._id}`}>
-                    <Card.Title as='div'>
-                        <strong>{product.name}</strong>
-                    </Card.Title>
-                </Link>
+                    {addProduct ?
+                        <Link to="/cart" >
+                            <button className="card_btn card_btn_view" >
+                                <i class="bi bi-cart-check-fill "></i>
+                                View Cart
+                            </button>
+                        </Link> :
+                        <button
+                            className=" card_btn card_btn_add"
+                            onClick={() => {
+                                setAddProduct(true)
+                                dispatch(addToCartItem(product._id, 1))
+                            }}
+                            disabled={product.stock === 0}
+                        >
+                            <i class="bi bi-cart-plus-fill"></i>
+                            Add
+                        </button>
+                    }
 
-                <Card.Text as='div'>
-                    <ProductRating
-                        value={product.ratings}
-                        text={`${product.numOfReviews} reviews`}
-                    />
-                </Card.Text>
 
-                <Card.Text as='h3'>${product.price}</Card.Text>
-                <Link to={`/product/${product._id}`} >
-                    <Card.Text as='button' className="btn btn-primary btn-block" style={{ color: 'white' }} >View Detailes</Card.Text>
-                </Link>
-            </Card.Body>
-        </Card>
+                </div>
+            </div>
+        </Fragment>
     )
 }
 

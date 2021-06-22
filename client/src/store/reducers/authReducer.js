@@ -23,7 +23,8 @@ import {
     DELETE_USER_RESET,
     UPDATE_PASSWORD_FAIL,
     UPDATE_PROFILE_FAIL,
-    DELETE_USER_FAIL
+    DELETE_USER_FAIL,
+    SET_USER
 } from '../Types/authType'
 
 
@@ -52,6 +53,12 @@ export const authReducer = (state = { user: {}, isAuthenticated: false, loading:
                 isAuthenticated: false,
                 loading: false,
                 user: null
+            }
+        case SET_USER:
+            return {
+                ...state,
+                isAuthenticated: true,
+                user: action.payload
             }
         case LOGIN_USER_FAIL:
         case REGISTER_USER_FAIL:

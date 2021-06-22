@@ -17,7 +17,7 @@
 .bouncer div {
     width: 20px;
     height: 20px;
-    background-color: rgb(23, 156, 209);
+    background-color: #BD1E51;
     border-radius: 50%;
     -webkit-animation: bounce 0.5s ease infinite alternate;
     animation: bounce 0.5s ease infinite alternate;

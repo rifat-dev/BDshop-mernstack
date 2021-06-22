@@ -70,7 +70,7 @@ const UpdateProfile = ({ history }) => {
                 <Fragment>
                     <MetaData title={'Update Your Profile On BDshop'} />
                     <div className="col-12 col-md-6 offset-md-3 my-5" >
-                        <MDBCol className="z-depth-5 p-4">
+                        <MDBCol className=" p-4">
                             <form onSubmit={submitForm} >
                                 <h1 className="h1 mb-4">Update Your Profile</h1>
                                 <div className="grey-text">
@@ -91,7 +91,7 @@ const UpdateProfile = ({ history }) => {
                                     <MDBInput type="file" onChange={handelChange} />
                                 </div>
                                 <div className="text-center">
-                                    <MDBBtn type="submit"  >Update Profile</MDBBtn>
+                                    <button className="my_btn btn-block" type="submit"  >Update Profile</button>
                                 </div>
                             </form>
                         </MDBCol>

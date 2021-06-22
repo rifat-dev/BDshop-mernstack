@@ -61,7 +61,6 @@ export const getAdminOrders = () => async(dispatch) => {
         dispatch({ type: GET_ADMIN_ALL_ORDERS_REQUEST })
 
         const { data } = await axios.get('/api/admin/orders')
-        console.log(data)
         dispatch({
             type: GET_ADMIN_ALL_ORDERS_SUCCESS,
             payload: {

@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { useAlert } from 'react-alert'
 import { Row, Col, Image, ListGroup, Card, Button, Form } from 'react-bootstrap'
+import './Card.css'
 
 import { addToCartItem } from '../../store/actions/cartActions'
 import { getSingleProduct, clearError } from '../../store/actions/productActions'
@@ -46,10 +47,13 @@ const SingleProduct = ({ match, history }) => {
                     (
                         <Fragment>
                             <MetaData title={`Product - ${product.name}`} />
-                            <div>
-                                <Link className='btn btn-light my-3' to='/'>
-                                    Go Back
-                                 </Link>
+                            <div className="container" >
+                                <Link to='/'>
+                                    <button className='my_btn mb-5'>
+                                        <i class="bi bi-arrow-left-short"></i>
+                                        Go Back
+                                    </button>
+                                </Link>
                                 <Row>
                                     <Col className="col-12 col-md-3">
                                         <Image src={product.images[0].url} alt={product.name} fluid />
@@ -116,14 +120,15 @@ const SingleProduct = ({ match, history }) => {
                                                 )}
 
                                                 <ListGroup.Item>
-                                                    <Button
+                                                    <button
                                                         onClick={() => dispatch(addToCartItem(product._id, qty))}
-                                                        className='btn-block'
+                                                        className='my_btn btn-block'
                                                         type='submit'
                                                         disabled={product.stock === 0}
                                                     >
+                                                        <i class="bi bi-cart-plus-fill"></i>
                                                         Add To Cart
-                                                    </Button>
+                                                    </button>
                                                 </ListGroup.Item>
                                             </ListGroup>
                                         </Card>
@@ -187,13 +192,14 @@ const SingleProduct = ({ match, history }) => {
                                                                 onChange={(e) => setComment(e.target.value)}
                                                             ></Form.Control>
                                                         </Form.Group>
-                                                        <Button
+                                                        <button
                                                             // disabled={loadingProductReview}
+                                                            className="my_btn"
                                                             type='submit'
                                                             variant='primary'
                                                         >
                                                             Submit
-                                                       </Button>
+                                                        </button>
                                                     </Form>
                                                 ) : (
                                                     <>

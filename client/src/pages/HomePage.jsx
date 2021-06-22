@@ -24,7 +24,6 @@ const HomePage = () => {
     return (
         <Fragment>
             <NavBar />
-
             <Switch>
                 <div className="">
                     <Route path='/' component={Home} exact />

@@ -1,18 +1,58 @@
-.cart-num {
-    background: rgb(231, 10, 10);
-    padding: 0px 3px;
-    border-radius: 20px;
-    color: white;
-}
-
 .navbar {
     box-shadow: none;
+}
+
+.nav-link img {
+    margin-right: 3px;
+}
+
+.sticky_nav {
+    position: fixed;
+    background-color: #BD1E51;
+    box-shadow: 0 4px 8px 0 rgb(0, 0, 0, 0.2);
+    width: 100%;
+    top: 0;
+    z-index: 99;
+}
+
+.sticky_nav .nav_text {
+    color: white !important;
+}
+
+.sticky_nav .navbar-brand {
+    color: white !important;
+}
+
+.sticky_nav .signin_btn {
+    background-color: white;
+    color: #12151F !important;
+}
+
+.sticky_nav .cart-num {
+    background-color: white;
+    color: #12151F !important;
+}
+
+.sticky_nav .navbar-toggler {
+    background-color: white;
+    color: #12151F !important;
+}
+
+.sticky_nav .nav-link {
+    color: white !important;
 }
 
 .nav_text {
     font-size: 20px;
     margin: 0 15px;
-    color: black !important;
+    color: #12151F !important;
+}
+
+.cart-num {
+    background: #BD1E51;
+    padding: 0px 2px;
+    border-radius: 25px;
+    color: white;
 }
 
 .signin_btn {
@@ -39,7 +79,7 @@
 }
 
 .dropdown-item:hover {
-    background: rgb(231, 10, 10);
+    background: #BD1E51;
     color: wheat !important;
     box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.4);
     width: 90%;

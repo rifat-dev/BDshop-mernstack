@@ -4,6 +4,8 @@ import { useDispatch, useSelector } from 'react-redux'
 import { MDBCol, MDBInput, MDBBtn } from 'mdbreact';
 import { useAlert } from 'react-alert'
 import { userLogin, clearError } from '../../store/actions/authActions'
+import shoppingSVG from '../../assets/shopping.svg'
+import './User.css'
 
 import Loader from '../layouts/Loader/Loader'
 import MetaData from '../layouts/MetaData'
@@ -38,40 +40,54 @@ const Login = ({ history }) => {
             {loading ? <Loader /> : (
                 <Fragment>
                     <MetaData title="Login Your Account" />
-                    <div className=" div-center ">
-                        <MDBCol className="z-depth-5 p-4" md="6">
-                            <form onSubmit={submitHandelar}  >
-                                <h1 className="h1 text-center mb-4">LogIn User</h1>
-                                <div className="grey-text">
-                                    <MDBInput
-                                        name="email"
-                                        value={email}
-                                        onChange={(e) => setEmail(e.target.value)}
-                                        label="Type your email"
-                                        icon="envelope"
-                                        group type="email"
-                                        validate error="wrong"
-                                        success="right" />
-                                    <MDBInput
-                                        name="password"
-                                        value={password}
-                                        onChange={(e) => setPassword(e.target.value)}
-                                        label="Type your password"
-                                        icon="lock"
-                                        group type="password"
-                                        validate
-                                    />
-                                </div>
-                                <div className="text-center">
-                                    <MDBBtn type="submit"  >LogIn</MDBBtn>
-                                </div>
-                                <p>
-                                    <Link to="/register" >
-                                        Don't have any account ?
-                            </Link>
-                                </p>
-                            </form>
-                        </MDBCol>
+                    <Link to="/" >
+                        <button className="my_btn mt-5 ml-5" >
+                            <i class="bi bi-house-door-fill"></i>
+                            Go To Home
+                        </button>
+                    </Link>
+                    <div className="login row">
+                        <div className="col-md-6 login_form user_form">
+                            <MDBCol className="" md="8">
+                                <form onSubmit={submitHandelar}  >
+                                    <h1 className="h1 text-center mb-4">LogIn User</h1>
+                                    <div className="grey-text">
+                                        <MDBInput
+                                            name="email"
+                                            value={email}
+                                            onChange={(e) => setEmail(e.target.value)}
+                                            label="Type your email"
+                                            icon="envelope"
+                                            group type="email"
+                                            validate error="wrong"
+                                            success="right" />
+                                        <MDBInput
+                                            name="password"
+                                            value={password}
+                                            onChange={(e) => setPassword(e.target.value)}
+                                            label="Type your password"
+                                            icon="lock"
+                                            group type="password"
+                                            validate
+                                        />
+                                    </div>
+                                    <div className="text-center">
+                                        <button className="my_btn" type="submit"  >
+                                            <i class="bi bi-unlock-fill"></i>
+                                            LogIn
+                                        </button>
+                                    </div>
+                                    <p>
+                                        <Link to="/register" >
+                                            Don't have any account ?
+                                        </Link>
+                                    </p>
+                                </form>
+                            </MDBCol>
+                        </div>
+                        <div className="col-md-6 login_img user_img">
+                            <img src={shoppingSVG} alt="Shopping.svg" />
+                        </div>
                     </div>
                 </Fragment>
             )}
