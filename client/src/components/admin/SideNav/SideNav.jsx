@@ -29,8 +29,8 @@ const SideNav = ({ id, show }) => {
 
                             <li>
                                 <Link
-                                    className={id === 'product' ? 'sidebar-active' : ''}
-                                    to="/admin/product"><i className="fa fa-plus"></i> Create</Link>
+                                    className={id === 'newproduct' ? 'sidebar-active' : ''}
+                                    to="/admin/newproduct"><i className="fa fa-plus"></i> Create</Link>
                             </li>
                         </ul>
                     </li>

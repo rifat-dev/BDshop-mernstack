@@ -49,7 +49,7 @@ exports.adminGetSingleUser = async(req, res, next) => {
 //*** */
 // admin products routs section
 //**** */
-// productCreate -> 'api/admin/product/new'
+// productCreate -> 'api/admin/products/new'
 exports.newProduct = async(req, res, next) => {
     try {
 
@@ -74,19 +74,24 @@ exports.newProduct = async(req, res, next) => {
         // }
 
         // req.body.images = imgLinks
-        req.body.user = req.user._id
+        // req.body.user = req.user._id
 
-        const product = await Product.create(req.body)
+        await Product.create(req.body)
 
-        res.status(201).json({
+
+        return res.status(200).json({
             success: true,
             message: 'Product create successfully',
-            product
+            // product
         })
 
 
     } catch (e) {
         next(e)
+        return res.status(500).json({
+            success: false,
+            message: 'Server Error'
+        })
     }
 }
 

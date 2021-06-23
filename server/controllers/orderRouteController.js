@@ -25,7 +25,7 @@ exports.newOrder = async(req, res, next) => {
             shippingPrice,
             totalPrice,
             paymentInfo,
-            deliveredAt: Date.now() + 6,
+            deliveredAt: Date.now(),
             paidAt: Date.now(),
             user: req.user._id
         })

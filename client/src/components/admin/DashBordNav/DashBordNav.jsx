@@ -25,7 +25,7 @@ const DashboardNavbar = ({ setShow, show, match }) => {
                         {
                             id === "dashboard" ? "Dashboard"
                                 : id === "products" ? "Products"
-                                    : id === "addService" ? "Add Service"
+                                    : id === "newproduct" ? "Create A New Product"
                                         : id === "makeAdmin" ? "Make Admin"
                                             : id === "manageServices" ? "Manage Services"
                                                 : id === "book" ? "Book"
@@ -37,7 +37,7 @@ const DashboardNavbar = ({ setShow, show, match }) => {
                 </Navbar.Brand>
                 <Navbar.Collapse id="responsive-navbar-nav">
                     <div className="ml-auto" >
-                        <h1>Hi</h1>
+                        <h1>Admin Dashboard</h1>
                     </div>
                 </Navbar.Collapse>
             </Container>

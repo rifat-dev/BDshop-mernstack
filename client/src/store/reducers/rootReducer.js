@@ -21,7 +21,8 @@ import { newOrder, myOrders, singleOrderDetails } from './orderReducer'
 import {
     adminAllUsersReducer,
     adminAllProductsReducer,
-    adminAllOrdersReducer
+    adminAllOrdersReducer,
+    adminDashboardTracker
 } from './adminReducer'
 const rootReducer = combineReducers({
     // user reducers
@@ -42,8 +43,8 @@ const rootReducer = combineReducers({
     // admin reducers
     adminAllUsers: adminAllUsersReducer,
     adminAllProducts: adminAllProductsReducer,
-    adminAllOrders: adminAllOrdersReducer
-
+    adminAllOrders: adminAllOrdersReducer,
+    dashboardTracker: adminDashboardTracker
 })
 
 export default rootReducer

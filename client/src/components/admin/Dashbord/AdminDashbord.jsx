@@ -8,6 +8,7 @@ import '../dashbord.css'
 import Dashbord from './DashBord'
 import DashboardNav from '../DashBordNav/DashBordNav'
 import ProductList from '../Product/ProductList';
+import NewProduct from '../Product/NewProduct'
 
 const AdminDashbord = ({ match }) => {
     const { id } = match.params
@@ -22,7 +23,8 @@ const AdminDashbord = ({ match }) => {
                 <DashboardNav show={show} setShow={setShow} match={match} />
                 {
                     id === "dashboard" ? <Dashbord /> :
-                        id === "products" ? <ProductList /> : ""
+                        id === "products" ? <ProductList /> :
+                            id === 'newproduct' ? <NewProduct /> : ''
                 }
             </div>
         </div>

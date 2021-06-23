@@ -11,7 +11,7 @@ import img from '../../../assets/img1.jpg'
 const ProductCard = ({ product, index }) => {
     const [isEdit, setEdit] = useState(false)
 
-    console.log(index)
+
     return (
         <Fragment>
             <div class="flip-card my-4">

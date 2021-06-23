@@ -1,6 +1,9 @@
 import axios from 'axios'
 import {
     CLEAR_ERROR,
+    CREATE_ADMIN_PRODUCT_FAIL,
+    CREATE_ADMIN_PRODUCT_REQUEST,
+    CREATE_ADMIN_PRODUCT_SUCCESS,
     GET_ADMIN_ALL_ORDERS_FAIL,
     GET_ADMIN_ALL_ORDERS_REQUEST,
     GET_ADMIN_ALL_ORDERS_SUCCESS,
@@ -72,6 +75,34 @@ export const getAdminOrders = () => async(dispatch) => {
     } catch (e) {
         dispatch({
             type: GET_ADMIN_ALL_ORDERS_FAIL,
+            payload: e.response.data.message
+        })
+    }
+}
+
+export const createAdminProducr = (formData) => async(dispatch) => {
+    try {
+
+        dispatch({ type: CREATE_ADMIN_PRODUCT_REQUEST })
+
+        const config = {
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }
+
+        const { data } = await axios.post('/api/admin/products/new', formData, config)
+
+        console.log(data)
+
+        dispatch({
+            type: CREATE_ADMIN_PRODUCT_SUCCESS,
+            payload: data.success
+        })
+
+    } catch (e) {
+        dispatch({
+            type: CREATE_ADMIN_PRODUCT_FAIL,
             payload: e.response.data.message
         })
     }
