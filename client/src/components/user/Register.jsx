@@ -2,8 +2,11 @@ import { Fragment, useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { useAlert } from 'react-alert'
 import { useDispatch, useSelector } from 'react-redux'
-import { MDBRow, MDBCol, MDBInput, MDBBtn } from 'mdbreact';
+import { MDBRow, MDBCol, MDBInput } from 'mdbreact';
+import Compress from "react-image-file-resizer";
 import './User.css'
+
+
 import logoutSvg from '../../assets/login.svg'
 import Loader from '../layouts/Loader/Loader'
 import MetaData from '../layouts/MetaData'
@@ -26,12 +29,20 @@ const Register = ({ history }) => {
 
     const handelChange = (e) => {
         if (e.target.type === 'file') {
-            const reader = new FileReader();
-            reader.onload = (e) => {
-                setImagePreview(e.target.result)
-                setAvater(e.target.result)
-            }
-            reader.readAsDataURL(e.target.files[0])
+            const file = e.target.files[0];
+            Compress.imageFileResizer(
+                file, // the file from input
+                480, // width
+                480, // height
+                "JPEG", // compress format WEBP, JPEG, PNG
+                70, // quality
+                0, // rotation
+                (uri) => {
+                    setImagePreview(uri)
+                    setAvater(uri)
+                },
+                "base64" // blob or base64 default base64
+            );
         } else {
             setUser({ ...user, [e.target.name]: e.target.value })
         }

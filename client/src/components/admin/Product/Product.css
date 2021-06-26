@@ -50,7 +50,8 @@ strong {
 /* Style the back side */
 
 .flip-card-back {
-    color: black;
+    color: white;
+    background-color: #BD1E51;
     transform: rotateY(180deg);
     transition: all 1s;
 }
@@ -61,19 +62,15 @@ strong {
 }
 
 .flip-card-back_hader {
-    background-color: black;
-    color: white;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     width: 100%;
-    height: 40px;
-    opacity: 1;
+    background-color: white;
 }
 
-.flip-card-back_hader h6 {
-    font-size: 25px;
-    font-weight: 600;
+.flip-card-back_hader img {
+    width: 100%;
+    height: 200px;
+    -o-object-fit: contain;
+    object-fit: contain;
 }
 
 .flip-card-back_hader:hover {
@@ -107,6 +104,19 @@ strong {
 .dashbord_product_card:hover {
     box-shadow: 0 16px 32px 0 rgb(0, 0, 0, 0.6);
     cursor: pointer;
+}
+
+.flip-card-back_footer {
+    text-align: center;
+    box-shadow: 0 16px 32px 0 rgb(0, 0, 0, 0.6);
+    padding: 8px;
+}
+
+.flip-card-back_submit_btn {
+    display: block;
+    width: 100%;
+    box-shadow: 0 8px 16px 0 rgb(0, 0, 0, 0.6);
+    text-align: center;
 }
 
 .d_btn {

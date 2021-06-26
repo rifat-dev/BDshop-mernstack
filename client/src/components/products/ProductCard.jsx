@@ -18,7 +18,7 @@ const ProductCard = ({ product }) => {
 
     return (
         <Fragment>
-            <div className="product_card" >
+            <div className="product_card">
                 <div className="product_card_hader">
                     <img src={product.images[0].url} alt="product" />
                 </div>
@@ -44,17 +44,26 @@ const ProductCard = ({ product }) => {
                                 View Cart
                             </button>
                         </Link> :
-                        <button
-                            className=" card_btn card_btn_add"
-                            onClick={() => {
-                                setAddProduct(true)
-                                dispatch(addToCartItem(product._id, 1))
-                            }}
-                            disabled={product.stock === 0}
-                        >
-                            <i class="bi bi-cart-plus-fill"></i>
-                            Add
-                        </button>
+                        <Fragment>
+                            <button
+                                className=" card_btn card_btn_add"
+                                onClick={() => {
+                                    setAddProduct(true)
+                                    dispatch(addToCartItem(product._id, 1))
+                                }}
+                                disabled={product.stock === 0}
+                            >
+                                <i class="bi bi-cart-plus-fill"></i>
+                                Add
+                            </button>
+                            <Link to={`/product/${product._id}`}  >
+                                <button className="btn-sm card_btn card_btn_detail" >
+                                    {/* <i class="bi bi-cart-check-fill "></i> */}
+                                    View Details
+                                </button>
+                            </Link>
+                        </Fragment>
+
                     }
 
 

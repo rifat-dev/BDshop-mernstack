@@ -1,5 +1,4 @@
 .product_card {
-    height: 500px;
     display: flex;
     margin: 10px;
     flex-direction: column;
@@ -8,6 +7,7 @@
     text-align: center;
     transition: all 1s;
     padding: 4px 6px;
+    padding-bottom: 5px;
 }
 
 .product_card:hover {
@@ -16,6 +16,11 @@
 }
 
 .product_card:hover .card_btn_add {
+    transform: translateX(0);
+    transition: all 1s;
+}
+
+.product_card:hover .card_btn_detail {
     transform: translateX(0);
     transition: all 1s;
 }
@@ -57,6 +62,14 @@
 .card_btn_add {
     background: #BD1E51;
     transform: translateX(-2000px);
+}
+
+.card_btn_detail {
+    background: #1A2C42;
+    display: block;
+    margin: auto;
+    margin-top: 4px;
+    transform: translateX(2000px);
 }
 
 .card_btn_view {

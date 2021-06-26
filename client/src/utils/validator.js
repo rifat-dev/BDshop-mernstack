@@ -31,7 +31,7 @@ export const newProductValidator = (product) => {
         }
     }
 
-    if (product.images.length === 0) {
+    if (!product.image) {
         error.image = "Product image required"
     }
 

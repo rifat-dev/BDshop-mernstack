@@ -4,6 +4,9 @@ import {
     CREATE_ADMIN_PRODUCT_FAIL,
     CREATE_ADMIN_PRODUCT_REQUEST,
     CREATE_ADMIN_PRODUCT_SUCCESS,
+    DELETE_ADMIN_PRODUCT_FAIL,
+    DELETE_ADMIN_PRODUCT_REQUEST,
+    DELETE_ADMIN_PRODUCT_SUCCESS,
     GET_ADMIN_ALL_ORDERS_FAIL,
     GET_ADMIN_ALL_ORDERS_REQUEST,
     GET_ADMIN_ALL_ORDERS_SUCCESS,
@@ -12,7 +15,10 @@ import {
     GET_ADMIN_ALL_PRODUCTS_SUCCESS,
     GET_ADMIN_ALL_USERS_FAIL,
     GET_ADMIN_ALL_USERS_REQUEST,
-    GET_ADMIN_ALL_USERS_SUCCESS
+    GET_ADMIN_ALL_USERS_SUCCESS,
+    UPDATE_ADMIN_PRODUCT_FAIL,
+    UPDATE_ADMIN_PRODUCT_REQUEST,
+    UPDATE_ADMIN_PRODUCT_SUCCESS
 } from '../Types/adminType'
 
 
@@ -87,7 +93,7 @@ export const createAdminProducr = (formData) => async(dispatch) => {
 
         const config = {
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'multipart/form-data'
             }
         }
 
@@ -103,6 +109,44 @@ export const createAdminProducr = (formData) => async(dispatch) => {
     } catch (e) {
         dispatch({
             type: CREATE_ADMIN_PRODUCT_FAIL,
+            payload: e.response.data.message
+        })
+    }
+}
+
+export const updateAdminProduct = (productId, formData) => async(dispatch) => {
+    try {
+
+        dispatch({ type: UPDATE_ADMIN_PRODUCT_REQUEST })
+
+        const { data } = await axios.put(`/api/admin/products/${productId}`, formData)
+
+        dispatch({
+            type: UPDATE_ADMIN_PRODUCT_SUCCESS,
+            payload: data.updateProductId
+        })
+
+    } catch (e) {
+        dispatch({
+            type: UPDATE_ADMIN_PRODUCT_FAIL,
+            payload: e.response.data.message
+        })
+    }
+}
+
+export const deleteAdminProduct = (productId) => async(dispatch) => {
+    try {
+        dispatch({ type: DELETE_ADMIN_PRODUCT_REQUEST })
+
+        const { data } = await axios.delete(`/api/admin/products/${productId}`)
+
+        dispatch({
+            type: DELETE_ADMIN_PRODUCT_SUCCESS,
+            payload: data.success
+        })
+    } catch (e) {
+        dispatch({
+            type: DELETE_ADMIN_PRODUCT_FAIL,
             payload: e.response.data.message
         })
     }

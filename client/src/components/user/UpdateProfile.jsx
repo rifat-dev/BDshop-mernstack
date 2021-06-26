@@ -1,7 +1,8 @@
 import { Fragment, useState, useEffect } from 'react'
 import { useAlert } from 'react-alert'
 import { useDispatch, useSelector } from 'react-redux'
-import { MDBRow, MDBCol, MDBInput, MDBBtn } from 'mdbreact';
+import Compress from "react-image-file-resizer";
+import { MDBRow, MDBCol, MDBInput } from 'mdbreact';
 
 import Loader from '../layouts/Loader/Loader'
 import MetaData from '../layouts/MetaData'
@@ -21,14 +22,22 @@ const UpdateProfile = ({ history }) => {
 
 
     const handelChange = (e) => {
-        if (e.target.type === 'file') {
-            const reader = new FileReader()
-            reader.onload = (e) => {
-                setImagePreview(e.target.result)
-                setAvatar(e.target.result)
-            }
-            reader.readAsDataURL(e.target.files[0])
-        }
+        const file = e.target.files[0];
+        Compress.imageFileResizer(
+            file, // the file from input
+            480, // width
+            480, // height
+            "JPEG", // compress format WEBP, JPEG, PNG
+            70, // quality
+            0, // rotation
+            (uri) => {
+                console.log(uri);
+                setImagePreview(uri)
+                setAvatar(uri)
+
+            },
+            "base64" // blob or base64 default base64
+        );
     }
 
     const submitForm = (e) => {

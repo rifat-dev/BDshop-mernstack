@@ -29,9 +29,9 @@ const order = require('./routers/orderRoute')
 
 // use all routers
 app.use('/api/user', user)
-app.use('/api/admin', admin)
 app.use('/api/products', product)
 app.use('/api/order', order)
+app.use('/api/admin', admin)
 
 
 // exports app for listen server

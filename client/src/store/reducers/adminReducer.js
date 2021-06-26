@@ -1,9 +1,14 @@
 import {
     CLEAR_CREATE_STATE,
+    CLEAR_DELETE_STATE,
     CLEAR_ERROR,
+    CLEAR_UPDATE_STATE,
     CREATE_ADMIN_PRODUCT_FAIL,
     CREATE_ADMIN_PRODUCT_REQUEST,
     CREATE_ADMIN_PRODUCT_SUCCESS,
+    DELETE_ADMIN_PRODUCT_FAIL,
+    DELETE_ADMIN_PRODUCT_REQUEST,
+    DELETE_ADMIN_PRODUCT_SUCCESS,
     GET_ADMIN_ALL_ORDERS_FAIL,
     GET_ADMIN_ALL_ORDERS_REQUEST,
     GET_ADMIN_ALL_ORDERS_SUCCESS,
@@ -13,6 +18,9 @@ import {
     GET_ADMIN_ALL_USERS_FAIL,
     GET_ADMIN_ALL_USERS_REQUEST,
     GET_ADMIN_ALL_USERS_SUCCESS,
+    UPDATE_ADMIN_PRODUCT_FAIL,
+    UPDATE_ADMIN_PRODUCT_REQUEST,
+    UPDATE_ADMIN_PRODUCT_SUCCESS,
 
 } from '../Types/adminType'
 
@@ -109,10 +117,19 @@ export const adminAllOrdersReducer = (state = { orders: [], loading: false, erro
 }
 
 export const adminDashboardTracker = (
-    state = { isCreated: false, isUpdated: false, idDeleted: false, loading: false, error: null },
+    state = {
+        productId: {},
+        isCreated: false,
+        isUpdated: false,
+        isDeleted: false,
+        loading: false,
+        error: null
+    },
     action) => {
     switch (action.type) {
         case CREATE_ADMIN_PRODUCT_REQUEST:
+        case UPDATE_ADMIN_PRODUCT_REQUEST:
+        case DELETE_ADMIN_PRODUCT_REQUEST:
             return {
                 ...state,
                 loading: true
@@ -123,16 +140,42 @@ export const adminDashboardTracker = (
                 loading: false,
                 isCreated: action.payload
             }
-        case CREATE_ADMIN_PRODUCT_FAIL:
-            return {
-                ...state,
-                loading: false,
-                error: action.payload ? action.payload : 'Error 500'
-            }
         case CLEAR_CREATE_STATE:
             return {
                 ...state,
                 isCreated: false
+            }
+        case UPDATE_ADMIN_PRODUCT_SUCCESS:
+            return {
+                ...state,
+                loading: false,
+                isUpdated: true,
+                productId: action.payload
+            }
+        case CLEAR_UPDATE_STATE:
+            return {
+                ...state,
+                isUpdated: false,
+                productId: {}
+            }
+        case DELETE_ADMIN_PRODUCT_SUCCESS:
+            return {
+                ...state,
+                loading: false,
+                isDeleted: true
+            }
+        case CLEAR_DELETE_STATE:
+            return {
+                ...state,
+                isDeleted: false
+            }
+        case CREATE_ADMIN_PRODUCT_FAIL:
+        case UPDATE_ADMIN_PRODUCT_FAIL:
+        case DELETE_ADMIN_PRODUCT_FAIL:
+            return {
+                ...state,
+                loading: false,
+                error: action.payload ? action.payload : 'Error 500'
             }
         case CLEAR_ERROR:
             return {

@@ -18,9 +18,7 @@ exports.registerUser = async(req, res, next) => {
             })
         }
         const result = await clud.uploader.upload(req.body.avatar, {
-            folder: 'avatars',
-            width: 150,
-            crop: 'scale'
+            folder: 'avatars'
         })
 
         if (!email || !password) {
@@ -108,9 +106,9 @@ exports.updateUser = async(req, res, next) => {
             await clud.uploader.destroy(user.avatar.publicId)
             const result = await clud.uploader.upload(req.body.avatar, {
                 folder: 'avatars',
-                width: 150,
-                crop: 'scale'
             })
+
+            console.log(result)
 
             let avatar = {
                 publicId: result.public_id,

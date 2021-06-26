@@ -4,7 +4,7 @@ const dotenv = require('dotenv')
 const cloudinary = require('cloudinary').v2
 
 // env config setup
-if (process.env.NODE_ENV != 'production') {
+if (process.env.NODE_ENV !== 'production') {
     dotenv.config({ path: 'server/config/.env' })
 }
 

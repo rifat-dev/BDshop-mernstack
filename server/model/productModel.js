@@ -23,7 +23,7 @@ const productSchema = new Schema({
         default: 0
     },
     images: [{
-        public_id: {
+        publicId: {
             type: String,
             required: true
         },
@@ -88,7 +88,7 @@ const productSchema = new Schema({
     user: {
         type: Schema.ObjectId,
         ref: 'User',
-        required: true
+        // required: true
     },
     createdAt: {
         type: Date,

@@ -1,6 +1,7 @@
   .blog {
       text-align: start;
-      margin: 50px auto;
+      margin-top: 30px;
+      margin-bottom: 30px;
   }
   
   .p-text {
@@ -9,16 +10,10 @@
       color: #12151F;
   }
   
-  .card_container {
-      margin: 50px auto;
-      display: flex;
-      flex-wrap: wrap;
-  }
-  
   .custom_card {
       border-radius: 20px;
       border: 1px solid #ffffff;
-      margin: 15px;
+      margin: 4px;
       height: 100%;
       box-shadow: none;
       transition: all 1s;

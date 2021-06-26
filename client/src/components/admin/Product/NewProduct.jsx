@@ -1,5 +1,7 @@
-import { Fragment, useEffect, useState, useRef } from 'react';
+import { Fragment, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux'
+import Compress from "react-image-file-resizer";
+
 import { useAlert } from 'react-alert'
 
 import MetaData from '../../layouts/MetaData'
@@ -19,8 +21,8 @@ const NewProduct = ({ history }) => {
     const [category, setCategory] = useState('')
     const [stock, setStock] = useState(0)
     const [seller, setSeller] = useState('')
-    const [imagesPreview, setImagesPreview] = useState([])
-    const [images, setImages] = useState([])
+    const [imagesPreview, setImagesPreview] = useState('')
+    const [image, setImage] = useState('')
     const [errors, setError] = useState({})
 
     const alert = useAlert()
@@ -29,15 +31,20 @@ const NewProduct = ({ history }) => {
 
 
     const onChange = (e) => {
-        const files = e.target.files
-        for (let i = 0; i < files.length; i++) {
-            let reader = new FileReader()
-            reader.onload = (e) => {
-                setImagesPreview(prev => [...prev, e.target.result])
-                setImages(prev => [...prev, e.target.result])
-            }
-            reader.readAsDataURL(files[i])
-        }
+        const file = e.target.files[0];
+        Compress.imageFileResizer(
+            file, // the file from input
+            480, // width
+            480, // height
+            "JPEG", // compress format WEBP, JPEG, PNG
+            70, // quality
+            0, // rotation
+            (uri) => {
+                setImagesPreview(uri)
+                setImage(uri)
+            },
+            "base64" // blob or base64 default base64
+        );
 
     }
 
@@ -46,7 +53,7 @@ const NewProduct = ({ history }) => {
     const submitHandler = (e) => {
         e.preventDefault()
         const product = {
-            name, price, description, category, stock, seller, images
+            name, price, description, category, stock, seller, image
         }
         const { isValidate, error } = newProductValidator(product)
 
@@ -58,9 +65,7 @@ const NewProduct = ({ history }) => {
             formData.append('category', category)
             formData.append('stock', stock)
             formData.append('seller', seller)
-            images.forEach(img => {
-                formData.append('images', img)
-            })
+            formData.append('image', image)
 
             dispatch(createAdminProducr(formData))
 
@@ -68,7 +73,6 @@ const NewProduct = ({ history }) => {
         } else {
             setError(error)
         }
-
     }
 
     useEffect(() => {
@@ -79,8 +83,8 @@ const NewProduct = ({ history }) => {
 
         if (isCreated) {
             dispatch({ type: CLEAR_CREATE_STATE })
-            // history.push('/admin/products')
-            alert.success('Create New Product Success')
+            history.push('/admin/products')
+            alert.success(' Product Create Success')
         }
     }, [error, alert, dispatch, isCreated])
 
@@ -208,9 +212,9 @@ const NewProduct = ({ history }) => {
                                     {errors.image}
                                 </div>}
 
-                                {imagesPreview.map(img => (
-                                    <img src={img} key={img} alt="Images Preview" className="mt-3 mr-2" width="70" height="70" />
-                                ))}
+                                {imagesPreview &&
+                                    <img src={imagesPreview} alt="Images Preview" className="mt-3 mr-2" width="70" height="70" />
+                                }
                             </div>
 
 

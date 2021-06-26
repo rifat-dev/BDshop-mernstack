@@ -108,6 +108,8 @@ ul.CTAs a {
 
 .dashboard_body {
     transition: all 1s;
+    height: 100vh;
+    overflow-y: scroll;
 }
 
 #dashboard_nav {

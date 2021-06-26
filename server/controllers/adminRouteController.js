@@ -53,45 +53,28 @@ exports.adminGetSingleUser = async(req, res, next) => {
 exports.newProduct = async(req, res, next) => {
     try {
 
-        // let images = []
-        // if (typeof req.body.images === 'string') {
-        //     images.push(req.body.images)
-        // } else {
-        //     images = req.body.images
-        // }
+        const result = await clud.uploader.upload(req.body.image, {
+                folder: 'bdshop products'
+            })
+            // console.log(result)
+        req.body.images = [{
+            publicId: result.public_id,
+            url: result.secure_url
+        }]
+        req.body.user = req.user._id
 
-        // let imgLinks = []
-        // for (let i = 0; i < images.length; i++) {
-
-        //     const result = await clud.uploader.upload(images[i], {
-        //         folder: 'bdshop products'
-        //     })
-
-        //     imgLinks.push({
-        //         publicId: result.public_id,
-        //         url: result.secure_url
-        //     })
-        // }
-
-        // req.body.images = imgLinks
-        // req.body.user = req.user._id
-
-        await Product.create(req.body)
+        const product = await Product.create(req.body)
 
 
-        return res.status(200).json({
+        res.status(200).json({
             success: true,
             message: 'Product create successfully',
-            // product
+            product
         })
 
 
     } catch (e) {
         next(e)
-        return res.status(500).json({
-            success: false,
-            message: 'Server Error'
-        })
     }
 }
 
@@ -105,6 +88,67 @@ exports.getAdminProducts = async(req, res, next) => {
             success: true,
             products
         })
+    } catch (e) {
+        next(e)
+    }
+}
+
+exports.updateAdminProduct = async(req, res, next) => {
+    try {
+        const { productId } = req.params
+
+        let product = await Product.findById(productId)
+
+        if (!product) {
+            return res.status(403).json({
+                success: false,
+                message: 'Product Not Found'
+            })
+        }
+
+        let updateProduct = {}
+        if (req.body.price) {
+            updateProduct.price = req.body.price
+        }
+        if (req.body.stock) {
+            updateProduct.stock = product.stock + req.body.stock
+        }
+
+        product = await Product.findByIdAndUpdate(productId, updateProduct, {
+            new: true,
+            useFindAndModify: false
+        });
+
+
+        res.status(200).json({
+            success: true,
+            message: "Product Update Success",
+            updateProductId: product._id
+        })
+
+    } catch (e) {
+        next(e)
+    }
+}
+
+exports.deleteAdminProduct = async(req, res, next) => {
+    try {
+        const { productId } = req.params
+        let product = await Product.findById(productId)
+
+        if (!product) {
+            return res.status(403).json({
+                success: false,
+                message: 'Product Not Found'
+            })
+        }
+
+        await Product.findByIdAndDelete(productId)
+        res.status(200).json({
+            success: true,
+            message: "Product Delete Success",
+        })
+
     } catch (e) {
         next(e)
     }

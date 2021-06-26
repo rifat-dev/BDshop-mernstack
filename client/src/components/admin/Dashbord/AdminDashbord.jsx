@@ -9,8 +9,9 @@ import Dashbord from './DashBord'
 import DashboardNav from '../DashBordNav/DashBordNav'
 import ProductList from '../Product/ProductList';
 import NewProduct from '../Product/NewProduct'
+import OrderList from '../Order/OrderList'
 
-const AdminDashbord = ({ match }) => {
+const AdminDashbord = ({ match, history }) => {
     const { id } = match.params
 
     const [show, setShow] = useState(false)
@@ -23,8 +24,9 @@ const AdminDashbord = ({ match }) => {
                 <DashboardNav show={show} setShow={setShow} match={match} />
                 {
                     id === "dashboard" ? <Dashbord /> :
-                        id === "products" ? <ProductList /> :
-                            id === 'newproduct' ? <NewProduct /> : ''
+                        id === "products" ? <ProductList history={history} /> :
+                            id === 'newproduct' ? <NewProduct history={history} /> :
+                                id === "orders" ? <OrderList /> : ""
                 }
             </div>
         </div>
