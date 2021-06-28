@@ -1,0 +1,52 @@
+.shop_hader {
+    background-image: linear-gradient(#BD1E51, #BD1E51);
+    height: 100vh;
+}
+
+.shop_hader_img {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.shop_hader_img img {
+    width: 60%;
+    -o-object-fit: cover;
+    object-fit: cover;
+}
+
+.shop_hader_text {
+    display: flex;
+    color: white;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 0 40px;
+}
+
+.shop_hader_text h1 {
+    text-transform: uppercase;
+}
+
+.shop_now {
+    background-color: orangered;
+    color: white;
+    padding: 6px 12px;
+    border-radius: 20px;
+}
+
+.search_filter {
+    display: flex;
+    justify-content: space-between;
+}
+
+.select_shop {
+    border: none;
+    padding: 8px 16px;
+    color: #BD1E51;
+    border: 1px solid #f36d98;
+}
+
+.select_shop:focus {
+    outline: none;
+}

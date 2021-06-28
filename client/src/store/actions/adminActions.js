@@ -16,6 +16,9 @@ import {
     GET_ADMIN_ALL_USERS_FAIL,
     GET_ADMIN_ALL_USERS_REQUEST,
     GET_ADMIN_ALL_USERS_SUCCESS,
+    UPDATE_ADMIN_ORDER_FAIL,
+    UPDATE_ADMIN_ORDER_REQUEST,
+    UPDATE_ADMIN_ORDER_SUCCESS,
     UPDATE_ADMIN_PRODUCT_FAIL,
     UPDATE_ADMIN_PRODUCT_REQUEST,
     UPDATE_ADMIN_PRODUCT_SUCCESS
@@ -58,29 +61,6 @@ export const getAdminProducts = () => async(dispatch) => {
     } catch (e) {
         dispatch({
             type: GET_ADMIN_ALL_PRODUCTS_FAIL,
-            payload: e.response.data.message
-        })
-    }
-}
-
-
-export const getAdminOrders = () => async(dispatch) => {
-    try {
-
-        dispatch({ type: GET_ADMIN_ALL_ORDERS_REQUEST })
-
-        const { data } = await axios.get('/api/admin/orders')
-        dispatch({
-            type: GET_ADMIN_ALL_ORDERS_SUCCESS,
-            payload: {
-                orders: data.orders,
-                totalAmount: data.totalAmount
-            }
-        })
-
-    } catch (e) {
-        dispatch({
-            type: GET_ADMIN_ALL_ORDERS_FAIL,
             payload: e.response.data.message
         })
     }
@@ -147,6 +127,48 @@ export const deleteAdminProduct = (productId) => async(dispatch) => {
     } catch (e) {
         dispatch({
             type: DELETE_ADMIN_PRODUCT_FAIL,
+            payload: e.response.data.message
+        })
+    }
+}
+
+export const getAdminOrders = () => async(dispatch) => {
+    try {
+
+        dispatch({ type: GET_ADMIN_ALL_ORDERS_REQUEST })
+
+        const { data } = await axios.get('/api/admin/orders')
+        dispatch({
+            type: GET_ADMIN_ALL_ORDERS_SUCCESS,
+            payload: {
+                orders: data.orders,
+                totalAmount: data.totalAmount
+            }
+        })
+
+    } catch (e) {
+        dispatch({
+            type: GET_ADMIN_ALL_ORDERS_FAIL,
+            payload: e.response.data.message
+        })
+    }
+}
+
+export const updateAdminOrder = (orderId, status) => async(dispatch) => {
+    try {
+
+        dispatch({ type: UPDATE_ADMIN_ORDER_REQUEST })
+
+        const { data } = await axios.put(`/api/admin/orders/${orderId}`, { orderStatus: status })
+
+        dispatch({
+            type: UPDATE_ADMIN_ORDER_SUCCESS,
+            payload: data.success
+        })
+
+    } catch (e) {
+        dispatch({
+            type: UPDATE_ADMIN_ORDER_FAIL,
             payload: e.response.data.message
         })
     }

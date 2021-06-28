@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 
 import NavBar from '../components/layouts/Header/NavBar'
 import Home from '../components/Home';
+import Shop from '../components/Home/Shop/Shop'
 import Profile from '../components/user/Profile';
 import UpdateProfile from '../components/user/UpdateProfile';
 import UpdatePassword from '../components/user/UpdatePassword';
@@ -27,6 +28,7 @@ const HomePage = () => {
             <Switch>
                 <div className="">
                     <Route path='/' component={Home} exact />
+                    <Route path='/shop' component={Shop} exact />
                     <Route path='/product/:id' component={SingleProduct} exact />
                     <Route path='/cart' component={Cart} exact />
 

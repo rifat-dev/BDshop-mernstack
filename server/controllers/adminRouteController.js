@@ -202,3 +202,32 @@ exports.adminGetSingleOrder = async(req, res, next) => {
         next(e)
     }
 }
+
+exports.updateAdminOrder = async(req, res, next) => {
+    try {
+
+        const { orderId } = req.params
+            // console.log(req.body)
+
+        let order = await Order.findById(orderId)
+
+        if (!order) {
+            return res.status(404).json({
+                success: false,
+                message: 'No order found'
+            })
+        }
+
+        await Order.findByIdAndUpdate(orderId, req.body, {
+            useFindAndModify: false
+        })
+
+        res.status(200).json({
+            success: true,
+            message: 'Order update success'
+        })
+
+    } catch (e) {
+        next(e)
+    }
+}

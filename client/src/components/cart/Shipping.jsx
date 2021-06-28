@@ -21,7 +21,7 @@ const Shipping = ({ history }) => {
     }
 
     return (
-        <div>
+        <div className="container" >
             <CheckoutSteps step1 />
             <h1>Shipping</h1>
             <Form onSubmit={submitHandler}>
@@ -69,9 +69,9 @@ const Shipping = ({ history }) => {
                     ></Form.Control>
                 </Form.Group>
 
-                <Button type='submit' variant='primary'>
+                <button type='submit' className="my_btn mb-5">
                     Continue
-                </Button>
+                </button>
             </Form>
         </div>
     )

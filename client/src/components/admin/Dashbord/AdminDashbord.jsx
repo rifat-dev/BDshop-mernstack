@@ -10,6 +10,7 @@ import DashboardNav from '../DashBordNav/DashBordNav'
 import ProductList from '../Product/ProductList';
 import NewProduct from '../Product/NewProduct'
 import OrderList from '../Order/OrderList'
+import UsersList from '../Users/UsersList';
 
 const AdminDashbord = ({ match, history }) => {
     const { id } = match.params
@@ -26,7 +27,8 @@ const AdminDashbord = ({ match, history }) => {
                     id === "dashboard" ? <Dashbord /> :
                         id === "products" ? <ProductList history={history} /> :
                             id === 'newproduct' ? <NewProduct history={history} /> :
-                                id === "orders" ? <OrderList /> : ""
+                                id === "orders" ? <OrderList /> :
+                                    id === "users" ? <UsersList /> : ""
                 }
             </div>
         </div>

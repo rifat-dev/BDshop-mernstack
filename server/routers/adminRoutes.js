@@ -8,7 +8,8 @@ const {
     adminGetAllOrders,
     adminGetSingleOrder,
     updateAdminProduct,
-    deleteAdminProduct
+    deleteAdminProduct,
+    updateAdminOrder
 } = require('../controllers/adminRouteController')
 
 const { isAdmin, isAuthintecated } = require('../midlewares/authMidleware')
@@ -25,6 +26,6 @@ router.get('/users/:id', isAuthintecated, isAdmin('admin'), adminGetSingleUser)
 
 // admin products routes
 router.get('/orders', isAuthintecated, isAdmin('admin'), adminGetAllOrders)
-router.get('/orders/:id', isAuthintecated, isAdmin('admin'), adminGetSingleOrder)
+router.put('/orders/:orderId', isAuthintecated, isAdmin('admin'), updateAdminOrder)
 
 module.exports = router

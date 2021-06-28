@@ -108,8 +108,6 @@ exports.updateUser = async(req, res, next) => {
                 folder: 'avatars',
             })
 
-            console.log(result)
-
             let avatar = {
                 publicId: result.public_id,
                 url: result.secure_url
@@ -123,7 +121,6 @@ exports.updateUser = async(req, res, next) => {
 
         res.status(200).json({
             success: true,
-            // user
         })
 
     } catch (e) {

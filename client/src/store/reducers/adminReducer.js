@@ -18,6 +18,9 @@ import {
     GET_ADMIN_ALL_USERS_FAIL,
     GET_ADMIN_ALL_USERS_REQUEST,
     GET_ADMIN_ALL_USERS_SUCCESS,
+    UPDATE_ADMIN_ORDER_FAIL,
+    UPDATE_ADMIN_ORDER_REQUEST,
+    UPDATE_ADMIN_ORDER_SUCCESS,
     UPDATE_ADMIN_PRODUCT_FAIL,
     UPDATE_ADMIN_PRODUCT_REQUEST,
     UPDATE_ADMIN_PRODUCT_SUCCESS,
@@ -129,6 +132,7 @@ export const adminDashboardTracker = (
     switch (action.type) {
         case CREATE_ADMIN_PRODUCT_REQUEST:
         case UPDATE_ADMIN_PRODUCT_REQUEST:
+        case UPDATE_ADMIN_ORDER_REQUEST:
         case DELETE_ADMIN_PRODUCT_REQUEST:
             return {
                 ...state,
@@ -146,17 +150,16 @@ export const adminDashboardTracker = (
                 isCreated: false
             }
         case UPDATE_ADMIN_PRODUCT_SUCCESS:
+        case UPDATE_ADMIN_ORDER_SUCCESS:
             return {
                 ...state,
                 loading: false,
                 isUpdated: true,
-                productId: action.payload
             }
         case CLEAR_UPDATE_STATE:
             return {
                 ...state,
-                isUpdated: false,
-                productId: {}
+                isUpdated: false
             }
         case DELETE_ADMIN_PRODUCT_SUCCESS:
             return {
@@ -172,6 +175,7 @@ export const adminDashboardTracker = (
         case CREATE_ADMIN_PRODUCT_FAIL:
         case UPDATE_ADMIN_PRODUCT_FAIL:
         case DELETE_ADMIN_PRODUCT_FAIL:
+        case UPDATE_ADMIN_ORDER_FAIL:
             return {
                 ...state,
                 loading: false,

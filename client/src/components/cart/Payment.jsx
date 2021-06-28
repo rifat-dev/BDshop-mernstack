@@ -70,7 +70,7 @@ const Payment = ({ history }) => {
         <div>
             <MetaData title={'Payment'} />
             <CheckoutSteps step1 step2 step3 />
-            <div className="row">
+            <div className="row my-lg-5">
                 <div className="col-10 col-lg-5 offset-md-3 mt-5 card card-body shadow-lg">
                     <form onSubmit={submitHandler}>
                         <h1 className="mb-4">Card Info</h1>
@@ -114,7 +114,7 @@ const Payment = ({ history }) => {
                         <button
                             id="pay_btn"
                             type="submit"
-                            className="btn btn-block py-3 btn-primary"
+                            className="my_btn btn-block py-3 "
                             disabled={loding ? loding : false}
                         >
                             Pay {` - ${orderInfo && orderInfo.totalPrice}`}

@@ -48,7 +48,7 @@ const NavBar = () => {
                         <Link to='/' >
                             <a className="nav_text">Home <span class="sr-only">(current)</span></a>
                         </Link>
-                        <Link to='/' >
+                        <Link to='/shop' >
                             <a className="nav_text">Shop<span class="sr-only">(current)</span></a>
                         </Link>
 

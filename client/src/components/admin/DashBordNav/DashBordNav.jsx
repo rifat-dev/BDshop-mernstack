@@ -26,7 +26,7 @@ const DashboardNavbar = ({ setShow, show, match }) => {
                             id === "dashboard" ? "Dashboard"
                                 : id === "products" ? "Products"
                                     : id === "newproduct" ? "Create A New Product"
-                                        : id === "makeAdmin" ? "Make Admin"
+                                        : id === "orders" ? "Orders"
                                             : id === "manageServices" ? "Manage Services"
                                                 : id === "book" ? "Book"
                                                     : id === "bookingList" ? "Booking List"
