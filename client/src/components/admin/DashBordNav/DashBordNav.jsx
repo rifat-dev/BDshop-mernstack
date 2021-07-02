@@ -7,10 +7,11 @@ const DashboardNavbar = ({ setShow, show, match }) => {
     const { id } = match.params
 
     return (
-        <Navbar className="my-4 " id="dashboard_nav" expand="lg"  >
+        <Navbar className="my-4 p-3 " id="dashboard_nav" expand="lg"  >
             <Container fluid>
                 <button
                     onClick={() => setShow(!show)}
+                    disabled
                     type="button" id="sidebarCollapse"
                     className={show ? "navbar-btn active" : "navbar-btn"}
                 >
@@ -36,9 +37,9 @@ const DashboardNavbar = ({ setShow, show, match }) => {
                     </h2>
                 </Navbar.Brand>
                 <Navbar.Collapse id="responsive-navbar-nav">
-                    <div className="ml-auto" >
-                        <h1>Admin Dashboard</h1>
-                    </div>
+                    {/* <div className="ml-auto" >
+                        <h1>Admin</h1>
+                    </div> */}
                 </Navbar.Collapse>
             </Container>
         </Navbar>

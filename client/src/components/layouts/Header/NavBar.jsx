@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { useAlert } from 'react-alert'
 import './nav.css'
+import logo from '../../../assets/logo1.png'
 
 import { userLogout } from '../../../store/actions/authActions'
 
@@ -36,7 +37,7 @@ const NavBar = () => {
 
             <div className="container">
                 <Link to='/' style={{ color: 'black' }} >
-                    <a className="navbar-brand"  >BDShop</a>
+                    <img className="navbar-brand" src={logo} alt="Logo" />
                 </Link>
                 <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span className="navbar-toggler-icon"></span>

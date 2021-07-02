@@ -46,7 +46,9 @@ const SingleProduct = ({ match }) => {
         if (isCreate) {
             dispatch({ type: PRODUCT_REVIEW_RESET })
             alert.success('Review created')
-            // dispatch(getSingleProduct(id))
+            dispatch(getSingleProduct(id))
+            setRating(1)
+            setComment('')
         }
     }, [error, dispatch, isCreate])
 
@@ -161,9 +163,9 @@ const SingleProduct = ({ match }) => {
                                                     {product.reviews.map((review) => (
                                                         <ListGroup.Item key={review._id}>
                                                             <strong>{review.name}</strong>
-                                                            <ProductRating value={review.rating} />
+                                                            <ProductRating value={review.ratings} />
                                                             <p>{review.createdAt.substring(0, 10)}</p>
-                                                            <p>{review.comment}</p>
+                                                            <p>{review.comments}</p>
                                                         </ListGroup.Item>
                                                     ))}
                                                 </>

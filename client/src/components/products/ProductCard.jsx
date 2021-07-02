@@ -31,7 +31,7 @@ const ProductCard = ({ product }) => {
                     <h5>
                         {`price $${product.price}`}
                     </h5>
-                    <ProductRating value={product.ratings} text={` (${product.ratings})`} />
+                    <ProductRating value={product.ratings} text={` (${product.numOfReviews})`} />
                     <p>
                         Catagory:
                         <span>{` ${product.category}`}</span>

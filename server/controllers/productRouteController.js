@@ -42,27 +42,42 @@ exports.createProductReview = async(req, res, next) => {
     try {
 
         const { productId } = req.params
-        console.log(req.body)
 
-        // const product = await Product.findById(productId)
+        const product = await Product.findById(productId)
 
-        // if (!product) {
-        //     return res.status(404).json({
-        //         success: false,
-        //         message: 'No Product Found'
-        //     })
-        // }
+        if (!product) {
+            return res.status(404).json({
+                success: false,
+                message: 'No Product Found'
+            })
+        }
 
-        // const review = {
-        //     user: req.user._id,
-        //     image: req.user.avatar.url,
-        //     name: req.user.name,
-        //     ratings: req.body.ratings,
-        //     comments: req.body.comments
-        // }
+        const review = {
+            user: req.user._id,
+            image: req.user.avatar.url,
+            name: req.user.name,
+            ratings: Number(req.body.ratings),
+            comments: req.body.comment
+        }
 
-        // product.reviews.push(review)
-        // await product.saive()
+        const isReviewed = product.reviews.find(review => review.user.toString() === req.user._id.toString())
+
+        if (isReviewed) {
+            product.reviews.forEach(review => {
+                    if (review.user.toString() === req.user._id.toString()) {
+                        review.comments = req.body.comment;
+                        review.ratings = Number(req.body.ratings);
+                    }
+                })
+                // product.numOfReviews = product.reviews.length
+
+        } else {
+            product.reviews.push(review);
+            product.numOfReviews = product.reviews.length
+        }
+
+        product.ratings = product.reviews.reduce((acc, item) => item.ratings + acc, 0) / product.reviews.length
+        await product.save()
 
         res.status(200).json({
             success: true,

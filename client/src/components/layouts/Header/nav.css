@@ -6,6 +6,10 @@
     margin-right: 3px;
 }
 
+.navbar-brand {
+    width: 60%;
+}
+
 .sticky_nav {
     position: fixed;
     background-color: #BD1E51;

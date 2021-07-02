@@ -49,7 +49,6 @@ const ProductList = () => {
             {loading ? <Loader />
                 :
                 <>
-                    <h1>Product List</h1>
                     <div className="row">
                         {products.map(((product, index) => (
                             <div className="col-lg-4">

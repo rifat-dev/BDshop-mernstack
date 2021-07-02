@@ -21,15 +21,17 @@ const AdminDashbord = ({ match, history }) => {
     return (
         <div className="row" >
             <SideNav id={id} show={show} />
-            <div id="mySidenav" className="container  dashboard_body">
-                <DashboardNav show={show} setShow={setShow} match={match} />
-                {
-                    id === "dashboard" ? <Dashbord /> :
-                        id === "products" ? <ProductList history={history} /> :
-                            id === 'newproduct' ? <NewProduct history={history} /> :
-                                id === "orders" ? <OrderList /> :
-                                    id === "users" ? <UsersList /> : ""
-                }
+            <div className="dashboard_body">
+                <div className="dashbord_body_inner">
+                    <DashboardNav show={show} setShow={setShow} match={match} />
+                    {
+                        id === "dashboard" ? <Dashbord /> :
+                            id === "products" ? <ProductList history={history} /> :
+                                id === 'newproduct' ? <NewProduct history={history} /> :
+                                    id === "orders" ? <OrderList /> :
+                                        id === "users" ? <UsersList /> : ""
+                    }
+                </div>
             </div>
         </div>
     );

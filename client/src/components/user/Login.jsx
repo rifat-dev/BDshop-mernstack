@@ -48,6 +48,15 @@ const Login = ({ history }) => {
                     </Link>
                     <div className="login row">
                         <div className="col-md-6 login_form user_form">
+
+                            <div className="alert alert-danger m-4" role="alert">
+                                <h4 className="alert-heading">Hello !</h4>
+                                <p><strong>Note That:</strong> If you want check Admin Panel?
+                                    Then you must use.</p>
+                                <p><strong>email:</strong>  admin@gmail.com</p>
+                                <p><strong> Password: </strong> admin123</p>
+                            </div>
+
                             <MDBCol className="" md="8">
                                 <form onSubmit={submitHandelar}  >
                                     <h1 className="h1 text-center mb-4">LogIn User</h1>

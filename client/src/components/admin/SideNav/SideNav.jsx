@@ -1,16 +1,15 @@
-import { useEffect } from 'react'
 import { Link } from 'react-router-dom'
+import logo from '../../../assets/logo3.png'
+
 
 const SideNav = ({ id, show }) => {
-
-
 
     return (
         <div id="sideBar" className={show ? 'active sidebar-wrapper' : 'sidebar-wrapper'}  >
             <nav id="sidebar"  >
                 <div className="sidebar-header">
                     <Link to="/" >
-                        <p>BDShop</p>
+                        <img src={logo} alt="logo" style={{ width: '90%', height: '70%', objectFit: 'contain' }} />
                     </Link>
                 </div>
                 <ul className="list-unstyled components">

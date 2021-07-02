@@ -1,8 +1,5 @@
-import React from 'react';
 
 const UsersListCard = ({ user }) => {
-
-
     return (
         <div class="card text-center user-card ">
             <img src={user.avatar.url} alt="John" style={{ width: '100%' }} />

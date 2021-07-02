@@ -1,6 +1,6 @@
 import React from 'react';
 import './Footer.css';
-;
+import logo from '../../assets/2.png'
 
 const Footer = () => {
     return (
@@ -8,7 +8,7 @@ const Footer = () => {
             <div className='footer_top_part container'>
                 <div className="col-md-5 col-lg-6 col-sm-12">
                     <div className='d-flex justify-content-start'>
-                        <img className='footerLogo' src="" alt="" />
+                        <img className='footerLogo' src={logo} alt="" />
                     </div>
                     <form action="" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" className="validate" target="_blank" noValidate>
                         <div className='search_input subscribe d-flex justify-content-start mt-5'>

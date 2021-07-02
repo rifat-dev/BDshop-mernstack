@@ -86,7 +86,9 @@ strong {
     display: flex;
     flex-direction: column;
     transition: all 1s;
-    padding: 8px;
+    padding: 16px;
+    border: 1px solid #e6e0e2;
+    border-radius: 8px;
 }
 
 .dashbord_product_card_top {
