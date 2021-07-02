@@ -13,8 +13,7 @@
   .custom_card {
       border-radius: 20px;
       border: 1px solid #ffffff;
-      margin: 4px;
-      height: 100%;
+      margin: 6px;
       box-shadow: none;
       transition: all 1s;
   }

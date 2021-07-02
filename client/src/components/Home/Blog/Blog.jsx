@@ -13,7 +13,7 @@ const Blog = () => {
                 Necessitatibus recusandae natus minus sequi distinctio ratione nobis animi est.
             </p>
             <div className='card_container row'>
-                <Card className=' col-md-4 custom_card' >
+                <Card className='  custom_card' style={{ width: '21rem' }} >
                     <Card.Img className="card_body_img" variant="top" src={qualityImg} />
                     <Card.Body className='card_Body'>
                         <div className='d-flex align-items-center'>
@@ -32,7 +32,7 @@ const Blog = () => {
                     </Card.Body>
                 </Card>
 
-                <Card className=' col-md-4 custom_card  '>
+                <Card className=' custom_card ' style={{ width: '21rem' }} >
                     <Card.Img className="card_body_img" variant="top" src={delivaryImg} />
                     <Card.Body className='card_Body'>
                         <div className='d-flex align-items-center'>
@@ -51,7 +51,7 @@ const Blog = () => {
                     </Card.Body>
                 </Card>
 
-                <Card className='col-md-4 custom_card '>
+                <Card className='custom_card ' style={{ width: '21rem' }}>
                     <Card.Img className="card_body_img" variant="top" src={customerImg} />
                     <Card.Body className='card_Body'>
                         <div className='d-flex align-items-center'>

@@ -6,16 +6,17 @@ import { Row, Col, Image, ListGroup, Card, Button, Form } from 'react-bootstrap'
 import './Card.css'
 
 import { addToCartItem } from '../../store/actions/cartActions'
-import { getSingleProduct, clearError } from '../../store/actions/productActions'
+import { getSingleProduct, createProductReview, clearError } from '../../store/actions/productActions'
+import { PRODUCT_REVIEW_RESET } from '../../store/Types/productType'
 import Loader from '../layouts/Loader/Loader'
 import MetaData from '../layouts/MetaData'
 import ProductRating from './ProductRating'
 
 
-const SingleProduct = ({ match, history }) => {
+const SingleProduct = ({ match }) => {
     const { id } = match.params
-
     const [qty, setQty] = useState(1)
+
     const [rating, setRating] = useState(1)
     const [comment, setComment] = useState("")
 
@@ -26,7 +27,15 @@ const SingleProduct = ({ match, history }) => {
 
     const { isAuthenticated } = useSelector(state => state.auth)
     const { product, loading, error } = useSelector(state => state.singleProduct)
+    const { isCreate } = useSelector(state => state.productReview)
 
+
+
+    const reviewSubmit = (e) => {
+        e.preventDefault()
+
+        dispatch(createProductReview(product._id, { ratings: rating, comment }))
+    }
 
     useEffect(() => {
         if (error) {
@@ -34,7 +43,14 @@ const SingleProduct = ({ match, history }) => {
             dispatch(clearError())
         }
 
-    }, [error, dispatch])
+        if (isCreate) {
+            dispatch({ type: PRODUCT_REVIEW_RESET })
+            alert.success('Review created')
+            // dispatch(getSingleProduct(id))
+        }
+    }, [error, dispatch, isCreate])
+
+
 
     useEffect(() => {
         dispatch(getSingleProduct(id))
@@ -152,23 +168,12 @@ const SingleProduct = ({ match, history }) => {
                                                     ))}
                                                 </>
                                             )}
-
                                             <ListGroup.Item>
 
-                                                {/* <h2>Write a Customer Review</h2>
-                                                {successProductReview && (
-                                                    <Message variant='success'>
-                                                        Review submitted successfully
-                                                    </Message>
-                                                )}
-                                                {loadingProductReview && <Loader />}
-                                                {errorProductReview && (
-                                                    <Message variant='danger'>{errorProductReview}</Message>
-                                                )} */}
                                                 {isAuthenticated ? (
-                                                    <Form >
+                                                    <Form onSubmit={reviewSubmit}>
                                                         <h2>Write a Customer Review</h2>
-                                                        <Form.Group controlId='rating'>
+                                                        <Form.Group controlId='rating'  >
                                                             <Form.Label>Rating</Form.Label>
                                                             <Form.Control
                                                                 as='select'

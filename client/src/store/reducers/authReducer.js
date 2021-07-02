@@ -14,16 +14,12 @@ import {
     CLEAR_ERROR,
     UPDATE_PASSWORD_REQUEST,
     UPDATE_PROFILE_REQUEST,
-    DELETE_USER_REQUEST,
     UPDATE_PASSWORD_SUCCESS,
     UPDATE_PROFILE_SUCCESS,
-    DELETE_USER_SUCCESS,
     UPDATE_PASSWORD_RESET,
     UPDATE_PROFILE_RESET,
-    DELETE_USER_RESET,
     UPDATE_PASSWORD_FAIL,
     UPDATE_PROFILE_FAIL,
-    DELETE_USER_FAIL,
     SET_USER
 } from '../Types/authType'
 
@@ -88,7 +84,6 @@ export const userReducer = (state = { isUpdated: false, loading: false, error: n
     switch (action.type) {
         case UPDATE_PASSWORD_REQUEST:
         case UPDATE_PROFILE_REQUEST:
-        case DELETE_USER_REQUEST:
             return {
                 ...state,
                 loading: true,
@@ -100,26 +95,14 @@ export const userReducer = (state = { isUpdated: false, loading: false, error: n
                 loading: false,
                 isUpdated: action.payload
             }
-        case DELETE_USER_SUCCESS:
-            return {
-                ...state,
-                loading: false,
-                isDeleted: action.payload
-            }
         case UPDATE_PASSWORD_RESET:
         case UPDATE_PROFILE_RESET:
             return {
                 ...state,
                 isUpdated: false
             }
-        case DELETE_USER_RESET:
-            return {
-                ...state,
-                isDeleted: false
-            }
         case UPDATE_PASSWORD_FAIL:
         case UPDATE_PROFILE_FAIL:
-        case DELETE_USER_FAIL:
             return {
                 ...state,
                 loading: false,

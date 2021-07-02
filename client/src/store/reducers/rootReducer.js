@@ -8,7 +8,8 @@ import {
 // products reducers import
 import {
     productsReducer,
-    singleProduct
+    singleProduct,
+    productReview
 } from './productReducer'
 
 // Cart reducers import
@@ -32,6 +33,7 @@ const rootReducer = combineReducers({
     // products reducers
     products: productsReducer,
     singleProduct: singleProduct,
+    productReview: productReview,
 
     // cart reducers
     cart: cartReducer,

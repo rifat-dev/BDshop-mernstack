@@ -47,6 +47,22 @@
     border: 1px solid #f36d98;
 }
 
+.select_shop :hover {
+    cursor: pointer;
+}
+
 .select_shop:focus {
     outline: none;
+}
+
+.search_shop {
+    border: none;
+    padding: 8px 16px;
+    width: 100%;
+    color: #BD1E51;
+    border: 1px solid #f36d98;
+}
+
+.search_shop:focus {
+    outline: #BD1E51;
 }

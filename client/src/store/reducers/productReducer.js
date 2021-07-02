@@ -3,6 +3,9 @@ import {
     ALL_PRODUCTS_REQUEST,
     ALL_PRODUCTS_SUCCESS,
     CLEAR_ERROR,
+    PRODUCT_REVIEW_CREATE_FAIL,
+    PRODUCT_REVIEW_CREATE_SUCCESS,
+    PRODUCT_REVIEW_RESET,
     SINGLE_PRODUCT_FAIL,
     SINGLE_PRODUCT_REQUEST,
     SINGLE_PRODUCT_SUCCESS,
@@ -56,6 +59,34 @@ export const singleProduct = (state = { product: {}, loading: false }, action) =
                 ...state,
                 loading: false,
                 error: action.payload
+            }
+        case CLEAR_ERROR:
+            return {
+                ...state,
+                error: null
+            }
+        default:
+            return state
+    }
+}
+
+
+export const productReview = (state = { isCreate: false, error: null }, action) => {
+    switch (action.type) {
+        case PRODUCT_REVIEW_CREATE_SUCCESS:
+            return {
+                ...state,
+                isCreate: action.payload
+            }
+        case PRODUCT_REVIEW_CREATE_FAIL:
+            return {
+                ...state,
+                error: action.payload
+            }
+        case PRODUCT_REVIEW_RESET:
+            return {
+                ...state,
+                isCreate: false
             }
         case CLEAR_ERROR:
             return {

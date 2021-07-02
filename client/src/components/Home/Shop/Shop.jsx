@@ -24,12 +24,20 @@ const Shop = () => {
     }, [])
 
     useEffect(() => {
-        let result = products.filter(product => (
+        let result = products.filter(product =>
             product.category.toLowerCase().includes(category === 'All' ? '' : category.toLowerCase())
-        ))
+        )
         // console.log(result)
         setShopProducts(result)
     }, [category, products])
+
+    useEffect(() => {
+        let result = products.filter(product =>
+            product.name.toLowerCase().includes(searchTerm.toLowerCase())
+            || product.category.toLowerCase().includes(searchTerm.toLowerCase())
+        )
+        setShopProducts(result)
+    }, [searchTerm, products])
 
     return (
         <div className="shop" >
@@ -37,8 +45,8 @@ const Shop = () => {
                 <>
                     <ShopHader setCategory={setCategory} />
 
-                    <div className="search_filter container mt-5">
-                        <div className="col-md-3">
+                    <div className="search_filter container my-5">
+                        <div className=" col-md-3">
                             <select className="select_shop"
                                 onChange={(e) => setCategory(e.target.value)}
                             >
@@ -48,8 +56,13 @@ const Shop = () => {
                                 ))}
                             </select>
                         </div>
-                        <div className="col-md-3">
-                            <input type="text" />
+                        <div className="col-md-3 ">
+                            <input
+                                className="search_shop"
+                                type="text"
+                                placeholder="search by name , category"
+                                onChange={(e) => setSearchTerm(e.target.value)}
+                            />
                         </div>
                     </div>
 

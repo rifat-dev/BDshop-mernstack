@@ -4,6 +4,8 @@ import {
     ALL_PRODUCTS_REQUEST,
     ALL_PRODUCTS_SUCCESS,
     CLEAR_ERROR,
+    PRODUCT_REVIEW_CREATE_FAIL,
+    PRODUCT_REVIEW_CREATE_SUCCESS,
     SINGLE_PRODUCT_FAIL,
     SINGLE_PRODUCT_REQUEST,
     SINGLE_PRODUCT_SUCCESS,
@@ -44,6 +46,25 @@ export const getSingleProduct = (id) => async(dispatch) => {
     } catch (e) {
         dispatch({
             type: SINGLE_PRODUCT_FAIL,
+            payload: e.response.data.message
+        })
+    }
+}
+
+
+export const createProductReview = (id, review) => async(dispatch) => {
+    try {
+
+        const { data } = await axios.post(`/api/products/create-review/${id}`, review)
+
+        dispatch({
+            type: PRODUCT_REVIEW_CREATE_SUCCESS,
+            payload: data.success
+        })
+
+    } catch (e) {
+        dispatch({
+            type: PRODUCT_REVIEW_CREATE_FAIL,
             payload: e.response.data.message
         })
     }

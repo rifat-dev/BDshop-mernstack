@@ -15,7 +15,7 @@ const Hader = () => {
                     <h3 className='mt-3 mb-3'>Choose Your Favorite One</h3>
                     <h1>Best Products waiting for you</h1><br />
                     {isAuthenticated ?
-                        <Link>
+                        <Link to='/shop' >
                             <button className="hader_btn">
                                 <i className="bi bi-arrow-right-circle-fill mr-1 "></i>
                                 Shop

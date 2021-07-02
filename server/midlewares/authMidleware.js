@@ -30,7 +30,7 @@ exports.isAdmin = (...roles) => {
         if (!roles.includes(req.user.roal)) {
             return res.status(403).json({
                 success: false,
-                message: 'Please login first to access this route'
+                message: 'Only admin can access this route'
             })
         }
         next()

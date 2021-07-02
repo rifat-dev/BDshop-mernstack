@@ -12,7 +12,7 @@ const Products = ({ products }) => {
             return;
         }
     }
-    console.log(products.slice(0, showItem))
+
     return (
         <div className="container">
             <h4 style={{ color: '#12151F', fontSize: '40px', marginTop: '20px' }} >Latest Products</h4>

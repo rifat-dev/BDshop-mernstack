@@ -72,6 +72,10 @@ const productSchema = new Schema({
             ref: 'User',
             required: true
         },
+        image: {
+            type: String,
+            required: true
+        },
         name: {
             type: String,
             required: true,
@@ -83,6 +87,10 @@ const productSchema = new Schema({
         comments: {
             type: String,
             required: true
+        },
+        createdAt: {
+            type: Date,
+            default: Date.now()
         }
     }],
     user: {
