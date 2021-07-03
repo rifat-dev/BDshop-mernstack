@@ -10,6 +10,7 @@ import './User.css'
 import logoutSvg from '../../assets/login.svg'
 import Loader from '../layouts/Loader/Loader'
 import MetaData from '../layouts/MetaData'
+import { registationValidator } from '../../utils/validator'
 import { userRegister, clearError } from '../../store/actions/authActions'
 
 const Register = ({ history }) => {
@@ -21,6 +22,7 @@ const Register = ({ history }) => {
     const { name, email, password } = user
     const [avatar, setAvater] = useState('')
     const [imagePreview, setImagePreview] = useState('https://mdbootstrap.com/img/Photos/Avatars/avatar-1-mini.jpg')
+    const [errors, setErrors] = useState({})
 
 
     const alert = useAlert()
@@ -51,6 +53,12 @@ const Register = ({ history }) => {
     const submitForm = (e) => {
         e.preventDefault()
 
+        const { error, isValidate } = registationValidator(name, password, name)
+
+        if (!isValidate) {
+            return setErrors(error)
+        }
+
         let formData = new FormData();
         formData.append('name', name)
         formData.append('email', email)
@@ -58,6 +66,7 @@ const Register = ({ history }) => {
         formData.append('avatar', avatar)
 
         dispatch(userRegister(formData))
+
     }
 
     useEffect(() => {
@@ -93,14 +102,29 @@ const Register = ({ history }) => {
                                 <form onSubmit={submitForm} >
                                     <h1 className="h1 text-center mb-4">Register User</h1>
                                     <div className="grey-text">
-                                        <MDBInput name="name" label="Type Your Name" icon="user" group type="text" validate error="wrong"
+                                        <MDBInput
+                                            name="name"
+                                            label={errors.name ? errors.name : "Type Your Name"}
+                                            icon="user" group type="text"
+                                            validate error="wrong"
                                             value={name}
+                                            className={errors.name ? 'form-control is-invalid' : 'form-control'}
                                             success="right" onChange={handelChange} />
-                                        <MDBInput name="email" label="Type your email" icon="envelope" group type="email" validate error="wrong"
+                                        <MDBInput name="email"
+                                            label={errors.email ? errors.email : "Type your email"}
+                                            icon="envelope"
+                                            group type="email"
+                                            validate error="wrong"
                                             value={email}
+                                            className={errors.email ? 'form-control is-invalid' : 'form-control'}
                                             success="right" onChange={handelChange} />
-                                        <MDBInput name="password" label="Type your password" icon="lock" group type="password" validate
+                                        <MDBInput
+                                            name="password"
+                                            label={errors.password ? errors.password : "Type your password"}
+                                            icon="lock"
+                                            group type="password" validate
                                             value={password}
+                                            className={errors.password ? 'form-control is-invalid' : 'form-control'}
                                             onChange={handelChange} />
                                         <MDBRow className="ml-2 align-items-center" >
                                             <img

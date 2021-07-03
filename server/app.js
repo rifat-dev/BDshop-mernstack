@@ -4,6 +4,7 @@ const cors = require('cors')
 const morgan = require('morgan')
 const cookieParser = require('cookie-parser')
 const fileUploder = require('express-fileupload')
+const path = require('path')
     // app setup
 const app = express();
 
@@ -32,6 +33,15 @@ app.use('/api/user', user)
 app.use('/api/products', product)
 app.use('/api/order', order)
 app.use('/api/admin', admin)
+
+
+if (process.env.NODE_ENV === "PRODUCTION") {
+    app.use(express.static(path.join(__dirname, '../client/build')))
+
+    app.get('*', (req, res) => {
+        res.sendFile(path.resolve(__dirname, '../client/build/index.html'))
+    })
+}
 
 
 // exports app for listen server

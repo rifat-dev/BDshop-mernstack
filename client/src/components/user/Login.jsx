@@ -9,10 +9,12 @@ import './User.css'
 
 import Loader from '../layouts/Loader/Loader'
 import MetaData from '../layouts/MetaData'
+import { loginValidator } from '../../utils/validator'
 
 const Login = ({ history }) => {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
+    const [errors, setErrors] = useState({})
 
     const alert = useAlert()
     const dispatch = useDispatch()
@@ -20,9 +22,14 @@ const Login = ({ history }) => {
 
     const submitHandelar = (e) => {
         e.preventDefault()
-        dispatch(userLogin(email, password))
-    }
 
+        const { error, isValidate } = loginValidator(email, password);
+        if (!isValidate) {
+            return setErrors(error)
+        }
+        dispatch(userLogin(email, password));
+    }
+    console.log(errors)
     useEffect(() => {
         if (isAuthenticated) {
             alert.success('User Login Success')
@@ -47,7 +54,7 @@ const Login = ({ history }) => {
                         </button>
                     </Link>
                     <div className="login row">
-                        <div className="col-md-6 login_form user_form">
+                        <div className=" col-12 col-md-6 login_form user_form">
 
                             <div className="alert alert-danger m-4" role="alert">
                                 <h4 className="alert-heading">Hello !</h4>
@@ -68,17 +75,26 @@ const Login = ({ history }) => {
                                             label="Type your email"
                                             icon="envelope"
                                             group type="email"
+                                            className={errors.email ? 'form-control is-invalid' : 'form-control'}
                                             validate error="wrong"
                                             success="right" />
+                                        {errors.email && <div className="invalid-feedback">
+                                            {errors.email}
+                                        </div>}
                                         <MDBInput
                                             name="password"
                                             value={password}
                                             onChange={(e) => setPassword(e.target.value)}
                                             label="Type your password"
                                             icon="lock"
+                                            className={errors.password ? 'form-control is-invalid' : 'form-control'}
                                             group type="password"
-                                            validate
+                                            validate error={errors.password}
+                                            success="right"
                                         />
+                                        {errors.password && <div className="invalid-feedback">
+                                            {errors.password}
+                                        </div>}
                                     </div>
                                     <div className="text-center">
                                         <button className="my_btn" type="submit"  >
@@ -94,7 +110,7 @@ const Login = ({ history }) => {
                                 </form>
                             </MDBCol>
                         </div>
-                        <div className="col-md-6 login_img user_img">
+                        <div className="col-12 col-md-6 login_img user_img">
                             <img src={shoppingSVG} alt="Shopping.svg" />
                         </div>
                     </div>
