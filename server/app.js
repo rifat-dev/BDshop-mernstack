@@ -35,7 +35,7 @@ app.use('/api/order', order)
 app.use('/api/admin', admin)
 
 
-if (process.env.NODE_ENV === "PRODUCTION") {
+if (process.env.NODE_ENV === "production") {
     app.use(express.static(path.join(__dirname, '../client/build')))
 
     app.get('*', (req, res) => {
