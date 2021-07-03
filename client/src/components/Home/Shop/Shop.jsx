@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import Loader from '../../layouts/Loader/Loader'
 import MetaData from '../../layouts/MetaData'
 
+import NotFound from '../../layouts/404'
 import ProductCard from '../../products/ProductCard'
 import ShopHader from './ShopHader';
 import Category from '../../../utils/ProductCategory'
@@ -27,7 +28,6 @@ const Shop = () => {
         let result = products.filter(product =>
             product.category.toLowerCase().includes(category === 'All' ? '' : category.toLowerCase())
         )
-        // console.log(result)
         setShopProducts(result)
     }, [category, products])
 
@@ -68,11 +68,16 @@ const Shop = () => {
 
                     <div className="shop_body container mb-5">
                         <div className="row">
-                            {shopProducts.map(product => (
-                                <div key={product._id} className="col-md-6">
-                                    <ProductCard product={product} />
+                            {shopProducts.length > 0 ?
+                                shopProducts.map(product => (
+                                    <div key={product._id} className="col-md-6">
+                                        <ProductCard product={product} />
+                                    </div>
+                                )) :
+                                <div className="col-md-6 offset-md-3" >
+                                    <NotFound />
                                 </div>
-                            ))}
+                            }
                         </div>
                     </div>
                 </>

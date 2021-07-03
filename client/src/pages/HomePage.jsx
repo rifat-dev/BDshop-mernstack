@@ -1,5 +1,5 @@
 import { Fragment } from 'react';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
+import { BrowserRouter, Switch, Route } from 'react-router-dom'
 
 
 import NavBar from '../components/layouts/Header/NavBar'
@@ -16,6 +16,7 @@ import ConfirmOrder from '../components/cart/ConfirmOrder';
 import Orders from '../components/order/Orders';
 import OrderDetails from '../components/order/OrderDetails';
 import Footer from '../components/layouts/Footer';
+import NotFound from '../components/layouts/404';
 
 import ProtectedRoute from '../components/route/ProtectedRoute';
 
@@ -24,25 +25,27 @@ import ProtectedRoute from '../components/route/ProtectedRoute';
 const HomePage = () => {
     return (
         <Fragment>
+
             <NavBar />
             <Switch>
-                <div className="">
-                    <Route path='/' component={Home} exact />
-                    <Route path='/shop' component={Shop} exact />
-                    <Route path='/product/:id' component={SingleProduct} exact />
-                    <Route path='/cart' component={Cart} exact />
+                <Route path='/' component={Home} exact />
+                <Route path='/shop' component={Shop} exact />
+                <Route path='/product/:id' component={SingleProduct} exact />
+                <Route path='/cart' component={Cart} exact />
 
-                    <ProtectedRoute path="/profile/me" component={Profile} exact />
-                    <ProtectedRoute path="/profile/me/edit-profile" component={UpdateProfile} exact />
-                    <ProtectedRoute path="/profile/me/update-password" component={UpdatePassword} exact />
+                <ProtectedRoute path="/profile/me" component={Profile} exact />
+                <ProtectedRoute path="/profile/me/edit-profile" component={UpdateProfile} exact />
+                <ProtectedRoute path="/profile/me/update-password" component={UpdatePassword} exact />
 
-                    <ProtectedRoute path="/profile/me/orders" component={Orders} exact />
-                    <ProtectedRoute path="/profile/me/orders/:id" component={OrderDetails} exact />
+                <ProtectedRoute path="/profile/me/orders" component={Orders} exact />
+                <ProtectedRoute path="/profile/me/orders/:id" component={OrderDetails} exact />
 
-                    <ProtectedRoute path="/shipping" component={Shipping} exact />
-                    <ProtectedRoute path="/payment" component={Payment} exact />
-                    <ProtectedRoute path="/confirmOrder" component={ConfirmOrder} exact />
-                </div>
+                <ProtectedRoute path="/shipping" component={Shipping} exact />
+                <ProtectedRoute path="/payment" component={Payment} exact />
+                <ProtectedRoute path="/confirmOrder" component={ConfirmOrder} exact />
+                <Route path="*" >
+                    <NotFound />
+                </Route>
             </Switch>
             <Footer />
         </Fragment>

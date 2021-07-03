@@ -26,8 +26,7 @@
 
 /* Position the front and back side */
 
-.flip-card-front,
-.flip-card-back {
+.flip-card-front {
     position: absolute;
     width: 100%;
     -webkit-backface-visibility: hidden;
@@ -52,7 +51,6 @@ strong {
 .flip-card-back {
     color: white;
     background-color: #BD1E51;
-    transform: rotateY(180deg);
     transition: all 1s;
 }
 

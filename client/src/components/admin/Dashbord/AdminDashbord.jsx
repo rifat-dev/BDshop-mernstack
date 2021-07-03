@@ -11,6 +11,7 @@ import ProductList from '../Product/ProductList';
 import NewProduct from '../Product/NewProduct'
 import OrderList from '../Order/OrderList'
 import UsersList from '../Users/UsersList';
+import NotFound from '../../layouts/404';
 
 const AdminDashbord = ({ match, history }) => {
     const { id } = match.params
@@ -29,7 +30,7 @@ const AdminDashbord = ({ match, history }) => {
                             id === "products" ? <ProductList history={history} /> :
                                 id === 'newproduct' ? <NewProduct history={history} /> :
                                     id === "orders" ? <OrderList /> :
-                                        id === "users" ? <UsersList /> : ""
+                                        id === "users" ? <UsersList /> : <NotFound />
                     }
                 </div>
             </div>
