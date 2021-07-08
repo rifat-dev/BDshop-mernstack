@@ -47,10 +47,10 @@ const NavBar = () => {
 
                     <div className="navbar-nav ml-auto d-flex align-items-center" >
                         <Link to='/' className="nav_text">
-                            Home <span class="sr-only">(current)</span>
+                            <a>  Home </a>
                         </Link>
                         <Link to='/shop' className="nav_text">
-                            Shop<span class="sr-only">(current)</span>
+                            <a> Shop</a>
                         </Link>
 
                         <Link to="/cart" className="bi bi-cart-check-fill  nav_text">

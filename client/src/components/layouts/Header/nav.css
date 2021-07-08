@@ -21,6 +21,22 @@
 
 .sticky_nav .nav_text {
     color: white !important;
+    position: relative;
+}
+
+.sticky_nav .nav_text a::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 0;
+    height: 2px;
+    background-color: white;
+    transition: width .3s;
+}
+
+.sticky_nav .nav_text:hover a::after {
+    width: 100%;
 }
 
 .sticky_nav .navbar-brand {
@@ -50,6 +66,22 @@
     font-size: 20px;
     margin: 0 15px;
     color: #12151F !important;
+    position: relative;
+}
+
+.nav_text a::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 0;
+    height: 2px;
+    background-color: #BD1E51;
+    transition: width .3s ease-in-out;
+}
+
+.nav_text:hover a::after {
+    width: 100%;
 }
 
 .cart-num {

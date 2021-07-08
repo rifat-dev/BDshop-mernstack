@@ -36,8 +36,8 @@ const UsersList = () => {
                             <th scope="col">#</th>
                             <th scope="col">User name</th>
                             <th scope="col">Id</th>
-                            <th scope="col">Id</th>
                             <th scope="col">Email</th>
+                            <th scope="col">Role</th>
                             <th scope="col">Action</th>
                         </tr>
                     </thead>

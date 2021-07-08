@@ -40,14 +40,10 @@
     background-color: #e02c65;
 }
 
-.table_roal {
-    text-align: center;
-}
-
 .table_roal span {
-    background-color: rgb(104, 255, 205);
-    color: rgb(17, 173, 121);
-    padding: 8px;
+    background-color: #e02c65;
+    color: white;
+    padding: 8px 15px;
     border-radius: 50%;
 }
 
@@ -56,6 +52,6 @@
 }
 
 .table_action:hover i {
-    color: orange;
+    color: black;
     cursor: pointer;
 }
