@@ -50,7 +50,7 @@ const ProductList = () => {
 
     useEffect(() => {
         dispatch(getAdminProducts())
-    }, [])
+    }, [dispatch])
 
 
     const handleClose = () => setShow(false);

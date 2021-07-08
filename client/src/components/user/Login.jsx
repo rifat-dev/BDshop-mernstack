@@ -1,7 +1,7 @@
 import { Fragment, useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
-import { MDBCol, MDBInput, MDBBtn } from 'mdbreact';
+import { MDBCol, MDBInput } from 'mdbreact';
 import { useAlert } from 'react-alert'
 import { userLogin, clearError } from '../../store/actions/authActions'
 import shoppingSVG from '../../assets/shopping.svg'

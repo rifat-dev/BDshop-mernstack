@@ -46,23 +46,23 @@ const NavBar = () => {
                 <div className="collapse navbar-collapse" id="navbarContent">
 
                     <div className="navbar-nav ml-auto d-flex align-items-center" >
-                        <Link to='/' >
-                            <a className="nav_text">Home <span class="sr-only">(current)</span></a>
+                        <Link to='/' className="nav_text">
+                            Home <span class="sr-only">(current)</span>
                         </Link>
-                        <Link to='/shop' >
-                            <a className="nav_text">Shop<span class="sr-only">(current)</span></a>
+                        <Link to='/shop' className="nav_text">
+                            Shop<span class="sr-only">(current)</span>
                         </Link>
 
-                        <Link to="/cart" >
-                            <a className="bi bi-cart-check-fill  nav_text">
-                                <span style={{ fontSize: '17px' }} className={cartItems.length > 0 ? "cart-num" : "cart-num"}  >{cartItems.length > 0 ? cartItems.length : 0}</span>
-                            </a>
+                        <Link to="/cart" className="bi bi-cart-check-fill  nav_text">
+
+                            <span style={{ fontSize: '17px' }} className={cartItems.length > 0 ? "cart-num" : "cart-num"}  >{cartItems.length > 0 ? cartItems.length : 0}</span>
+
                         </Link>
 
                         <ul className="navbar-nav">
                             {isAuthenticated && (
                                 <li className="nav-item dropdown">
-                                    <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <a className="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                         <img
                                             src={user.avatar.url && user.avatar.url}
                                             alt="profile"

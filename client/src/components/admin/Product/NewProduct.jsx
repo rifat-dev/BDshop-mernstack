@@ -27,7 +27,7 @@ const NewProduct = ({ history }) => {
 
     const alert = useAlert()
     const dispatch = useDispatch()
-    const { isCreated, loading, error } = useSelector(state => state.dashboardTracker)
+    const { isCreated, error } = useSelector(state => state.dashboardTracker)
 
 
     const onChange = (e) => {
@@ -86,7 +86,7 @@ const NewProduct = ({ history }) => {
             history.push('/admin/products')
             alert.success(' Product Create Success')
         }
-    }, [error, alert, dispatch, isCreated])
+    }, [error, alert, dispatch, isCreated, history])
 
 
 

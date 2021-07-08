@@ -25,9 +25,7 @@ const Cart = () => {
 
     useEffect(() => {
         let price = 0;
-        cartItems.map(product => {
-            price = price + product.price * product.quantity
-        })
+        cartItems.map(product => price = price + product.price * product.quantity)
         setTotalPrice(price)
     }, [cartItems, dispatch])
 
@@ -39,7 +37,7 @@ const Cart = () => {
                     <div className="empty_cart_body">
                         <img src={emptyCartSvg} alt="Empty Cart" />
                     </div>
-                    <Link to='/' >
+                    <Link to='/shop' >
                         <button className="my_btn">
                             <i class="bi bi-arrow-left-short"></i>
                             Go To Shop

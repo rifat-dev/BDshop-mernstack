@@ -1,4 +1,4 @@
-import { Fragment, useEffect, useState } from 'react';
+import { Fragment, useEffect } from 'react';
 import { Link } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import { useAlert } from 'react-alert'
@@ -10,11 +10,12 @@ import { getAdminUsers, getAdminProducts, getAdminOrders, clearError } from '../
 const Dashbord = () => {
 
 
-    const { users } = useSelector(state => state.adminAllUsers)
+    const { users, error } = useSelector(state => state.adminAllUsers)
     const { products } = useSelector(state => state.adminAllProducts)
     const { orders, loading, totalAmount } = useSelector(state => state.adminAllOrders)
 
     const dispatch = useDispatch()
+    const alert = useAlert()
 
     let stock = 0;
 
@@ -23,12 +24,19 @@ const Dashbord = () => {
             stock++;
         }
     });
-    console.log(stock)
+
     useEffect(() => {
         dispatch(getAdminUsers())
         dispatch(getAdminOrders())
         dispatch(getAdminProducts())
     }, [dispatch])
+
+    useEffect(() => {
+        if (error) {
+            alert.error(error)
+            dispatch(clearError())
+        }
+    }, [error, alert, dispatch])
 
     return (
         <Fragment>

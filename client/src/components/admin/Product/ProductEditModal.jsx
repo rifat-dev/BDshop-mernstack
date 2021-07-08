@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux'
-import { Modal, Button } from 'react-bootstrap'
+import { Modal } from 'react-bootstrap'
 import './Product.css'
 
 import { updateAdminProduct } from '../../../store/actions/adminActions'
@@ -16,7 +16,7 @@ const ProductEditModal = ({ product, show, handleClose }) => {
     useEffect(() => {
         setName(product.name)
         setPrice(product.price)
-    }, [])
+    })
 
     const updateProduct = (e) => {
         e.preventDefault()

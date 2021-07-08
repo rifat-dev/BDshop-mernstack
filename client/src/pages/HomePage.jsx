@@ -1,5 +1,5 @@
 import { Fragment } from 'react';
-import { BrowserRouter, Switch, Route } from 'react-router-dom'
+import { Switch, Route } from 'react-router-dom'
 
 
 import NavBar from '../components/layouts/Header/NavBar'

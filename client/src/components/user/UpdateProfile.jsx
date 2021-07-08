@@ -71,7 +71,7 @@ const UpdateProfile = ({ history }) => {
             setEmail(user.email)
             setImagePreview(user.avatar.url)
         }
-    }, [user, isUpdated, dispatch, error])
+    }, [user, isUpdated, dispatch, error, alert, history])
 
     return (
         <Fragment>

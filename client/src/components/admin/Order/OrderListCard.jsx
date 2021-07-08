@@ -43,7 +43,6 @@ const OrderListCard = ({ order_list, index }) => {
                 dispatch({ type: CLEAR_ERROR })
                 setId('')
             }
-
             if (isUpdated) {
                 dispatch({ type: CLEAR_UPDATE_STATE })
                 alert.success(`Order status change to ${updatedStatus}`)
@@ -52,8 +51,7 @@ const OrderListCard = ({ order_list, index }) => {
                 setId('')
             }
         }
-
-    }, [isUpdated, error])
+    }, [isUpdated, error, alert, dispatch])
 
     return (
         <div className='col-md-6 mt-3 mb-3 col-sm-6'>
@@ -132,7 +130,7 @@ const OrderListCard = ({ order_list, index }) => {
                             <p className='mt-0 mb-0'><strong>Items Price </strong>${order_list.itemsPrice}</p>
                             <p className='mt-0 mb-0'><strong>Shipping: </strong>${order_list.shippingPrice}</p>
                             <p className='mt-0 mb-0'><strong>Total: </strong>${order_list.totalPrice}</p>
-                            <p style={order_list.paymentInfo.status == 'success' ? { color: 'green' } : { color: 'red' }} ><strong style={{ color: 'black' }} >Payment Status:</strong> {order_list.paymentInfo.status}</p>
+                            <p style={order_list.paymentInfo.status === 'success' ? { color: 'green' } : { color: 'red' }} ><strong style={{ color: 'black' }} >Payment Status:</strong> {order_list.paymentInfo.status}</p>
                         </div>
                     </div>
                 </div>

@@ -28,11 +28,9 @@ const DashboardNavbar = ({ setShow, show, match }) => {
                                 : id === "products" ? "Products"
                                     : id === "newproduct" ? "Create A New Product"
                                         : id === "orders" ? "Orders"
-                                            : id === "manageServices" ? "Manage Services"
-                                                : id === "book" ? "Book"
-                                                    : id === "bookingList" ? "Booking List"
-                                                        : id === "review" ? "Review"
-                                                            : ""
+                                            : id === "users" ? "All Users"
+                                                : id === "review" ? "Review"
+                                                    : ""
                         }
                     </h2>
                 </Navbar.Brand>

@@ -1,4 +1,4 @@
-import { Fragment, useState, useEffect } from 'react'
+import { Fragment, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import { useAlert } from 'react-alert'
@@ -29,7 +29,7 @@ const OrderDetails = ({ match, history }) => {
 
         dispatch(getMySingleOrder(id))
 
-    }, [error, dispatch])
+    }, [error, dispatch, alert, history])
 
 
     return (

@@ -2,7 +2,7 @@ import { Fragment, useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { useAlert } from 'react-alert'
-import { Row, Col, Image, ListGroup, Card, Button, Form } from 'react-bootstrap'
+import { Row, Col, Image, ListGroup, Card, Form } from 'react-bootstrap'
 import './Card.css'
 
 import { addToCartItem } from '../../store/actions/cartActions'

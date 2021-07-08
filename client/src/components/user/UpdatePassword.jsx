@@ -1,7 +1,7 @@
 import { Fragment, useState, useEffect } from 'react'
 import { useAlert } from 'react-alert'
 import { useDispatch, useSelector } from 'react-redux'
-import { MDBRow, MDBCol, MDBInput, MDBBtn } from 'mdbreact';
+import { MDBCol, MDBInput } from 'mdbreact';
 
 import Loader from '../layouts/Loader/Loader'
 import MetaData from '../layouts/MetaData'
@@ -39,7 +39,7 @@ const UpdatePassword = ({ history }) => {
             dispatch(clearError())
         }
 
-    }, [isUpdated, error, dispatch])
+    }, [isUpdated, error, dispatch, alert, history])
 
     return (
         <Fragment>

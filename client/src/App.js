@@ -5,7 +5,6 @@ import AdminDashbord from './components/admin/Dashbord/AdminDashbord';
 import HomePage from './pages/HomePage';
 import Login from './components/user/Login'
 import Register from './components/user/Register'
-import NotFound from './components/layouts/404';
 import BottomButton from './components/layouts/Button/BottomButton';
 
 

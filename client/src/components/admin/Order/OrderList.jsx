@@ -23,7 +23,7 @@ const OrderList = () => {
 
     useEffect(() => {
         dispatch(getAdminOrders())
-    }, [])
+    }, [dispatch])
 
 
     useEffect(() => {
@@ -39,7 +39,7 @@ const OrderList = () => {
             alert.error(error)
             dispatch(clearError())
         }
-    }, [error, alert])
+    }, [error, alert, dispatch])
 
 
     return (

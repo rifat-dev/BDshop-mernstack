@@ -62,7 +62,7 @@ const Payment = ({ history }) => {
             sessionStorage.removeItem('orderInfo')
         }
 
-    }, [error, alert, dispatch, isCreated])
+    }, [error, alert, dispatch, isCreated, history])
 
 
 

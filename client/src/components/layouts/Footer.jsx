@@ -21,18 +21,18 @@ const Footer = () => {
                     <div className='footer_nav_link_container'>
                         <div className='col-md-6 col-lg-6 col-sm-12'>
                             <ul className='footer_top_link'>
-                                <li><a href="#">About online product</a></li>
-                                <li><a href="#">Read our Blog</a></li>
-                                <li><a href="#">Sign up to deliver</a></li>
-                                <li><a href="#">Add your product</a></li>
+                                <li><>About online product</></li>
+                                <li><>Read our Blog</></li>
+                                <li><>Sign up to deliver</></li>
+                                <li><>Add your product</></li>
                             </ul>
                         </div>
                         <div className='col-md-6 col-lg-6 col-sm-12'>
                             <ul className='footer_top_link'>
-                                <li><a href="#">Get help</a></li>
-                                <li><a href="#">Read FAQs</a></li>
-                                <li><a href="#">View all cities</a></li>
-                                <li><a href="#">Shop near me</a></li>
+                                <li><>Get help</></li>
+                                <li><>Read FAQs</></li>
+                                <li><>View all cities</></li>
+                                <li><>Shop near me</></li>
                             </ul>
                         </div>
                     </div>
@@ -44,9 +44,9 @@ const Footer = () => {
                     <h4>Emial : tajul16-447@diu.edu.bd</h4>
                 </div>
                 <div className='footer_bottom_link'>
-                    <a href="#">Privacy policy</a>
-                    <a href="#">Terms of use</a>
-                    <a href="#">Pricing</a>
+                    <a>Privacy policy</a>
+                    <a>Terms of use</a>
+                    <a>Pricing</a>
                 </div>
             </div>
         </div>

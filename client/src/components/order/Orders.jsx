@@ -1,21 +1,32 @@
 import { useEffect, Fragment } from 'react';
 import { useDispatch, useSelector } from 'react-redux'
+import { useAlert } from 'react-alert'
 import { Link } from 'react-router-dom'
 
 import MetaData from '../layouts/MetaData'
 import Loader from '../layouts/Loader/Loader'
 
-import { getMyOrders } from '../../store/actions/orderActions'
+import { getMyOrders, cleareError } from '../../store/actions/orderActions'
 
 const Orders = () => {
 
     const dispatch = useDispatch()
+    const alert = useAlert()
 
     const { orders, loading, error } = useSelector(state => state.myOrders)
 
     useEffect(() => {
         dispatch(getMyOrders())
-    }, [])
+    }, [dispatch])
+
+
+    useEffect(() => {
+        if (error) {
+            alert.error(error)
+            dispatch(cleareError())
+        }
+    }, [error, alert, dispatch])
+
 
     return (
         <Fragment>

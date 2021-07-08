@@ -22,7 +22,14 @@ const Shop = () => {
 
     useEffect(() => {
         dispatch(getAllProducts())
-    }, [])
+    }, [dispatch])
+
+    useEffect(() => {
+        if (error) {
+            alert.error(error)
+            dispatch(clearError())
+        }
+    }, [error, dispatch, alert])
 
     useEffect(() => {
         let result = products.filter(product =>
@@ -43,8 +50,8 @@ const Shop = () => {
         <div className="shop" >
             {loading ? <Loader /> :
                 <>
+                    <MetaData title={'Shop page- BDshop'} />
                     <ShopHader setCategory={setCategory} />
-
                     <div className="search_filter container my-5">
                         <div className=" col-md-3">
                             <select className="select_shop"

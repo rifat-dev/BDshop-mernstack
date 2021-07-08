@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
-import { Form, Button } from 'react-bootstrap'
-import { useDispatch, useSelector } from 'react-redux'
+import { Form } from 'react-bootstrap'
+import { useDispatch } from 'react-redux'
 
 import CheckoutSteps from './CheckoutSteps'
 import { saveShippingInfo } from '../../store/actions/cartActions'

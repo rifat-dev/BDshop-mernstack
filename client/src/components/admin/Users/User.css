@@ -29,3 +29,33 @@
     font-size: 22px;
     color: black;
 }
+
+.table-theme {
+    color: white;
+    background-color: #BD1E51;
+    box-shadow: 0px 4px 8px 0 rgb(0, 0, 0, 0.6);
+}
+
+.table-theme tr:hover {
+    background-color: #e02c65;
+}
+
+.table_roal {
+    text-align: center;
+}
+
+.table_roal span {
+    background-color: rgb(104, 255, 205);
+    color: rgb(17, 173, 121);
+    padding: 8px;
+    border-radius: 50%;
+}
+
+.table_action i {
+    font-size: 20px;
+}
+
+.table_action:hover i {
+    color: orange;
+    cursor: pointer;
+}
