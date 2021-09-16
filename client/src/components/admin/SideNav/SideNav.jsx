@@ -2,10 +2,10 @@ import { Link } from 'react-router-dom'
 import logo from '../../../assets/logo3.png'
 
 
-const SideNav = ({ id, show }) => {
+const SideNav = ({ id }) => {
 
     return (
-        <div id="sideBar" className={show ? 'active sidebar-wrapper' : 'sidebar-wrapper'}  >
+        <div id="sideBar" className='sidebar-wrapper'>
             <nav id="sidebar"  >
                 <div className="sidebar-header">
                     <Link to="/" >

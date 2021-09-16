@@ -2,7 +2,7 @@
 import { Container, Navbar } from 'react-bootstrap';
 import '../dashbord.css'
 
-const DashboardNavbar = ({ setShow, show, match }) => {
+const DashboardNavbar = ({ match }) => {
 
     const { id } = match.params
 
@@ -10,10 +10,8 @@ const DashboardNavbar = ({ setShow, show, match }) => {
         <Navbar className="my-4 p-3 " id="dashboard_nav" expand="lg"  >
             <Container fluid>
                 <button
-                    onClick={() => setShow(!show)}
-                    disabled
                     type="button" id="sidebarCollapse"
-                    className={show ? "navbar-btn active" : "navbar-btn"}
+                    className="navbar-btn"
                 >
                     <span></span>
                     <span></span>

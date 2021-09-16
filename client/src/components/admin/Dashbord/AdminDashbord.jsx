@@ -19,9 +19,11 @@ const AdminDashbord = ({ match, history }) => {
 
 
     return (
-        <div className="row" >
-            <SideNav id={id} show={show} />
-            <div className="dashboard_body">
+        <div className="row" style={{ height: '100vh', overflowY: 'hidden' }}>
+            <div className="col-2">
+                <SideNav id={id} show={show} />
+            </div>
+            <div className="col-10 dashboard_body">
                 <div className="dashbord_body_inner">
                     <DashboardNav show={show} setShow={setShow} match={match} />
                     {
