@@ -1,0 +1,170 @@
+@import "../../../scss/variables.scss";
+
+.navbar{
+    transition: all 0.3s ease 0s;
+    animation: 700ms ease-in-out 0s normal none 1 running fadeInDown;
+}
+
+//sticky navbar
+.sticky_nav {
+    position: fixed;
+    box-shadow: 0 0 7px 0.5px rgba(0, 0, 0, 0.15);
+    width: 100%;
+    background:#fff;
+    top: 0;
+    z-index: 99;
+    transition: all 0.3s ease 0s;
+    animation: 700ms ease-in-out 0s normal none 1 running fadeInDown;
+}
+
+//nav menu
+.navbar{
+    padding:20px 0;
+   .navbar-nav{
+       .nav-item{
+           margin: 0 10px;
+           a{
+               color: #000;
+               font-weight: 400;
+               letter-spacing: 2px;
+           }
+           span{
+            color: #000;
+            font-weight: 400;
+            letter-spacing: 2px;
+            
+            &:hover{
+                cursor: pointer;
+            }
+           }
+       }
+       .nav-item-dropdown{
+         position: relative;
+         &:hover > .nav-item-dropdown-menu {
+            visibility: visible;
+            transform: rotateX(0deg);
+            top:calc(100% + 20px);
+          }
+         .nav-item-dropdown-menu{
+             position: absolute; 
+             left:0;
+             top: 100%;
+             width:220px;
+             display: block;
+             visibility: hidden;
+             z-index: 999;
+             transition: all 0.5s ease 0s;
+             transform: rotateX(90deg);
+             transform-origin: center top 0;
+   
+             background: #fff none repeat scroll 0 0;
+             box-shadow: 0 0 7px 0.5px rgba(0, 0, 0, 0.15);
+
+             .navbar-nav{
+                 padding:10px 20px;
+                 display:inline-block;
+                 .nav-item{
+                     margin:8px 0;
+                    
+                     a{
+                        
+                        padding-left: 0 !important;
+                        font-size: 13px;
+                        font-weight: 400;
+                        line-height: 32px;
+                        display: block;
+                        position: relative;
+
+                        color: #333;
+                        &:hover {
+                            color: $theme-color;
+                        }
+                        &::before {
+                            position: absolute;
+                            z-index: 999;
+                            
+                            top:13px;
+                            left: 0;
+
+                            width: 7px;
+                            height: 7px;
+
+                            content: "";
+                            transition: all 0.3s ease-in-out 0s;
+
+                            opacity:0;
+                            border-radius: 50%;
+                            background: $theme-color none repeat scroll 0 0;
+                        }
+                     }
+                    &:hover a::before {
+                        opacity: 1;
+                    }
+                    &:hover a {
+                        padding-left: 12px !important ;
+                        font-weight: bold;
+                        
+                    }  
+                 } 
+             }
+         }
+       }
+   }
+}
+
+// navIcons
+.navbar{
+    .nav-icons{
+        align-items: center;
+        .nav-item {
+            &:hover{
+                cursor: pointer;
+            }
+        }
+        .nav-item span > svg{
+            font-size:22px;
+            
+        }
+        .nav-item span > span{
+            color:#fff !important;
+            background-color:#000 !important;
+            letter-spacing: 0;
+        }
+        
+        .icons-dropdown{
+            .nav-item-dropdown-menu{
+                width:150px !important;
+                left:calc(-100% - 70px) !important;
+            }
+        }
+
+        .css-2s90m6-MuiAvatar-root{
+            width: 24px !important;
+            height: 24px !important;
+        }
+
+        .hamburger-menu{
+            display:none;
+            svg{
+                font-size:22px;
+            }
+        }
+    }
+
+}
+
+
+//responsive designed
+@media #{$md-layout}{
+   .navbar {
+       .nav-menu{
+           display: none;
+       }
+       .nav-icons{
+           flex-direction: row;
+           .hamburger-menu{
+                display:block;
+            }
+       }
+   }
+}

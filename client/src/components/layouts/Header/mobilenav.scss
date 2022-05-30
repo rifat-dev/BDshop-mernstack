@@ -1,0 +1,105 @@
+@import "../../../scss/variables.scss";
+/* The side navigation menu */
+.sidenav {
+    height: 100%; /* 100% Full-height */
+    width: 0px; /* 0 width - change this with JavaScript */
+    position: fixed; /* Stay in place */
+    top: 0; /* Stay at the top */
+    right: 0;
+    z-index: 9999;
+    background-color: #fff; 
+    overflow-x: hidden; /* Disable horizontal scroll */
+    padding-top: 100px; /* Place content 60px from the top */
+    transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
+    box-shadow: 0 0 7px 0.5px rgba(0, 0, 0, 0.15);
+    ul.sidenav-nav-menu{
+        list-style: none;
+        padding:0px;
+        li{
+            margin:6px 0;
+            cursor: pointer;
+            span,
+            a {
+                padding: 8px 8px 8px 32px;
+                text-decoration: none;
+                font-size: 18px;
+                font-weight: 400;
+                color: #000;
+                display: block;
+                transition: 0.3s;
+                
+              }
+              &:hover a{
+                margin-left: 12px;
+                color:$theme-color;
+             }
+        }
+        li.mobile-nav-dropdown{
+            .navbar-nav{
+                display: none;
+                animation: growDown 400ms ease-in-out forwards;
+                transform-origin: top center;
+                opacity: 0;
+
+                @keyframes rotateMenu {
+                    0% {
+                        transform: rotateX(-90deg)
+                    }
+                    70% {
+                        transform: rotateX(20deg) 
+                    }
+                    100% {
+                        transform: rotateX(0deg) 
+                    }
+                }
+
+                @keyframes growDown {
+                    0% {
+                        transform: scaleY(0)
+                    }
+                    80% {
+                        transform: scaleY(1.1)
+                    }
+                    100% {
+                        transform: scaleY(1)
+                    }
+                }
+               
+                li a{
+                    font-weight: 400;
+                    color: #000;
+                }
+                li:hover a{
+                    margin-left: 12px;
+                    color:$theme-color;
+                 }
+
+            }
+            
+            &:hover .navbar-nav{
+                display: block;
+                
+                opacity: 1;
+            }
+        }
+    }
+    .closebtn {
+        position: absolute;
+        top: 0;
+        right: 25px;
+        font-size: 36px;
+        margin-left: 50px;
+        color:$theme-color;
+        transform: scale(1);
+        &:hover{
+            cursor: pointer;
+        }
+     }
+  }
+  
+
+  /* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
+  @media screen and (max-height: 450px) {
+    .sidenav {padding-top: 15px;}
+    .sidenav a {font-size: 18px;}
+  }

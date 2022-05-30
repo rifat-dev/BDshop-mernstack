@@ -1,110 +1,54 @@
-import { useState, useEffect } from 'react'
-import { Link } from 'react-router-dom'
-import { useDispatch, useSelector } from 'react-redux'
-import { useAlert } from 'react-alert'
-import './nav.css'
-import logo from '../../../assets/logo1.png'
+import { useState, useEffect } from "react";
 
-import { userLogout } from '../../../store/actions/authActions'
+import "./header.scss";
+
+import NavLogo from "./sub-components/NavLogo";
+import NavMenu from "./sub-components/NavMenu";
+import NavIcons from "./sub-components/NavIcons";
+import MobileNev from "./MobileNev";
+import CartNav from "./cartnav/CartNav";
 
 const NavBar = () => {
-    const [sticky, setSticky] = useState(false)
-    const { cartItems } = useSelector(state => state.cart)
-    const { isAuthenticated, user } = useSelector(state => state.auth)
-    const dispatch = useDispatch()
-    const alert = useAlert()
+  const [sticky, setSticky] = useState(false);
+  const [navOpen, setNavOpen] = useState(false);
+  const [cartOpen, setCartOpen] = useState(false);
 
+  useEffect(() => {
+    window.addEventListener("scroll", () => {
+      if (window.scrollY > 200) {
+        setSticky(true);
+      } else {
+        setSticky(false);
+      }
+    });
+  }, []);
 
-    useEffect(() => {
-        window.addEventListener("scroll", () => {
+  const mobileNavToggle = () => {
+    setNavOpen(!navOpen);
+  };
 
-            if (window.scrollY > 60) {
-                setSticky(true)
-            } else {
-                setSticky(false)
-            }
-        })
-    }, []);
-
-
-    const logoutHandeler = () => {
-        dispatch(userLogout())
-        alert.success("User Logged Out Successfully")
-    }
-
-    return (
-        <nav className={sticky ? "navbar navbar-expand-lg navbar-light sticky_nav" : "navbar navbar-expand-lg navbar-light"}>
-
-            <div className="container">
-                <Link to='/' style={{ color: 'black' }} >
-                    <img className="navbar-brand" src={logo} alt="Logo" />
-                </Link>
-                <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <span className="navbar-toggler-icon"></span>
-                </button>
-
-                <div className="collapse navbar-collapse" id="navbarContent">
-
-                    <div className="navbar-nav ml-auto d-flex align-items-center" >
-                        <Link to='/' className="nav_text">
-                            <a>  Home </a>
-                        </Link>
-                        <Link to='/shop' className="nav_text">
-                            <a> Shop</a>
-                        </Link>
-
-                        <Link to="/cart" className="bi bi-cart-check-fill  nav_text">
-
-                            <span style={{ fontSize: '17px' }} className={cartItems.length > 0 ? "cart-num" : "cart-num"}  >{cartItems.length > 0 ? cartItems.length : 0}</span>
-
-                        </Link>
-
-                        <ul className="navbar-nav">
-                            {isAuthenticated && (
-                                <li className="nav-item dropdown">
-                                    <a className="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        <img
-                                            src={user.avatar.url && user.avatar.url}
-                                            alt="profile"
-                                            className="avatar  rounded-circle"
-                                        />
-                                        {user.name && user.name}
-                                    </a>
-                                    <div className="dropdown-menu" aria-labelledby="navbarDropdown">
-                                        {user && user.roal === "admin" && (
-                                            <Link to="/admin/dashboard" className="dropdown-item" >Dashbord</Link>
-                                        )}
-                                        <Link to="/profile/me" className="dropdown-item" >Profile</Link>
-                                        <Link
-                                            to="/"
-                                            className="dropdown-item"
-                                            onClick={e => logoutHandeler()}
-                                        >Logout</Link>
-                                    </div>
-                                </li>
-                            )}
-                        </ul>
-
-                        {!isAuthenticated && (
-                            <ul className="navbar-nav">
-                                <li className="nav-item" >
-                                    <Link to="/login" >
-                                        <a className="nav-link">
-                                            <button className="signin_btn " >
-                                                LogIn
-                                                <i className="bi bi-arrow-right-circle-fill ml-1 "></i>
-                                            </button>
-                                        </a>
-                                    </Link>
-                                </li>
-                            </ul>
-                        )}
-
-                    </div>
-                </div>
-            </div>
-        </nav>
-    );
-}
+  return (
+    <>
+      <nav
+        className={
+          sticky
+            ? "navbar navbar-expand-lg navbar-light sticky_nav"
+            : "navbar navbar-expand-lg navbar-light"
+        }>
+        <div className="container">
+          <NavLogo />
+          <NavMenu />
+          <NavIcons
+            mobileNavToggle={mobileNavToggle}
+            setCartOpen={setCartOpen}
+            cartOpen={cartOpen}
+          />
+        </div>
+      </nav>
+      <MobileNev navOpen={navOpen} mobileNavToggle={mobileNavToggle} />
+      <CartNav setCartOpen={setCartOpen} cartOpen={cartOpen} />
+    </>
+  );
+};
 
 export default NavBar;
