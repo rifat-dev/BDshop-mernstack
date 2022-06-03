@@ -32,8 +32,8 @@ const NavBar = () => {
       <nav
         className={
           sticky
-            ? "navbar navbar-expand-lg navbar-light sticky_nav"
-            : "navbar navbar-expand-lg navbar-light"
+            ? "navbar navbar-expand-lg navbar-light sticky_nav animate__animated animate__fadeInDownBig"
+            : "navbar navbar-expand-lg navbar-light "
         }>
         <div className="container">
           <NavLogo />

@@ -35,10 +35,10 @@ function NavMenu() {
                 <Link to="">Compare</Link>
               </li>
               <li className="nav-item">
-                <Link to="">Login</Link>
+                <Link to="/login">Login</Link>
               </li>
               <li className="nav-item">
-                <Link to="">Register</Link>
+                <Link to="/register">Register</Link>
               </li>
               <li className="nav-item">
                 <Link to="">About Us</Link>

@@ -1,0 +1,41 @@
+@import "../../scss/variables.scss";
+.login-container{
+    .login-form{
+        background: transparent none repeat scroll 0 0;
+        box-shadow: 0 0 6px rgb(0 0 0 / 10%);
+        padding: 60px;
+        text-align: left;
+        form {
+            input{
+            background-color: transparent;
+            border: 1px solid #ebebeb;
+            color: #333;
+            font-size: 14px;
+            height: 45px;
+            margin-bottom: 30px;
+            padding: 0 15px;
+            outline: 0;
+                &:focus{
+                    outline: 0;
+                    box-shadow: none;
+                }
+            }
+            button{
+                background-color: #f2f2f2;
+                border: none;
+                color: #333;
+                cursor: pointer;
+                font-size: 14px;
+                font-weight: 500;
+                line-height: 1;
+                padding: 11px 30px;
+                text-transform: uppercase;
+                transition: all .3s ease 0s;
+                &:hover{
+                    background-color:$theme-color;
+                    color:#fff;
+                }
+            }
+        }
+    }
+}
