@@ -1,233 +1,218 @@
-const Product = require('../model/productModel')
-const User = require('../model/userModel')
-const Order = require('../model/orderModel')
-const clud = require('cloudinary').v2
-
+const Product = require("../model/productModel");
+const User = require("../model/userModel");
+const Order = require("../model/orderModel");
+const clud = require("cloudinary").v2;
 
 //*** */
 // admin users routs section
 //**** */
 // Get Users -> 'api/admin/users'
-exports.adminGetUsers = async(req, res, nex) => {
+exports.adminGetUsers = async (req, res, nex) => {
+  try {
+    const users = await User.find();
+    res.status(200).json({
+      success: true,
+      users,
+    });
+  } catch (e) {
+    next(e);
+  }
+};
 
-    try {
+exports.adminGetSingleUser = async (req, res, next) => {
+  try {
+    const { id } = req.params;
 
-        const users = await User.find()
-        res.status(200).json({
-            success: true,
-            users
-        })
-    } catch (e) {
-        next(e)
+    const { user } = await User.findById(id);
+
+    if (!user) {
+      return res.status(404).json({
+        success: false,
+        message: "User Not Found",
+      });
     }
-}
 
-exports.adminGetSingleUser = async(req, res, next) => {
-    try {
-        const { id } = req.params
-
-        const { user } = await User.findById(id)
-
-        if (!user) {
-            return res.status(404).json({
-                success: false,
-                message: "User Not Found"
-            })
-        }
-
-        res.status(200).json({
-            success: true,
-            user
-        })
-
-
-    } catch (e) {
-        next(e)
-    }
-}
+    res.status(200).json({
+      success: true,
+      user,
+    });
+  } catch (e) {
+    next(e);
+  }
+};
 
 //*** */
 // admin products routs section
 //**** */
 // productCreate -> 'api/admin/products/new'
-exports.newProduct = async(req, res, next) => {
-    try {
+exports.newProduct = async (req, res, next) => {
+  try {
+    const images = [...JSON.parse(req.body.images)];
+    let savedImages = [];
+    for (const image of images) {
+      let result = await clud.uploader.upload(image, {
+        folder: "bdshop products",
+      });
 
-        const result = await clud.uploader.upload(req.body.image, {
-                folder: 'bdshop products'
-            })
-            // console.log(result)
-        req.body.images = [{
-            publicId: result.public_id,
-            url: result.secure_url
-        }]
-        req.body.user = req.user._id
-
-        const product = await Product.create(req.body)
-
-
-        res.status(200).json({
-            success: true,
-            message: 'Product create successfully',
-            product
-        })
-
-
-    } catch (e) {
-        next(e)
+      savedImages.push({
+        publicId: result.public_id,
+        url: result.secure_url,
+      });
     }
-}
+    req.body.images = savedImages;
+    req.body.user = req.user._id;
+    const product = await Product.create(req.body);
 
+    // console.log(product);
+    res.status(200).json({
+      success: true,
+      message: "Product create successfully",
+      product,
+    });
+  } catch (e) {
+    console.log(e.message);
+    next(e);
+  }
+};
 
 // getAdminProducts -> 'api/admin/products'
-exports.getAdminProducts = async(req, res, next) => {
-    try {
-        const products = await Product.find()
+exports.getAdminProducts = async (req, res, next) => {
+  try {
+    const products = await Product.find();
 
-        res.status(200).json({
-            success: true,
-            products
-        })
-    } catch (e) {
-        next(e)
+    res.status(200).json({
+      success: true,
+      products,
+    });
+  } catch (e) {
+    next(e);
+  }
+};
+
+exports.updateAdminProduct = async (req, res, next) => {
+  try {
+    const { productId } = req.params;
+
+    let product = await Product.findById(productId);
+
+    if (!product) {
+      return res.status(403).json({
+        success: false,
+        message: "Product Not Found",
+      });
     }
-}
 
-exports.updateAdminProduct = async(req, res, next) => {
-    try {
-        const { productId } = req.params
-
-        let product = await Product.findById(productId)
-
-        if (!product) {
-            return res.status(403).json({
-                success: false,
-                message: 'Product Not Found'
-            })
-        }
-
-        let updateProduct = {}
-        if (req.body.price) {
-            updateProduct.price = req.body.price
-        }
-        if (req.body.stock) {
-            updateProduct.stock = product.stock + req.body.stock
-        }
-
-        product = await Product.findByIdAndUpdate(productId, updateProduct, {
-            new: true,
-            useFindAndModify: false
-        });
-
-
-        res.status(200).json({
-            success: true,
-            message: "Product Update Success",
-            updateProductId: product._id
-        })
-
-    } catch (e) {
-        next(e)
+    let updateProduct = {};
+    if (req.body.price) {
+      updateProduct.price = req.body.price;
     }
-}
-
-exports.deleteAdminProduct = async(req, res, next) => {
-    try {
-        const { productId } = req.params
-        let product = await Product.findById(productId)
-
-        if (!product) {
-            return res.status(403).json({
-                success: false,
-                message: 'Product Not Found'
-            })
-        }
-
-        await Product.findByIdAndDelete(productId)
-        res.status(200).json({
-            success: true,
-            message: "Product Delete Success",
-        })
-
-    } catch (e) {
-        next(e)
+    if (req.body.stock) {
+      updateProduct.stock = product.stock + req.body.stock;
     }
-}
 
+    product = await Product.findByIdAndUpdate(productId, updateProduct, {
+      new: true,
+      useFindAndModify: false,
+    });
+
+    res.status(200).json({
+      success: true,
+      message: "Product Update Success",
+      updateProductId: product._id,
+    });
+  } catch (e) {
+    next(e);
+  }
+};
+
+exports.deleteAdminProduct = async (req, res, next) => {
+  try {
+    const { productId } = req.params;
+    let product = await Product.findById(productId);
+
+    if (!product) {
+      return res.status(403).json({
+        success: false,
+        message: "Product Not Found",
+      });
+    }
+
+    await Product.findByIdAndDelete(productId);
+    res.status(200).json({
+      success: true,
+      message: "Product Delete Success",
+    });
+  } catch (e) {
+    next(e);
+  }
+};
 
 //*** */
 // admin orders routs section
 //**** */
-exports.adminGetAllOrders = async(req, res, next) => {
+exports.adminGetAllOrders = async (req, res, next) => {
+  try {
+    const orders = await Order.find();
 
-    try {
-        const orders = await Order.find()
+    let totalAmount = 0;
+    orders.forEach((element) => {
+      totalAmount = element.totalPrice + totalAmount;
+    });
 
-        let totalAmount = 0;
-        orders.forEach(element => {
-            totalAmount = element.totalPrice + totalAmount
-        });
+    res.status(200).json({
+      success: true,
+      orders,
+      totalAmount,
+    });
+  } catch (e) {
+    next(e);
+  }
+};
 
-        res.status(200).json({
-            success: true,
-            orders,
-            totalAmount
-        })
+exports.adminGetSingleOrder = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    const { order } = await Order.findById(id);
 
-    } catch (e) {
-        next(e)
+    if (!order) {
+      return res.status(404).json({
+        success: false,
+        message: "There Is No Order Found",
+      });
     }
-}
 
-exports.adminGetSingleOrder = async(req, res, next) => {
+    res.status(200).json({
+      success: true,
+      order,
+    });
+  } catch (e) {
+    next(e);
+  }
+};
 
-    try {
-        const { id } = req.params
-        const { order } = await Order.findById(id)
+exports.updateAdminOrder = async (req, res, next) => {
+  try {
+    const { orderId } = req.params;
+    // console.log(req.body)
 
+    let order = await Order.findById(orderId);
 
-        if (!order) {
-            return res.status(404).json({
-                success: false,
-                message: "There Is No Order Found"
-            })
-        }
-
-        res.status(200).json({
-            success: true,
-            order
-        })
-
-    } catch (e) {
-        next(e)
+    if (!order) {
+      return res.status(404).json({
+        success: false,
+        message: "No order found",
+      });
     }
-}
 
-exports.updateAdminOrder = async(req, res, next) => {
-    try {
+    await Order.findByIdAndUpdate(orderId, req.body, {
+      useFindAndModify: false,
+    });
 
-        const { orderId } = req.params
-            // console.log(req.body)
-
-        let order = await Order.findById(orderId)
-
-        if (!order) {
-            return res.status(404).json({
-                success: false,
-                message: 'No order found'
-            })
-        }
-
-        await Order.findByIdAndUpdate(orderId, req.body, {
-            useFindAndModify: false
-        })
-
-        res.status(200).json({
-            success: true,
-            message: 'Order update success'
-        })
-
-    } catch (e) {
-        next(e)
-    }
-}
+    res.status(200).json({
+      success: true,
+      message: "Order update success",
+    });
+  } catch (e) {
+    next(e);
+  }
+};

@@ -1,40 +1,70 @@
-const { model, Schema } = require('mongoose')
+const { model, Schema } = require("mongoose");
 
-const userSchema = new Schema({
+const userSchema = new Schema(
+  {
     name: {
-        type: String,
-        required: [true, 'Please provied your name'],
-        maxLength: [30, 'Your name cannot exceed 30 characters']
+      type: String,
+      required: [true, "Please provied your name"],
+      maxLength: [30, "Your name cannot exceed 30 characters"],
     },
     email: {
-        type: String,
-        require: [true, 'Please provied your email'],
-        unique: [true, 'Email already exists']
+      type: String,
+      require: [true, "Please provied your email"],
+      unique: [true, "Email already exists"],
     },
     password: {
-        type: String,
-        required: [true, 'Please provied your password'],
-        min: [8, 'Your password length must be 8']
+      type: String,
+      required: [true, "Please provied your password"],
+      min: [8, "Your password length must be 8"],
+    },
+    mobile: {
+      type: String,
+      unique: [true, "Mobile number already exists"],
+    },
+    user_otp: {
+      type: String,
     },
     avatar: {
-        publicId: {
-            type: String,
-            required: true
-        },
-        url: {
-            type: String,
-            required: true
-        }
+      publicId: {
+        type: String,
+        required: true,
+      },
+      url: {
+        type: String,
+        required: true,
+      },
+    },
+    gender: {
+      type: String,
+      default: null,
+      enum: {
+        values: ["Male", "Female", "Other"],
+      },
     },
     roal: {
-        type: String,
-        default: 'user'
+      type: String,
+      default: "user",
     },
-    createdAt: {
-        type: Date,
-        default: Date.now()
-    }
-})
+    isVerified: {
+      type: Boolean,
+      default: false,
+    },
+    status: {
+      type: String,
+      default: "Active",
+      enum: {
+        values: ["Active", "Inactive"],
+      },
+    },
+    wishlist: [
+      {
+        type: Schema.ObjectId,
+        ref: "Product",
+      },
+    ],
+  },
+  { timestamps: true }
+);
 
-const User = model('User', userSchema)
-module.exports = User
+const User = model("User", userSchema);
+module.exports = User;

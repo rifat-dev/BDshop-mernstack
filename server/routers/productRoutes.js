@@ -1,20 +1,17 @@
-const router = require('express').Router()
+const router = require("express").Router();
 
 const {
-    getProducts,
-    getSingleProduct,
-    createProductReview
-} = require('../controllers/productRouteController')
+  getProducts,
+  getSingleProduct,
+  getFeaturedProducts,
+  createProductReview,
+} = require("../controllers/productRouteController");
 
-const { isAuthintecated } = require('../midlewares/authMidleware')
+const { isAuthintecated } = require("../midlewares/authMidleware");
 
-router.get('/', getProducts)
-router.get('/:id', getSingleProduct)
+router.get("/", getProducts);
+router.get("/featuredProducts", getFeaturedProducts);
+router.get("/:id", getSingleProduct);
+router.post("/create-review/:productId", isAuthintecated, createProductReview);
 
-router.post('/create-review/:productId', isAuthintecated, createProductReview)
-
-
-
-
-
-module.exports = router
+module.exports = router;

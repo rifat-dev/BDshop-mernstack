@@ -1,109 +1,114 @@
-const { model, Schema } = require('mongoose')
+const { model, Schema } = require("mongoose");
 
-const productSchema = new Schema({
+const productSchema = new Schema(
+  {
     name: {
-        type: String,
-        required: [true, 'please enter name'],
-        trim: true,
-        maxLength: [100, 'Product name cannot extcecd 100 char']
+      type: String,
+      required: [true, "please enter name"],
+      trim: true,
+      maxLength: [100, "Product name cannot extcecd 100 char"],
     },
-    price: {
-        type: Number,
-        required: [true, 'please enter  price'],
-        maxLength: [5, 'Product price cannot extcecd 5 length'],
-        default: 0.0
+    summary: {
+      type: String,
+      required: [true, "please enter a short summary"],
+      trim: true,
     },
     description: {
-        type: String,
-        required: [true, 'please enter discreption'],
-        trim: true,
+      type: String,
+      trim: true,
     },
-    ratings: {
+    additionalInformation: {
+      type: String,
+      trim: true,
+    },
+    costPrice: {
+      // The price in which shop owner purchased
+      type: Number,
+      default: 0.0,
+      required: true,
+    },
+    regularPrice: {
+      // price the shop owner is saying the product’s price as general
+      type: Number,
+      default: 0.0,
+      required: true,
+    },
+    price: {
+      //The price in which shop owner is selling
+      type: Number,
+      required: [true, "please enter  price"],
+      maxLength: [5, "Product price cannot extcecd 5 length"],
+      default: 0.0,
+    },
+    discount: {
+      isActive: {
+        type: Boolean,
+        default: false,
+      },
+      persent: {
         type: Number,
-        default: 0
+      },
+      startDate: {
+        type: Date,
+      },
+      endDate: {
+        type: Date,
+      },
     },
-    images: [{
+    isFeatured: {
+      type: Boolean,
+      default: false,
+    },
+    images: [
+      {
         publicId: {
-            type: String,
-            required: true
+          type: String,
+          required: true,
         },
         url: {
-            type: String,
-            required: true
-        }
-    }],
+          type: String,
+          required: true,
+        },
+      },
+    ],
     category: {
-        type: String,
-        required: true,
-        enum: {
-            values: [
-                'Electronics',
-                'Cameras',
-                'Laptops',
-                'Accessories',
-                'Headphones',
-                'Food',
-                "Books",
-                'Clothes/Shoes',
-                'Beauty/Health',
-                'Sports',
-                'Outdoor',
-                'Home'
-            ],
-            message: 'Please select correct catagory for project'
-        }
-    },
-    seller: {
-        type: String,
-        required: true
+      type: Schema.ObjectId,
+      required: true,
+      ref: "Categories",
     },
     stock: {
-        type: Number,
-        required: [true, 'Please enter product stock'],
-        default: 0
+      type: Number,
+      required: [true, "Please enter product stock"],
+      default: 0,
+    },
+    ratings: {
+      type: Number,
+      default: 0,
     },
     numOfReviews: {
-        type: Number,
-        default: 0
+      type: Number,
+      default: 0,
     },
-    reviews: [{
-        user: {
-            type: Schema.ObjectId,
-            ref: 'User',
-            required: true
-        },
-        image: {
-            type: String,
-            required: true
-        },
-        name: {
-            type: String,
-            required: true,
-        },
-        ratings: {
-            type: Number,
-            required: true
-        },
-        comments: {
-            type: String,
-            required: true
-        },
-        createdAt: {
-            type: Date,
-            default: Date.now()
-        }
-    }],
+    isActive: {
+      type: Boolean,
+      default: true,
+    },
+    filter: {
+      type: String,
+      default: null,
+      enum: {
+        values: ["New", "Hot", "Best saller"],
+      },
+    },
     user: {
-        type: Schema.ObjectId,
-        ref: 'User',
-        // required: true
+      type: Schema.ObjectId,
+      ref: "User",
+      // required: true,
     },
-    createdAt: {
-        type: Date,
-        default: Date.now()
-    }
-})
+  },
+  { timestamps: true }
+);
 
-const Product = model('Product', productSchema)
+const Product = model("Product", productSchema);
 
 module.exports = Product;

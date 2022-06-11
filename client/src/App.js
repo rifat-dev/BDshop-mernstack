@@ -1,8 +1,13 @@
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Redirect,
+} from "react-router-dom";
 import "./App.css";
 import "./scss/app.scss";
 
-import AdminDashbord from "./components/admin/Dashbord/AdminDashbord";
+import AdminDashbord from "./admin/Dashbord/AdminDashbord";
 import HomePage from "./pages/HomePage";
 import BottomButton from "./components/layouts/Button/BottomButton";
 
@@ -14,7 +19,7 @@ function App() {
       <BottomButton />
       <Router>
         <Switch>
-          <ProtectedRoute path="/admin/:id" component={AdminDashbord} />
+          <ProtectedRoute path="/admin" component={AdminDashbord} />
           <Route path="/" component={HomePage} />
         </Switch>
       </Router>

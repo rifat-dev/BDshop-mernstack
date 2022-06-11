@@ -1,0 +1,132 @@
+@import "../scss/variables.scss";
+
+/*========== NAV ==========*/
+.admin_nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width:180px;
+  padding: 1rem 1rem 0;
+  background-color: #FFFFFF;
+  box-shadow: 1px 0 0 rgba(22, 8, 43, 0.1);
+  z-index: 100;
+  transition: .4s;
+}
+
+.nav__container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding-bottom: 3rem;
+  overflow: auto;
+  scrollbar-width: none; /* For mozilla */
+}
+
+/* For Google Chrome and others */
+.nav__container::-webkit-scrollbar {
+  display: none;
+}
+
+.nav__logo {
+  font-weight: 400;
+  margin-bottom: 2.5rem;
+}
+
+.nav__list, 
+.nav__items {
+  display: grid;
+}
+
+.nav__list {
+  row-gap: 2.5rem;
+}
+
+.nav__items {
+  row-gap: 1.5rem;
+}
+
+.nav__link {
+  display: flex;
+  align-items: center;
+  color: #000;
+}
+
+.nav__link:hover {
+    color: $theme-color;
+}
+
+.nav__icon {
+  font-size: 1.2rem;
+  margin-right: .5rem;
+}
+
+.nav__name {
+  font-size: 16px;
+  font-weight: 400;
+  white-space: nowrap;
+}
+
+.nav__logout {
+  margin-top: 5rem;
+}
+
+/* Dropdown */
+.nav__dropdown {
+  overflow: hidden;
+  max-height: 21px;
+  transition: .6s ease-in-out;
+  
+}
+
+.nav__dropdown-collapse {
+  margin-top: 8px;
+}
+
+.nav__dropdown-content {
+  display: grid;
+  row-gap: .5rem;
+  padding-left: 30px;
+}
+
+.nav__dropdown-item {
+  font-size: 16px;
+  font-weight: 300;
+  color: #000;
+  padding:6px 0;
+}
+
+.nav__dropdown-item:hover {
+    color: $theme-color;
+}
+
+.nav__dropdown-icon {
+  margin-left: auto;
+  transition: .4s;
+}
+
+.show{
+  max-height: 300px;
+}
+/* Rotate icon arrow */
+// .nav__dropdown:hover .nav__dropdown-icon {
+//   transform: rotate(180deg);
+// }
+
+/*===== Active link =====*/
+.active {
+  color: $theme-color;
+}
+
+  
+  
+
+
+  /* Style page content - use this if you want to push the page content to the right when you open the side navigation */
+  #main {
+    transition: margin-left .5s;
+    padding: 20px;
+    margin-left:180px;
+  }
+  

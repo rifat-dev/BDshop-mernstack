@@ -37,7 +37,7 @@ function NavIcons({ mobileNavToggle, cartOpen, setCartOpen }) {
             {user ? (
               <>
                 <li className="nav-item">
-                  <Link to="/admin/dashboard">Admin</Link>
+                  <Link to="/admin">Admin</Link>
                 </li>
                 <li className="nav-item">
                   <Link to="/profile/me">Profile</Link>

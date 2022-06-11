@@ -1,18 +1,28 @@
-import { Fragment, useEffect } from "react";
+import { Fragment, useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useAlert } from "react-alert";
+import axios from "axios";
 
 import Products from "./products/Products";
-import Blog from "./Home/Blog/Blog";
+import FeaturedProducts from "./FeaturedProducts/FeaturedProducts";
 import HeroSlider from "./Home/hero-slider/HeroSlider";
-import Loader from "../components/layouts/Loader/Loader";
 import MetaData from "../components/layouts/MetaData";
 import { getAllProducts, clearError } from "../store/actions/productActions";
 
 const Home = () => {
+  const [featuredProducts, setFeaturedProducts] = useState([]);
   const dispatch = useDispatch();
   const alert = useAlert();
-  const { products, loading, error } = useSelector((state) => state.products);
+  const { products, error } = useSelector((state) => state.products);
+
+  useEffect(() => {
+    const getAllFeaturedProducts = async () => {
+      const { data } = await axios.get("/api/products/featuredProducts");
+      console.log(data.results);
+      setFeaturedProducts(data.results);
+    };
+    getAllFeaturedProducts();
+  }, []);
 
   useEffect(() => {
     if (error) {
@@ -24,16 +34,19 @@ const Home = () => {
 
   return (
     <Fragment>
-      {loading ? (
-        <Loader />
-      ) : (
-        <Fragment>
-          <MetaData title={"Home-BDShop"} />
-          <HeroSlider />
-          <Products products={products} />
-          <Blog />
-        </Fragment>
-      )}
+      <MetaData title={"Home-BDShop"} />
+      <HeroSlider />
+      <div className="container-fluid">
+        {featuredProducts.map((res, key) => (
+          <FeaturedProducts
+            name={res.name}
+            _id={res._id}
+            products={res.products}
+          />
+        ))}
+      </div>
+
+      {/* <Products products={products[0]} /> */}
     </Fragment>
   );
 };

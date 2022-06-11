@@ -3,7 +3,7 @@ import { Carousel } from "react-bootstrap";
 import "./heroslider.scss";
 import img from "../../../assets/images/Apple-Watch-with-macbook-.png";
 import img2 from "../../../assets/images/asus-rog.png";
-import "animate.css";
+
 const data = [
   {
     id: 1,
@@ -30,8 +30,8 @@ const HeroSlider = () => {
         pause={false}
         interval={4000}>
         {data.map((item, key) => (
-          <Carousel.Item className="">
-            <div className="container" key={key}>
+          <Carousel.Item key={key}>
+            <div className="container">
               <div className="row">
                 <div className="col-md-6 hero-slider-info">
                   <h3 className="animate__animated animate__bounceInLeft">
