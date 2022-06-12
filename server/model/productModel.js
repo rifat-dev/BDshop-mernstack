@@ -10,7 +10,6 @@ const productSchema = new Schema(
     },
     summary: {
       type: String,
-      required: [true, "please enter a short summary"],
       trim: true,
     },
     description: {
@@ -97,7 +96,7 @@ const productSchema = new Schema(
       type: String,
       default: null,
       enum: {
-        values: ["New", "Hot", "Best saller"],
+        values: ["New", "Hot", "Best saller", "None", ""],
       },
     },
     user: {

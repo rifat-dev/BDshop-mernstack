@@ -31,7 +31,7 @@ const NewProduct = ({ history }) => {
   const [regularPrice, setRegularPrice] = useState("0.0");
   const [price, setPrice] = useState("0.0");
   const [discount, setDiscount] = useState({
-    active: false,
+    isActive: false,
     persent: 0,
     startDate: "",
     endDate: "",
@@ -128,7 +128,7 @@ const NewProduct = ({ history }) => {
   };
 
   const onDiscountChange = (e) => {
-    if (e.target.name === "active") {
+    if (e.target.name === "isActive") {
       setDiscount((prev) => ({
         ...prev,
         [e.target.name]: e.target.checked,
@@ -285,19 +285,17 @@ const NewProduct = ({ history }) => {
                 <input
                   className="form-check-input"
                   type="checkbox"
-                  name="active"
-                  value={discount.active}
-                  id="flexSwitchCheckChecked"
+                  name="isActive"
+                  value={discount.isActive}
+                  id="isActive"
                   onClick={onDiscountChange}
                 />
-                <label
-                  className="form-check-label"
-                  htmlFor="flexSwitchCheckChecked">
+                <label className="form-check-label" htmlFor="isActive">
                   Have Discount
                 </label>
               </div>
 
-              {discount.active && (
+              {discount.isActive && (
                 <div className="row discount mt-4">
                   <div className="col-md-4">
                     <div className="form-group">

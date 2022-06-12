@@ -1,60 +1,69 @@
 import "./productcardtow.scss";
+import { Link } from "react-router-dom";
 import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
 import VisibilityOutlinedIcon from "@mui/icons-material/VisibilityOutlined";
 import StarBorderOutlinedIcon from "@mui/icons-material/StarBorderOutlined";
-const ProductCardTow = () => {
+
+import ProductModal from "../products/ProductModal";
+const ProductCardTow = ({ product }) => {
   return (
-    <div class="product-wrap mb-25">
-      <div class="product-img">
-        <a href="/product/6215de5bbc6bdb82bdf95cc5">
+    <div className="product-wrap mb-25 ">
+      <div className="product-img">
+        <Link to={`/product/${product._id}`}>
           <img
-            class="default-img"
-            src="https://www.mobiledokan.com/wp-content/uploads/2019/10/oneplus-7t-pro-mclaren.jpg"
-            alt=""
+            className="default-img"
+            src={product.images ? product.images[0].url : ""}
+            alt="Product Image"
           />
           <img
-            class="hover-img"
-            src="https://www.mobiledokan.com/wp-content/uploads/2019/10/OnePlus-7T-Pro-blue.jpg"
-            alt=""
+            className="hover-img"
+            src={product.images.length > 1 ? product.images[1].url : ""}
+            alt="Product Image"
           />
-        </a>
-        <div class="product-img-badges">
-          <span class="pink">-5%</span>
-          <span class="purple">New</span>
+        </Link>
+        <div className="product-img-badges">
+          {product.discount.isActive && (
+            <span className="pink">{product.discount.persent}</span>
+          )}
+          {product.filter && <span className="purple">{product.filter}</span>}
         </div>
-        <div class="product-action">
-          <div class="pro-same-action pro-wishlist">
-            <button class="" title="Add to wishlist">
+        <div className="product-action">
+          <div className="pro-same-action pro-wishlist">
+            <button className="" title="Add to wishlist">
               <FavoriteBorderOutlinedIcon />
             </button>
           </div>
-          <div class="pro-same-action pro-cart">
-            <button class="" title="Add to cart">
+          <div className="pro-same-action pro-cart">
+            <button className="" title="Add to cart">
               {" "}
-              <i class="pe-7s-cart"></i> Buy Now
+              <i className="pe-7s-cart"></i> Buy Now
             </button>
           </div>
-          <div class="pro-same-action pro-quickview">
+          <div className="pro-same-action pro-quickview">
             <button title="Quick View">
-              <VisibilityOutlinedIcon />
+              <ProductModal id={product._id}>
+                <VisibilityOutlinedIcon />
+              </ProductModal>
             </button>
           </div>
         </div>
       </div>
-      <div class="product-content text-center">
+      <div className="product-content text-center">
         <h3>
-          <a href="/product/6215de5bbc6bdb82bdf95cc5">OnePlus 7T</a>
+          <Link to={`/product/${product._id}`}>
+            {product.name.substr(0, 20)}
+          </Link>
         </h3>
-        <div class="product-rating">
-          <i class="bi bi-star yellow"></i>
-          <i class="bi bi-star yellow"></i>
-          <i class="bi bi-star yellow"></i>
-          <i class="bi bi-star yellow"></i>
-          <i class="bi bi-star"></i>
+        <div className="product-rating">
+          <i className="bi bi-star yellow"></i>
+          <i className="bi bi-star yellow"></i>
+          <i className="bi bi-star yellow"></i>
+          <i className="bi bi-star yellow"></i>
+          <i className="bi bi-star"></i>
         </div>
-        <div class="product-price">
-          <span>৳ 62700</span>
-          <span class="old">৳ 66000</span>
+        <div className="product-price">
+          <span>৳ {product.price}</span>
+          <span className="old">৳ {product.regularPrice}</span>
         </div>
       </div>
     </div>

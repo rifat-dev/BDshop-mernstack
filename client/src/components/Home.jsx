@@ -3,7 +3,6 @@ import { useSelector, useDispatch } from "react-redux";
 import { useAlert } from "react-alert";
 import axios from "axios";
 
-import Products from "./products/Products";
 import FeaturedProducts from "./FeaturedProducts/FeaturedProducts";
 import HeroSlider from "./Home/hero-slider/HeroSlider";
 import MetaData from "../components/layouts/MetaData";
@@ -36,7 +35,7 @@ const Home = () => {
     <Fragment>
       <MetaData title={"Home-BDShop"} />
       <HeroSlider />
-      <div className="container-fluid">
+      <div className="container">
         {featuredProducts.map((res, key) => (
           <FeaturedProducts
             name={res.name}
