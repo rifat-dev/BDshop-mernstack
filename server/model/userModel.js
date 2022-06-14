@@ -19,7 +19,6 @@ const userSchema = new Schema(
     },
     mobile: {
       type: String,
-      unique: [true, "Mobile number already exists"],
     },
     user_otp: {
       type: String,
@@ -36,10 +35,6 @@ const userSchema = new Schema(
     },
     gender: {
       type: String,
-      default: null,
-      enum: {
-        values: ["Male", "Female", "Other"],
-      },
     },
     roal: {
       type: String,

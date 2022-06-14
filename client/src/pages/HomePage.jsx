@@ -31,8 +31,7 @@ const HomePage = () => {
         <Route path="/product/:id" component={SingleProduct} exact />
         <Route path="/cart" component={Cart} exact />
 
-        <ProtectedRoute path="/profile/me" component={Profile} exact />
-        <ProtectedRoute
+        {/* <ProtectedRoute
           path="/profile/me/edit-profile"
           component={UpdateProfile}
           exact
@@ -48,7 +47,7 @@ const HomePage = () => {
           path="/profile/me/orders/:id"
           component={OrderDetails}
           exact
-        />
+        /> */}
 
         <ProtectedRoute path="/shipping" component={Shipping} exact />
         <ProtectedRoute path="/payment" component={Payment} exact />

@@ -1,49 +1,61 @@
-import { useSelector } from 'react-redux'
-import { Link } from 'react-router-dom'
+import "./profile.scss";
+import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
+import { Switch, Route, Redirect } from "react-router-dom";
 
-import Loader from '../layouts/Loader/Loader'
-import MetaData from '../layouts/MetaData'
+import Loader from "../layouts/Loader/Loader";
+import MetaData from "../layouts/MetaData";
+import NavBar from "../layouts/Header/NavBar";
+
+import ProfileDashbordNav from "./ProfileDashbordNav";
+import MyAccount from "./MyAccount";
 
 const Profile = () => {
-    const { user, loading } = useSelector(state => state.auth)
-    return (
+  const { user, loading } = useSelector((state) => state.auth);
+  return (
+    <>
+      {loading ? (
+        <Loader />
+      ) : (
         <>
-            {loading ? <Loader /> : (
-                <>
-                    <MetaData title={'Your Profile - BDShop'} />
-                    <div className="container">
-                        <h2 className="mt-4" >Your Profile</h2>
-                        <div className="row" >
-                            <div className="col-12 col-md-6 mb-4" >
-                                <img style={{ width: '100%' }} className="img-thumbnail img-fluid" src={user.avatar.url} alt={user.name} />
-                                <Link to="/profile/me/edit-profile" className="my_btn text-center btn-block mt-4" >Edit Your Profile</Link>
-                            </div>
-                            <div className="col-12 col-md-6">
-                                <h4>Full Name</h4>
-                                <p>{user.name}</p>
-
-                                <h4>Email Address</h4>
-                                <p>{user.email}</p>
-
-                                <h4>Joined On</h4>
-                                <p>{String(user.createdAt).substring(0, 10)}</p>
-
-                                {user.roal !== 'admin' && (
-                                    <Link to="/profile/me/orders" className="my_btn btn-block mt-5 text-center">
-                                        My Orders
-                                    </Link>
-                                )}
-
-                                <Link to="/profile/me/update-password" className="my_btn btn-block mt-3 text-center">
-                                    Change Password
-                                </Link>
-                            </div>
-                        </div>
-                    </div>
-                </>
-            )}
+          <MetaData title={"Your Profile - BDShop"} />
+          <NavBar />
+          <div className="container-fluid profile">
+            <div className="row">
+              <div className="col-12 col-md-3 mb-4">
+                <ProfileDashbordNav />
+              </div>
+              <div className="col-12 col-md-9">
+                <Switch>
+                  <Route path="/profile/dashbord" component={MyAccount} exact />
+                  <Route
+                    path="/profile/dashbord/orders"
+                    component={MyAccount}
+                    exact
+                  />
+                  <Route
+                    path="/profile/dashbord/downloads"
+                    component={MyAccount}
+                    exact
+                  />
+                  <Route
+                    path="/profile/dashbord/addresses"
+                    component={MyAccount}
+                    exact
+                  />
+                  <Route
+                    path="/profile/dashbord/my-account"
+                    component={MyAccount}
+                    exact
+                  />
+                </Switch>
+              </div>
+            </div>
+          </div>
         </>
-    );
-}
+      )}
+    </>
+  );
+};
 
 export default Profile;

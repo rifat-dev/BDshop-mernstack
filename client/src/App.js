@@ -12,6 +12,7 @@ import HomePage from "./pages/HomePage";
 import BottomButton from "./components/layouts/Button/BottomButton";
 
 import ProtectedRoute from "./components/route/ProtectedRoute";
+import Profile from "./components/user/Profile";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
       <Router>
         <Switch>
           <ProtectedRoute path="/admin" component={AdminDashbord} />
+          <ProtectedRoute path="/profile/dashbord" component={Profile} />
           <Route path="/" component={HomePage} />
         </Switch>
       </Router>

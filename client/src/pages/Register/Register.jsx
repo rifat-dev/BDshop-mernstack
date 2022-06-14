@@ -68,7 +68,7 @@ const Register = ({ history }) => {
   useEffect(() => {
     if (isAuthenticated) {
       alert.success("User Registation Successfully");
-      history.push("/");
+      history.push("/profile/me");
     }
 
     if (error) {

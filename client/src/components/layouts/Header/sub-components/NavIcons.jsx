@@ -40,7 +40,7 @@ function NavIcons({ mobileNavToggle, cartOpen, setCartOpen }) {
                   <Link to="/admin">Admin</Link>
                 </li>
                 <li className="nav-item">
-                  <Link to="/profile/me">Profile</Link>
+                  <Link to="/profile/dashbord">Profile</Link>
                 </li>
                 <li className="nav-item" onClick={() => logoutHandeler()}>
                   <Link to="">Logout</Link>
