@@ -72,7 +72,7 @@ const Footer = () => {
       </div>
       <div className="footer_bottom_part container">
         <div className="copyright">
-          <p>Copyright © 2020 Tajul Islam Rifat</p>
+          <p>Copyright © 2022 Tajul Islam Rifat</p>
           <h4>Emial : tajul16-447@diu.edu.bd</h4>
         </div>
         <div className="footer_bottom_link">
