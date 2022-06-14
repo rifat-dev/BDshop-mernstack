@@ -1,0 +1,45 @@
+@import "../../scss/variables.scss";
+
+.shop{
+    padding: 80px 0;
+    .shop_body{
+        .shop-search{
+            width: 100%;
+            border: 1px solid #000;
+            input{
+                width:80%;
+                border:none;
+                padding:6px 8px;
+                &:focus{
+                    outline: none;
+                }
+            }
+            svg{
+                cursor: pointer;
+                margin-left: 20px;;
+            }
+        }
+        .shop-category{
+            margin-top: 25px;
+            h5{
+                font-weight: 600;
+            }
+        }
+        .price-range{
+            margin-top: 25px;
+            h5{
+                font-weight: 600;
+            }
+        }
+        .clear-filter{
+            border: none;
+            padding: 12px 16px;
+            background-color: $theme-color;
+            color:#fff;
+            &:hover{
+                background-color: #000;
+                color:#fff;
+            }
+        }
+    }
+}

@@ -15,7 +15,7 @@ exports.createCategory = async (req, res, next) => {
 };
 
 exports.getAllCategory = async (req, res, next) => {
-  const categorys = await Categories.find();
+  const categorys = await Categories.find({}).select("-description");
   // console.log(categorys);
   res.status(200).json({
     success: true,

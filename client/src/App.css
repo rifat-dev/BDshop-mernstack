@@ -90,14 +90,18 @@ html {
     position: fixed;
     bottom: 10px;
     right: 10px;
-    padding: 5px 8px;
-    background-color: #BD1E51;
+    width:60px;
+    height:60px;
+    z-index: 1000;
+    border-radius: 50%;
+    background-color: #f3b632;
     border: none;
     outline: none;
     box-shadow: 0 4px 8px rgb(0, 0, 0, 0.4);
     cursor: pointer;
     transition: transform 1s;
 }
+
 
 .buttomBatton:focus {
     outline: none;
@@ -108,8 +112,8 @@ html {
     color: white;
 }
 
-.buttomBatton:hover {
-    transform: scale(1.05);
+.buttomBatton:hover i{
+    transform:rotateY(180deg);
 }
 
 

@@ -1,0 +1,39 @@
+.cart{
+    .cart-btn{
+        border:none;
+        cursor: pointer;
+        padding:6px 6px;
+        text-transform: uppercase;
+        &:hover{
+            background-color:#f3b632;
+            color: #fff;
+    }
+    }
+    .empty_cart {
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+    
+    .empty_cart_body img {
+        width: 400px;
+        height: 400px;
+    }
+    .qnt-btn{
+        margin: 0 10px;
+        &:hover{
+            cursor: pointer;
+            color: #f3b632;
+        }
+    }
+    .cart-delete-btn{
+        font-size: 30px;
+        &:hover{
+            cursor: pointer;
+            color: #f3b632;
+        }
+    }
+    
+}

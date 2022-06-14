@@ -11,6 +11,10 @@ const CategoriesSchema = new Schema(
       type: String,
       trim: true,
     },
+    showHome: {
+      type: Boolean,
+      default: false,
+    },
     isActive: {
       type: Boolean,
       default: true,
