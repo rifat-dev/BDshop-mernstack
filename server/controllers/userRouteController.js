@@ -77,7 +77,9 @@ exports.loginUser = async (req, res, next) => {
 // getUser user -> '/api/user/me'
 exports.getUser = async (req, res, next) => {
   try {
-    const user = req.user;
+    const user = await User.findOne({ email: req.user.email }).select(
+      "-password"
+    );
     res.status(200).json({
       success: true,
       user,

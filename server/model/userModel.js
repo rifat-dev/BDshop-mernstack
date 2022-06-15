@@ -19,6 +19,7 @@ const userSchema = new Schema(
     },
     mobile: {
       type: String,
+      unique: true,
     },
     user_otp: {
       type: String,
@@ -35,6 +36,12 @@ const userSchema = new Schema(
     },
     gender: {
       type: String,
+      enum: {
+        values: ["Male", "Female", "Other"],
+      },
+    },
+    birthdate: {
+      type: Date,
     },
     roal: {
       type: String,

@@ -1,3 +1,4 @@
+import React, { Suspense } from "react";
 import {
   BrowserRouter as Router,
   Switch,
@@ -7,24 +8,30 @@ import {
 import "./App.css";
 import "./scss/app.scss";
 
-import AdminDashbord from "./admin/Dashbord/AdminDashbord";
-import HomePage from "./pages/HomePage";
 import BottomButton from "./components/layouts/Button/BottomButton";
-
 import ProtectedRoute from "./components/route/ProtectedRoute";
-import Profile from "./components/user/Profile";
+import CartLoader from "./components/layouts/Loader/CartLoader";
+
+const AdminDashbord = React.lazy(() =>
+  import("./admin/Dashbord/AdminDashbord")
+);
+const HomePage = React.lazy(() => import("./pages/HomePage"));
+const Profile = React.lazy(() => import("./components/user/Profile"));
 
 function App() {
   return (
     <div className="App">
       <BottomButton />
-      <Router>
-        <Switch>
-          <ProtectedRoute path="/admin" component={AdminDashbord} />
-          <ProtectedRoute path="/profile/dashbord" component={Profile} />
-          <Route path="/" component={HomePage} />
-        </Switch>
-      </Router>
+      {/* <CartLoader /> */}
+      <Suspense fallback={<CartLoader />}>
+        <Router>
+          <Switch>
+            <ProtectedRoute path="/admin" component={AdminDashbord} />
+            <ProtectedRoute path="/profile/dashbord" component={Profile} />
+            <Route path="/" component={HomePage} />
+          </Switch>
+        </Router>
+      </Suspense>
     </div>
   );
 }

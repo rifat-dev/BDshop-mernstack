@@ -33,6 +33,7 @@ if (user) {
     type: SET_USER,
     payload: JSON.parse(user).user,
   });
+  console.log(user);
 }
 
 ReactDOM.render(

@@ -2,7 +2,7 @@ const { model, Schema } = require("mongoose");
 
 const addressSchema = new Schema(
   {
-    userId: {
+    user: {
       type: Schema.ObjectId,
       required: true,
       ref: "User",
@@ -14,7 +14,15 @@ const addressSchema = new Schema(
         values: ["Shipping", "Billing"],
       },
     },
+    city: {
+      type: String,
+      required: true,
+    },
     address: {
+      type: String,
+      required: true,
+    },
+    mobile: {
       type: String,
       required: true,
     },
