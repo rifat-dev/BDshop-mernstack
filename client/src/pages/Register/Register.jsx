@@ -68,7 +68,7 @@ const Register = ({ history }) => {
   useEffect(() => {
     if (isAuthenticated) {
       alert.success("User Registation Successfully");
-      history.push("/profile/me");
+      history.push("/profile/dashbord/my-account");
     }
 
     if (error) {
@@ -88,57 +88,71 @@ const Register = ({ history }) => {
           <div className="container register-container">
             <div className="col-md-8 offset-md-2 my-5">
               <div className="register-form animate__animated animate__fadeInLeft">
+                <h3 className="text-center mb-5">Register Form</h3>
                 <form onSubmit={submitForm}>
-                  <div className="form-group">
-                    <label htmlFor="name" className="form-label">
-                      Name
-                    </label>
-                    <input
-                      type="text"
-                      className="form-control"
-                      name="name"
-                      id="name"
-                      placeholder="Enter your name"
-                      value={name}
-                      onChange={handelChange}
-                    />
+                  <div className="row">
+                    <div className="col-md-6">
+                      <div className="form-group">
+                        <label htmlFor="name" className="form-label">
+                          Name
+                        </label>
+                        <input
+                          type="text"
+                          className="form-control"
+                          name="name"
+                          id="name"
+                          placeholder="Enter your name"
+                          value={name}
+                          onChange={handelChange}
+                        />
+                      </div>
+                    </div>
+                    <div className="col-md-6">
+                      <div className="form-group">
+                        <label htmlFor="email">Email address</label>
+                        <input
+                          type="email"
+                          className="form-control"
+                          id="email"
+                          placeholder="example@gmail.com"
+                          name="email"
+                          value={email}
+                          onChange={handelChange}
+                        />
+                      </div>
+                    </div>
                   </div>
-                  <div className="form-group">
-                    <label htmlFor="email">Email address</label>
-                    <input
-                      type="email"
-                      className="form-control"
-                      id="email"
-                      placeholder="example@gmail.com"
-                      name="email"
-                      value={email}
-                      onChange={handelChange}
-                    />
-                  </div>
-                  <div className="form-group">
-                    <label htmlFor="password">Password</label>
-                    <input
-                      type="password"
-                      className="form-control"
-                      id="password"
-                      placeholder="Password"
-                      name="password"
-                      value={password}
-                      onChange={handelChange}
-                    />
-                  </div>
-                  <div className="mb-3">
-                    <label htmlFor="avatar" className="form-label">
-                      Select Profile Image
-                    </label>
-                    <input
-                      type="file"
-                      className="form-control"
-                      name="avatar"
-                      id="avatar"
-                      placeholder="avatar"
-                      onChange={handelChange}
-                    />
+
+                  <div className="row">
+                    <div className="col-md-6">
+                      <div className="form-group">
+                        <label htmlFor="password">Password</label>
+                        <input
+                          type="password"
+                          className="form-control"
+                          id="password"
+                          placeholder="Password"
+                          name="password"
+                          value={password}
+                          onChange={handelChange}
+                        />
+                      </div>
+                    </div>
+                    <div className="col-md-6">
+                      <div className="">
+                        <label htmlFor="avatar" className="form-label">
+                          Select Profile Image
+                        </label>
+                        <input
+                          type="file"
+                          className="form-control"
+                          name="avatar"
+                          id="avatar"
+                          placeholder="avatar"
+                          onChange={handelChange}
+                        />
+                      </div>
+                    </div>
                   </div>
 
                   <button type="submit">Submit</button>

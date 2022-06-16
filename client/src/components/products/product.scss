@@ -93,7 +93,7 @@
         .single-product-summary{
             margin: 16px 0;
         }
-        .single-product-qnt-controller{
+        .single-product-quantity-controller{
             margin:15px 0;
             input{
                 width:100px;
@@ -111,8 +111,8 @@
             button{
                     background-color:#000;
                     border: 1px solid #000;
-                color:#fff;
-                padding:8px 30px;
+                    color:#fff;
+                    padding:8px 30px;
                 &:hover{
                    
                     background-color:$theme-color;

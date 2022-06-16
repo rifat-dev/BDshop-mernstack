@@ -22,7 +22,7 @@ import ProductRating from "./ProductRating";
 
 const SingleProduct = ({ match }) => {
   const { id } = match.params;
-  const [qty, setQty] = useState(1);
+  const [quantity, setQuantity] = useState(1);
 
   const [rating, setRating] = useState(1);
   const [comment, setComment] = useState("");
@@ -36,7 +36,6 @@ const SingleProduct = ({ match }) => {
   );
   const { isCreate } = useSelector((state) => state.productReview);
 
-  console.log(id);
   useEffect(() => {
     dispatch(getSingleProduct(id));
   }, [id]);
@@ -61,6 +60,27 @@ const SingleProduct = ({ match }) => {
       setComment("");
     }
   }, [error, dispatch, isCreate]);
+
+  const onChangeQnt = (type) => {
+    if (type === "remove") {
+      if (quantity > 1) {
+        setQuantity(quantity - 1);
+      } else {
+        alert.info("Remove failed");
+      }
+    } else {
+      if (product.stock > quantity) {
+        setQuantity(quantity + 1);
+      } else {
+        alert.info("Remove failed");
+      }
+    }
+  };
+
+  const productAddIntoCart = () => {
+    dispatch(addToCartItem(product._id, quantity));
+    alert.success("Product add to cart successfully");
+  };
 
   return (
     <Fragment>
@@ -100,14 +120,24 @@ const SingleProduct = ({ match }) => {
                   </div>
                 </div> */}
 
-                <div className="single-product-qnt-controller">
-                  <RemoveCircleIcon />
-                  <input type="number" name="qnt" id="qnt" value={0} disabled />
-                  <AddCircleIcon />
+                <div className="single-product-quantity-controller">
+                  <RemoveCircleIcon onClick={() => onChangeQnt("remove")} />
+                  <input
+                    type="number"
+                    name="quantity"
+                    id="quantity"
+                    value={quantity}
+                    disabled
+                  />
+                  <AddCircleIcon onClick={() => onChangeQnt("add")} />
                 </div>
 
                 <div className="single-product-buttons">
-                  <button className="addToCArt-btn">Add To Cart</button>
+                  <button
+                    className="addToCArt-btn "
+                    onClick={() => productAddIntoCart()}>
+                    Add To Cart
+                  </button>
                   <BsShuffle />
                   <FavoriteBorderOutlinedIcon />
                 </div>
@@ -158,7 +188,7 @@ const SingleProduct = ({ match }) => {
                 id="home"
                 role="tabpanel"
                 aria-labelledby="home-tab">
-                <div className="p-2">
+                <div className="p-4">
                   <div
                     dangerouslySetInnerHTML={{
                       __html: product.description,
@@ -171,7 +201,7 @@ const SingleProduct = ({ match }) => {
                 id="profile"
                 role="tabpanel"
                 aria-labelledby="profile-tab">
-                <div className="p-2">
+                <div className="p-4">
                   <div
                     dangerouslySetInnerHTML={{
                       __html: product.additionalInformation,

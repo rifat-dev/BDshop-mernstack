@@ -7,15 +7,13 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 // import "bootstrap-css-only/css/bootstrap.min.css";
 import "./index.css";
-
-import { transitions, positions, Provider as AlertProvider } from "react-alert";
-import AlertTemplate from "react-alert-template-basic";
-
-import { SET_USER } from "./store/Types/authType";
-
 import App from "./App";
 import store from "./store/store";
 import { Provider } from "react-redux";
+import { transitions, positions, Provider as AlertProvider } from "react-alert";
+import AlertTemplate from "react-alert-template-basic";
+import { SET_USER } from "./store/Types/authType";
+import { getUser } from "./store/actions/authActions";
 
 const options = {
   position: positions.BOTTOM_CENTER,
@@ -27,11 +25,12 @@ const options = {
 const user = localStorage.getItem("user");
 
 if (user) {
-  store.dispatch({
-    type: SET_USER,
-    payload: JSON.parse(user).user,
-  });
-  console.log(user);
+  // store.dispatch({
+  //   type: SET_USER,
+  //   payload: JSON.parse(user).user,
+  // });
+
+  store.dispatch(getUser());
 }
 
 ReactDOM.render(

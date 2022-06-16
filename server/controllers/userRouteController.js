@@ -1,4 +1,5 @@
 const User = require("../model/userModel");
+const Address = require("../model/userAddressModel");
 const clud = require("cloudinary").v2;
 const bcrypt = require("bcrypt");
 
@@ -80,10 +81,7 @@ exports.getUser = async (req, res, next) => {
     const user = await User.findOne({ email: req.user.email }).select(
       "-password"
     );
-    res.status(200).json({
-      success: true,
-      user,
-    });
+    sendToken(user, 200, res);
   } catch (e) {
     next(e);
   }
@@ -92,26 +90,24 @@ exports.getUser = async (req, res, next) => {
 // updateUser user -> '/api/user/update/profile'
 exports.updateUser = async (req, res, next) => {
   try {
-    // console.log(req.body)
-    const { name, email } = req.body;
-    let user = req.user;
+    // if (req.body.avatar) {
+    //   await clud.uploader.destroy(user.avatar.publicId);
+    //   const result = await clud.uploader.upload(req.body.avatar, {
+    //     folder: "avatars",
+    //   });
 
-    if (req.body.avatar) {
-      await clud.uploader.destroy(user.avatar.publicId);
-      const result = await clud.uploader.upload(req.body.avatar, {
-        folder: "avatars",
-      });
+    //   let avatar = {
+    //     publicId: result.public_id,
+    //     url: result.secure_url,
+    //   };
+    //   user.avatar = avatar;
+    // }
 
-      let avatar = {
-        publicId: result.public_id,
-        url: result.secure_url,
-      };
-      user.avatar = avatar;
-    }
-
-    user.name = name ? name : user.name;
-    user.email = email ? email : user.email;
-    await user.save();
+    let updatedUser = await User.findByIdAndUpdate(
+      { _id: req.user._id },
+      req.body,
+      { new: true }
+    );
 
     res.status(200).json({
       success: true,
@@ -159,4 +155,33 @@ exports.logoutUser = (req, res, next) => {
     success: true,
     message: "User LogOut success",
   });
+};
+
+exports.createAddress = async (req, res, next) => {
+  try {
+    req.body.user = req.user._id;
+    const address = await Address(req.body);
+    address.save();
+
+    console.log(address);
+
+    res.status(200).json({
+      success: true,
+      address: address,
+    });
+  } catch (e) {
+    next(e);
+  }
+};
+
+exports.getAddresses = async (req, res, next) => {
+  try {
+    let addresses = await Address.find({ user: req.user._id });
+    res.status(200).json({
+      success: true,
+      addresses,
+    });
+  } catch (e) {
+    next(e);
+  }
 };
