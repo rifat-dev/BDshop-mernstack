@@ -45,6 +45,23 @@
         }
     }
 
+    .my-orders{
+        padding: 20px;
+        h4.my-orders-title{
+            font-weight: 500;
+            margin-bottom:30px;
+            text-transform: uppercase;
+            border-bottom: 1px dotted #ccc;
+        }
+        .table{
+            thead{
+                background-color: #f79837;
+                color: #fff;
+                text-transform: uppercase;
+            }
+        }
+    }
+
     .addresses{
         h4{
             text-transform: uppercase;

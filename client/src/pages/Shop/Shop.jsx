@@ -121,11 +121,11 @@ const Shop = () => {
                 <hr />
                 <button className="clear-filter">CLEAR FILTER</button>
               </div>
-              <div className="col-md-9 row">
+              <div className="row col-md-9 ">
                 {shopProducts.length > 0 &&
                   shopProducts.map((product) => (
-                    <div className="col-md-4 " key={product._id}>
-                      <div className="card card-body mx-1 ">
+                    <div className="col-md-4" key={product._id}>
+                      <div className="card card-body">
                         <ProductCardTow product={product} />
                       </div>
                     </div>

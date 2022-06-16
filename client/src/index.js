@@ -1,14 +1,12 @@
 import React from "react";
-
 import ReactDOM from "react-dom";
-import "./index.css";
 import "@fortawesome/fontawesome-free/css/all.min.css";
-// import "bootstrap-css-only/css/bootstrap.min.css";
-import "mdbreact/dist/css/mdb.css";
 import "../node_modules/react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import "animate.css";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+// import "bootstrap-css-only/css/bootstrap.min.css";
+import "./index.css";
 
 import { transitions, positions, Provider as AlertProvider } from "react-alert";
 import AlertTemplate from "react-alert-template-basic";

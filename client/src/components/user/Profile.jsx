@@ -3,14 +3,15 @@ import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { Switch, Route, Redirect } from "react-router-dom";
 
+import ProfileDashbordNav from "./ProfileDashbordNav";
+import MyOrders from "./MyOrders";
+import Addresses from "./Addresses";
+import MyAccount from "./MyAccount";
+
 import Loader from "../layouts/Loader/Loader";
 import MetaData from "../layouts/MetaData";
 import NavBar from "../layouts/Header/NavBar";
 import Footer from "../layouts/Footer";
-
-import ProfileDashbordNav from "./ProfileDashbordNav";
-import MyAccount from "./MyAccount";
-import Addresses from "./Addresses";
 
 const Profile = () => {
   const { user, loading } = useSelector((state) => state.auth);
@@ -32,7 +33,7 @@ const Profile = () => {
                   <Route path="/profile/dashbord" component={MyAccount} exact />
                   <Route
                     path="/profile/dashbord/orders"
-                    component={MyAccount}
+                    component={MyOrders}
                     exact
                   />
                   <Route

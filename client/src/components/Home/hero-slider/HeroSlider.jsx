@@ -34,17 +34,11 @@ const HeroSlider = () => {
             <div className="container">
               <div className="row">
                 <div className="col-md-6 hero-slider-info">
-                  <h3 className="animate__animated animate__bounceInLeft">
-                    {item.title}
-                  </h3>
-                  <h1 className="animate__animated animate__bounceInUp">
-                    {item.subtitle}
-                  </h1>
-                  <button className="animate__animated animate__bounceInLeft">
-                    Shop Now
-                  </button>
+                  <h3 className="animate__animated ">{item.title}</h3>
+                  <h1 className="animate__animated ">{item.subtitle}</h1>
+                  <button className="animate__animated ">Shop Now</button>
                 </div>
-                <div className="col-md-6 hero-slider-img animate__animated animate__bounceInRight">
+                <div className="col-md-6 hero-slider-img animate__animated ">
                   <img
                     className="d-block w-100"
                     src={item.image}

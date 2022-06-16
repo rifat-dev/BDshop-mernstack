@@ -46,7 +46,7 @@ const FeaturedProducts = ({ name, _id, products }) => {
           </h2>
           <Slider {...settings}>
             {products.map((product, i) => (
-              <div className="col-md-4 card card-body mx-4" key={i}>
+              <div className="col-md-4 card card-body" key={i}>
                 <ProductCardTow product={product} />
               </div>
             ))}
