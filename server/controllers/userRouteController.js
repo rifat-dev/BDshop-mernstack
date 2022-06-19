@@ -157,13 +157,50 @@ exports.logoutUser = (req, res, next) => {
   });
 };
 
-exports.createAddress = async (req, res, next) => {
+exports.createBillingAddress = async (req, res, next) => {
   try {
-    req.body.user = req.user._id;
-    const address = await Address(req.body);
-    address.save();
+    let address = [];
+    address = await Address.findOne({
+      $and: [{ user: req.user._id }, { addressType: "Billing" }],
+    });
 
-    console.log(address);
+    if (!address) {
+      req.body.user = req.user._id;
+      address = await Address.create(req.body);
+    } else {
+      address = await Address.findOneAndUpdate(
+        { $and: [{ user: req.user._id }, { addressType: "Billing" }] },
+        req.body,
+        { new: true }
+      );
+    }
+
+    res.status(200).json({
+      success: true,
+      address: address,
+    });
+  } catch (e) {
+    next(e);
+  }
+};
+
+exports.createShippingAddress = async (req, res, next) => {
+  try {
+    let address = [];
+    address = await Address.findOne({
+      $and: [{ user: req.user._id }, { addressType: "Shipping" }],
+    });
+
+    if (!address) {
+      req.body.user = req.user._id;
+      address = await Address.create(req.body);
+    } else {
+      address = await Address.findOneAndUpdate(
+        { $and: [{ user: req.user._id }, { addressType: "Shipping" }] },
+        req.body,
+        { new: true }
+      );
+    }
 
     res.status(200).json({
       success: true,

@@ -17,7 +17,7 @@ const Home = () => {
   useEffect(() => {
     const getAllFeaturedProducts = async () => {
       const { data } = await axios.get("/api/products/featuredProducts");
-      console.log(data.results);
+
       setFeaturedProducts(data.results);
     };
     getAllFeaturedProducts();

@@ -36,9 +36,11 @@ function NavIcons({ mobileNavToggle, cartOpen, setCartOpen }) {
           <ul className="nav navbar-nav">
             {user ? (
               <>
-                <li className="nav-item">
-                  <Link to="/admin">Admin</Link>
-                </li>
+                {user.roal === "admin" && (
+                  <li className="nav-item">
+                    <Link to="/admin">Admin</Link>
+                  </li>
+                )}
                 <li className="nav-item">
                   <Link to="/profile/dashbord">Profile</Link>
                 </li>

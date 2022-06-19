@@ -7,7 +7,8 @@ const {
   getUser,
   updateUser,
   updateUserPassword,
-  createAddress,
+  createBillingAddress,
+  createShippingAddress,
   getAddresses,
 } = require("../controllers/userRouteController");
 
@@ -21,6 +22,11 @@ router.get("/logout", logoutUser);
 router.get("/me", isAuthintecated, getUser);
 router.put("/update/profile", isAuthintecated, updateUser);
 router.put("/update/password", isAuthintecated, updateUserPassword);
-router.post("/address/create", isAuthintecated, createAddress);
+router.post("/address/billing-address", isAuthintecated, createBillingAddress);
+router.post(
+  "/address/shipping-address",
+  isAuthintecated,
+  createShippingAddress
+);
 router.get("/addresses", isAuthintecated, getAddresses);
 module.exports = router;

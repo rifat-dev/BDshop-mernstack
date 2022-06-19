@@ -49,82 +49,60 @@ const Dashbord = () => {
       {loading ? (
         <Loader />
       ) : (
-        <div className="row">
+        <div className="row admin-dashbord" id="admin-dashbord">
           <div className="col-xl-12 col-sm-12 mb-3">
-            <div className="card text-white bg-primary o-hidden h-100">
-              <div className="card-body">
-                <div className="text-center card-font-size">
-                  Total Amount
-                  <br /> <b>${totalAmount && totalAmount.toFixed(2)}</b>
-                </div>
+            <div className="admin-dashbord-card">
+              <div className="text-center card-font-size">
+                <h2>${totalAmount && totalAmount.toFixed(2)}</h2>
+                <h4>Total Sales</h4>
               </div>
             </div>
           </div>
 
           <div className="col-xl-3 col-sm-6  mb-3">
-            <div className="card text-white bg-success o-hidden h-100">
-              <div className="card-body">
-                <div className="text-center card-font-size">
-                  Products
-                  <br /> <b>{products && products.length}</b>
-                </div>
+            <div className="admin-dashbord-card">
+              <div className="text-center card-font-size">
+                <h2>{products && products.length}</h2>
+                <h4>Total Products</h4>
               </div>
+
               <Link
                 className="card-footer text-white clearfix small z-1"
-                to="/admin/products">
-                <span className="float-left">View Details</span>
-                <span className="float-right">
-                  <i className="fa fa-angle-right"></i>
-                </span>
-              </Link>
+                to="/admin/products"></Link>
             </div>
           </div>
 
           <div className="col-xl-3 col-sm-6 mb-3">
-            <div className="card text-white bg-danger o-hidden h-100">
-              <div className="card-body">
-                <div className="text-center card-font-size">
-                  Orders
-                  <br /> <b>{orders && orders.length}</b>
-                </div>
+            <div className="admin-dashbord-card ">
+              <div className="text-center card-font-size">
+                <h2>{orders && orders.length}</h2>
+                <h4>Total Orders</h4>
               </div>
+
               <Link
                 className="card-footer text-white clearfix small z-1"
-                to="/admin/orders">
-                <span className="float-left">View Details</span>
-                <span className="float-right">
-                  <i className="fa fa-angle-right"></i>
-                </span>
-              </Link>
+                to="/admin/orders"></Link>
             </div>
           </div>
 
           <div className="col-xl-3 col-sm-6 mb-3">
-            <div className="card text-white bg-info o-hidden h-100">
-              <div className="card-body">
-                <div className="text-center card-font-size">
-                  Users
-                  <br /> <b>{users && users.length}</b>
-                </div>
+            <div className="admin-dashbord-card ">
+              <div className="text-center card-font-size">
+                <h2>{users && users.length}</h2>
+                <h4>Total Users</h4>
               </div>
+
               <Link
                 className="card-footer text-white clearfix small z-1"
-                to="/admin/users">
-                <span className="float-left">View Details</span>
-                <span className="float-right">
-                  <i className="fa fa-angle-right"></i>
-                </span>
-              </Link>
+                to="/admin/users"></Link>
             </div>
           </div>
 
           <div className="col-xl-3 col-sm-6 mb-3">
-            <div className="card text-white bg-warning o-hidden h-100">
-              <div className="card-body">
-                <div className="text-center card-font-size">
-                  Out of Stock
-                  <br /> <b>{stock}</b>
-                </div>
+            <div className="admin-dashbord-card ">
+              <div className="text-center card-font-size">
+                <h2>{stock}</h2>
+                <h4>Out of Stock</h4>
               </div>
             </div>
           </div>

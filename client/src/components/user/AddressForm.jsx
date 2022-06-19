@@ -1,6 +1,6 @@
 import React from "react";
 
-const AddressForm = ({ onChange }) => {
+const AddressForm = ({ onChange, address }) => {
   return (
     <div className="address-form">
       <form>
@@ -15,6 +15,7 @@ const AddressForm = ({ onChange }) => {
             id="city"
             placeholder="city"
             onChange={onChange}
+            value={address.city}
           />
         </div>
         <div class="mb-3 form-group">
@@ -26,6 +27,7 @@ const AddressForm = ({ onChange }) => {
             name="address"
             id="address"
             onChange={onChange}
+            value={address.address}
             rows="3"></textarea>
         </div>
         <div class="mb-3 form-group">
@@ -39,6 +41,7 @@ const AddressForm = ({ onChange }) => {
             id="mobile"
             placeholder="mobile"
             onChange={onChange}
+            value={address.mobile}
           />
         </div>
       </form>
