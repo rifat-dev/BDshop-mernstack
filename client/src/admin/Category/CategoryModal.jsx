@@ -3,11 +3,11 @@ import { Modal } from "react-bootstrap";
 
 import axios from "axios";
 
-const CategoryModal = ({ children, history }) => {
+const CategoryModal = ({ children, setCreated }) => {
   const [show, setShow] = useState(false);
   const [name, setName] = useState("");
-  const [description, setDescription] = useState("");
-  const [isCreated, setIsCreated] = useState(false);
+
+  const [showHome, setShowHome] = useState(false);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -16,15 +16,14 @@ const CategoryModal = ({ children, history }) => {
     e.preventDefault();
     const category = {
       name,
-      description,
+      showHome,
     };
 
     const { data } = await axios.post("/api/category/create", category);
     if (data.success) {
       handleClose();
-      history.push("/admin/category");
+      setCreated(true);
     }
-    console.log(data);
   };
 
   return (
@@ -49,26 +48,22 @@ const CategoryModal = ({ children, history }) => {
                 onChange={(e) => setName(e.target.value)}
               />
             </div>
-            <div className="mb-3 form-group">
-              <label htmlFor="description" className="form-label">
-                Short Description
+            <div className="form-check form-switch my-3">
+              <input
+                className="form-check-input"
+                type="checkbox"
+                name="isActive"
+                id="isActive"
+                value={showHome}
+                onChange={() => setShowHome(!showHome)}
+              />
+              <label className="form-check-label" htmlFor="isActive">
+                Show in home page a category feature
               </label>
-              <textarea
-                className="form-control"
-                name="description"
-                id="description"
-                placeholder="Short note about category"
-                onChange={(e) => setDescription(e.target.value)}
-                rows="3"></textarea>
             </div>
             <button type="submit">Submit</button>
           </form>
         </Modal.Body>
-        <Modal.Footer>
-          <button variant="secondary" onClick={handleClose}>
-            Close
-          </button>
-        </Modal.Footer>
       </Modal>
     </>
   );

@@ -37,7 +37,7 @@ function CartNav({ cartOpen, setCartOpen }) {
           cartItems.map((product, index) => <CartProduct product={product} />)}
         <div className="sub-total">
           <h4>Subtotal : </h4>
-          <span>{`$${subtotal}`}</span>
+          <span>{`৳ ${subtotal}`}</span>
         </div>
         <div className="cart-buttons">
           <Link to="/cart" onClick={() => setCartOpen(!cartOpen)}>
@@ -61,7 +61,7 @@ const CartProduct = ({ product }) => {
             <h4 className="product-title">
               {product.name.substring(0, 15) + ".."}
             </h4>
-            <span>{`${product.quantity} x $${product.price}`}</span>
+            <span>{`${product.quantity} x ৳ ${product.price}`}</span>
           </div>
         </div>
         <div className="cart-product-right">

@@ -104,14 +104,14 @@ const SideNav = ({ sideNavRef }) => {
                 </div>
               </div>
 
-              <Link to="#" className="nav__link">
+              {/* <Link to="#" className="nav__link">
                 <DashboardIcon className="nav__icon" />
                 <span className="nav__name">Explore</span>
               </Link>
               <Link to="#" className="nav__link">
                 <DashboardIcon className="nav__icon" />
                 <span className="nav__name">Saved</span>
-              </Link>
+              </Link> */}
             </div>
           </div>
         </div>

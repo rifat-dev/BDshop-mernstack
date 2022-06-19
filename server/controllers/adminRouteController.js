@@ -78,7 +78,10 @@ exports.newProduct = async (req, res, next) => {
 // getAdminProducts -> 'api/admin/products'
 exports.getAdminProducts = async (req, res, next) => {
   try {
-    const products = await Product.find();
+    const products = await Product.find().populate({
+      path: "category",
+      select: "name",
+    });
 
     res.status(200).json({
       success: true,

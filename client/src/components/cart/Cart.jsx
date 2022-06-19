@@ -54,16 +54,16 @@ const Cart = () => {
         </div>
       ) : (
         <Fragment>
-          <div className="container mt-4">
-            <table className="table product-table my-5">
-              <thead>
+          <div className="container-fluid mt-4">
+            <table className="table product-table shadow-sm my-5">
+              <thead className="table-head">
                 <tr>
                   <th>Image</th>
                   <th>Product</th>
                   <th>Price</th>
                   <th>QTY</th>
                   <th></th>
-                  <th>Amount</th>
+                  <th>Total</th>
                   <th>Remove</th>
                 </tr>
               </thead>
@@ -127,24 +127,51 @@ const Cart = () => {
                     </td>
                   </tr>
                 ))}
-
-                {/* bottom section */}
-                <tr>
-                  <td>
-                    <h4>
-                      <strong>Total</strong>
-                    </h4>
-                  </td>
-                  <td colSpan="2">
-                    <h4>
-                      <strong>{totalPrice} $</strong>
-                    </h4>
-                  </td>
-                  <td colSpan="4">
+              </tbody>
+            </table>
+            <div className="row cart-bottom">
+              <div className=" col-12 col-md-6">
+                <div class="coupon_code left">
+                  <h3>Coupon</h3>
+                  <div class="coupon_inner">
+                    <p>Enter your coupon code if you have one.</p>
+                    <form>
+                      <input
+                        class="mb-2"
+                        placeholder="Coupon code"
+                        type="text"
+                        required=""
+                      />
+                      <button type="submit" class="">
+                        Apply coupon
+                      </button>
+                    </form>
+                  </div>
+                </div>
+              </div>
+              <div className="cart-total col-12 col-md-6">
+                <div class="coupon_code right">
+                  <h3>Cart Total</h3>
+                  <div class="coupon_inner">
+                    <div class="cart_subtotal">
+                      <p>Subtotal</p>
+                      <p class="cart_amount">{`৳ ${totalPrice}`}</p>
+                    </div>
+                    <div class="cart_subtotal ">
+                      <p>Shipping</p>
+                      <p class="cart_amount">
+                        <span>Flat Rate:</span> ৳00
+                      </p>
+                    </div>
+                    <a href="#!">Calculate shipping</a>
+                    <div class="cart_subtotal">
+                      <p>Total</p>
+                      <p class="cart_amount">{`৳ ${totalPrice}`}</p>
+                    </div>
                     {isAuthenticated ? (
                       <Link to="/shipping">
                         <button type="button" className="cart-btn">
-                          Complete purchase{" "}
+                          Proceed to Checkout{" "}
                           <i className="fa fa-angle-right right"></i>
                         </button>
                       </Link>
@@ -156,10 +183,10 @@ const Cart = () => {
                         </button>
                       </Link>
                     )}
-                  </td>
-                </tr>
-              </tbody>
-            </table>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </Fragment>
       )}

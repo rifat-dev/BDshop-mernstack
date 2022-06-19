@@ -126,7 +126,7 @@
 
       .admin-dashbord-card{
         text-align: center;
-        border: 1px solid #f79837;
+        border: 1px solid $theme-color;
         padding: 20px 0;
         box-shadow: 3px 5px 7px 1px rgb(0 0 0 / 8%);
         transition: all .4s ease-in-out;
@@ -134,7 +134,7 @@
           font-size: 36px;
           line-height: 40px;
           font-weight: 600;
-          color:#f79837;
+          color:$theme-color;
         }
       }
     }

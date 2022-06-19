@@ -4,7 +4,7 @@ import "./dashbordnav.scss";
 
 const DashboardNavbar = ({ setShow, show }) => {
   return (
-    <Navbar className="mb-4 p-3 " id="dashboard_nav" expand="lg">
+    <Navbar className="mb-4" id="dashboard_nav" expand="lg">
       <Container fluid>
         <button
           type="button"

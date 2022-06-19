@@ -32,7 +32,21 @@
     }
     .category-table{
         width:100%;
-        height:600px;
+        height:auto;
+
+        .table{
+            
+            .thead-light{
+                background:rgb(233,236,239);
+                color:$theme-color;
+            }
+            .form-check{
+                padding:0;
+                .form-check-input:hover{
+                    cursor: pointer;
+                }
+            }
+        }
     }
 }
 

@@ -1,12 +1,17 @@
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useAlert } from "react-alert";
+import DeleteIcon from "@mui/icons-material/Delete";
+import ModeEditIcon from "@mui/icons-material/ModeEdit";
 
 import ProductEditModal from "./ProductEditModal";
 import Loader from "../../components/layouts/Loader/Loader";
 import MetaData from "../../components/layouts/MetaData";
 
-import { getAdminProducts } from "../../store/actions/adminActions";
+import {
+  getAdminProducts,
+  deleteAdminProduct,
+} from "../../store/actions/adminActions";
 import ProductCard from "./ProductCard";
 
 import { clearError } from "../../store/actions/adminActions";
@@ -52,7 +57,13 @@ const ProductList = () => {
     dispatch(getAdminProducts());
   }, [dispatch]);
 
-  const handleClose = () => setShow(false);
+  const productDelete = (id) => {
+    let res = window.confirm("Are you sure you want to delete this product?");
+    console.log(res);
+    if (res) {
+      // dispatch(deleteAdminProduct(product._id))
+    }
+  };
 
   return (
     <div>
@@ -61,26 +72,48 @@ const ProductList = () => {
         <Loader />
       ) : (
         <>
-          <div className="row">
-            {products.map((product, index) => (
-              <>
-                <div key={product._id} className="col-lg-4">
-                  <ProductCard
-                    product={product}
-                    index={index}
-                    setShow={setShow}
-                    setPid={setPid}
-                  />
-                </div>
-                {pId === product._id && (
-                  <ProductEditModal
-                    show={show}
-                    handleClose={handleClose}
-                    product={product}
-                  />
-                )}
-              </>
-            ))}
+          <div className="product-list">
+            <div className="product-list-top">
+              <h4 className="product-list-title">All Products</h4>
+            </div>
+            <table className="table shadow-sm">
+              <thead className="table-head">
+                <tr>
+                  <th scope="col">PID</th>
+                  <th scope="col">Image</th>
+                  <th scope="col">Product Name</th>
+                  <th scope="col">Category</th>
+                  <th scope="col">Price</th>
+                  <th scope="col">Stock</th>
+                  <th scope="col">Edit/Delete</th>
+                </tr>
+              </thead>
+              <tbody>
+                {products.map((product, key) => (
+                  <tr key={key}>
+                    <th>{product._id}</th>
+                    <td>
+                      <img
+                        className="table-image"
+                        src={product.images[0].url}
+                        alt=""
+                      />
+                    </td>
+                    <td>{product.name}</td>
+                    <td>{product.category.name}</td>
+                    <td>{product.price}</td>
+                    <td>{product.stock}</td>
+                    <td>
+                      <ModeEditIcon className="product-list-table-icon" />
+                      <DeleteIcon
+                        className="product-list-table-icon"
+                        onClick={() => productDelete(product._id)}
+                      />
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
           </div>
         </>
       )}
