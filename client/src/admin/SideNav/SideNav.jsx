@@ -1,10 +1,11 @@
 import { useEffect, useRef, useState } from "react";
-import { Link } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
 import DashboardIcon from "@mui/icons-material/Dashboard";
 import ArrowDropDownOutlinedIcon from "@mui/icons-material/ArrowDropDownOutlined";
 import ViewListIcon from "@mui/icons-material/ViewList";
 import PeopleAltIcon from "@mui/icons-material/PeopleAlt";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
+import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
 
 const SideNav = ({ sideNavRef }) => {
   useEffect(() => {
@@ -20,106 +21,135 @@ const SideNav = ({ sideNavRef }) => {
     }
     dropdownList.forEach((div) => div.addEventListener("click", showDropdown));
 
-    /*==================== LINK ACTIVE ====================*/
-    const linkColor = document.querySelectorAll(".nav__link");
+    // /*==================== LINK ACTIVE ====================*/
+    // const linkColor = document.querySelectorAll(".nav__link");
 
-    function colorLink() {
-      linkColor.forEach((l) => l.classList.remove("active"));
-      this.classList.add("active");
-    }
+    // function colorLink() {
+    //   linkColor.forEach((l) => l.classList.remove("active"));
+    //   this.classList.add("active");
+    // }
 
-    linkColor.forEach((l) => l.addEventListener("click", colorLink));
+    // linkColor.forEach((l) => l.addEventListener("click", colorLink));
   }, []);
 
   return (
     <div className="admin_nav" id="admin_navbar" ref={sideNavRef}>
       <nav className="nav__container">
         <div>
-          <Link to="/" className="nav__link nav__logo">
+          <NavLink to="/" className="nav__link nav__logo">
             <i className="bx bxs-disc nav__icon"></i>
             <span className="nav__logo-name">BD Shop</span>
-          </Link>
+          </NavLink>
 
           <div className="nav__list">
             <div className="nav__items">
-              <Link to="/admin/dashbord" className="nav__link active">
+              <NavLink to="/admin/dashbord" className="nav__link active">
                 <DashboardIcon className="nav__icon" />
                 <span className="nav__name">Dashboard</span>
-              </Link>
+              </NavLink>
 
               <div className="nav__dropdown">
-                <Link to="#" className="nav__link">
+                <NavLink to="#" className="nav__link">
                   <ViewListIcon className="nav__icon" />
                   <span className="nav__name">Catalog</span>
                   <ArrowDropDownOutlinedIcon className="nav__dropdown-icon" />
-                </Link>
+                </NavLink>
 
                 <div className="nav__dropdown-collapse">
                   <div className="nav__dropdown-content">
-                    <Link to="/admin/products" className="nav__dropdown-item">
+                    <NavLink
+                      to="/admin/products"
+                      className="nav__dropdown-item">
                       Product List
-                    </Link>
-                    <Link to="/admin/newproduct" className="nav__dropdown-item">
+                    </NavLink>
+                    <NavLink
+                      to="/admin/newproduct"
+                      className="nav__dropdown-item">
                       Product
-                    </Link>
-                    <Link to="/admin/category" className="nav__dropdown-item">
+                    </NavLink>
+                    <NavLink
+                      to="/admin/category"
+                      className="nav__dropdown-item">
                       Categorys
-                    </Link>
+                    </NavLink>
                   </div>
                 </div>
               </div>
 
               <div className="nav__dropdown">
-                <Link to="#" className="nav__link">
+                <NavLink to="#" className="nav__link">
                   <PeopleAltIcon className="nav__icon" />
                   <span className="nav__name">Customers</span>
                   <ArrowDropDownOutlinedIcon className="nav__dropdown-icon" />
-                </Link>
+                </NavLink>
 
                 <div className="nav__dropdown-collapse">
                   <div className="nav__dropdown-content">
-                    <Link to="/admin/users" className="nav__dropdown-item">
+                    <NavLink to="/admin/users" className="nav__dropdown-item">
                       Customers List
-                    </Link>
-                    <Link to="#" className="nav__dropdown-item">
+                    </NavLink>
+                    <NavLink to="#" className="nav__dropdown-item">
                       Customer
-                    </Link>
+                    </NavLink>
                   </div>
                 </div>
               </div>
 
               <div className="nav__dropdown">
-                <Link to="#" className="nav__link">
+                <NavLink to="#" className="nav__link">
                   <ShoppingCartOutlinedIcon className="nav__icon" />
                   <span className="nav__name">Orders</span>
                   <ArrowDropDownOutlinedIcon className="nav__dropdown-icon" />
-                </Link>
+                </NavLink>
 
                 <div className="nav__dropdown-collapse">
                   <div className="nav__dropdown-content">
-                    <Link to="/admin/orders" className="nav__dropdown-item">
+                    <NavLink to="/admin/orders" className="nav__dropdown-item">
                       Orders List
-                    </Link>
+                    </NavLink>
                   </div>
                 </div>
               </div>
 
-              {/* <Link to="#" className="nav__link">
+              <div className="nav__dropdown">
+                <NavLink to="#" className="nav__link">
+                  <FavoriteBorderOutlinedIcon className="nav__icon" />
+                  <span className="nav__name">Marketing</span>
+                  <ArrowDropDownOutlinedIcon className="nav__dropdown-icon" />
+                </NavLink>
+
+                <div className="nav__dropdown-collapse">
+                  <div className="nav__dropdown-content">
+                    <NavLink to="/admin/orders" className="nav__dropdown-item">
+                      Coupon List
+                    </NavLink>
+                  </div>
+                </div>
+                <div className="nav__dropdown-collapse">
+                  <div className="nav__dropdown-content">
+                    <NavLink to="/admin/coupon" className="nav__dropdown-item">
+                      Coupon
+                    </NavLink>
+                  </div>
+                </div>
+              </div>
+
+              {/* <NavLink to="#" className="nav__link">
                 <DashboardIcon className="nav__icon" />
                 <span className="nav__name">Explore</span>
-              </Link>
-              <Link to="#" className="nav__link">
+              </NavLink>
+              <NavLink to="#" className="nav__link">
                 <DashboardIcon className="nav__icon" />
                 <span className="nav__name">Saved</span>
-              </Link> */}
+              </NavLink> */}
             </div>
           </div>
         </div>
 
-        <Link to="#" className="nav__link nav__logout">
+        <NavLink to="#" className="nav__link nav__logout">
           <i className="bx bx-log-out nav__icon"></i>
           <span className="nav__name">Log Out</span>
-        </Link>
+        </NavLink>
       </nav>
     </div>
   );

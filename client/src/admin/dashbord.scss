@@ -111,9 +111,9 @@
 }
 
 /*===== Active link =====*/
-.active {
-  color: $theme-color;
-}
+// .active {
+//   color: $theme-color;
+// }
 
   
   /* Style page content - use this if you want to push the page content to the right when you open the side navigation */
@@ -121,9 +121,7 @@
     transition: margin-left .5s;
     padding: 20px;
     margin-left:180px;
-
     #admin-dashbord{
-
       .admin-dashbord-card{
         text-align: center;
         border: 1px solid $theme-color;

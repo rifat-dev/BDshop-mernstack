@@ -1,0 +1,37 @@
+@import "../../scss/variables.scss";
+#coupon{
+  .coupon-top{
+        display:flex;
+        justify-content:space-between;
+        align-items: center;
+        margin:10px 0;
+        .coupon-save-btn{
+            border: none;
+            padding:10px 30px;
+            background:$theme-color;
+            color:white;
+            &:hover{
+                background:#000;
+                
+            }
+        }
+  }
+  .row{
+    margin: 0;
+    padding: 0;
+  }
+  .title{
+    color: #000;
+  }
+  .form-control:focus{
+   border: 1px solid #ccc;
+    box-shadow:none;
+  }
+  label{
+    color: #000;
+   
+  }
+  input{
+    border-radius: 0;
+  }
+}
