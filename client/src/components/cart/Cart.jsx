@@ -1,4 +1,3 @@
-import "./Cart.css";
 import "./cart.scss";
 import { Fragment, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
@@ -54,7 +53,7 @@ const Cart = () => {
         </div>
       ) : (
         <Fragment>
-          <div className="container-fluid mt-4">
+          <div className="container-fluid my-4">
             <table className="table product-table shadow-sm my-5">
               <thead className="table-head">
                 <tr>
@@ -74,9 +73,8 @@ const Cart = () => {
                     <th scope="row">
                       <img
                         src={product.image}
-                        style={{ width: "200px" }}
                         alt="Product"
-                        className="img-fluid"
+                        className="product-image"
                       />
                     </th>
                     <td>

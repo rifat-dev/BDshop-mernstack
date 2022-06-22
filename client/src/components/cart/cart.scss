@@ -24,14 +24,36 @@
 
     .table{
         .table-head{
-            background-color: #f3b632;
+            background:#f3b632;
+            color:#fff;
+            text-align: center;
         }
     }
+
+    .table.product-table{
+        border-collapse: collapse;
+        tbody{
+            display: table-row-group;
+            vertical-align: middle;
+            border-color: inherit;
+            text-align: center;
+            tr{
+                border-bottom: 1px solid #ededed;
+            }
+        }
+        .product-image{
+            width: 92px;
+            height: 92px;
+            object-fit: cover;
+        }
+    }
+
     .qnt-btn{
         margin: 0 10px;
         &:hover{
             cursor: pointer;
             color: #f3b632;
+            
         }
     }
     .cart-delete-btn{
@@ -78,18 +100,16 @@
                 width: 175px;
             }
             button{
-                
                 text-transform: uppercase;
                 letter-spacing: 2px;
-                display: inline-block;
                 border-radius: 0;
                 padding: 6px 16px;
                 background-color: #000;
                 color: #fff;
                 &:hover{
                     background:#f3b632 ;
-                    color:#000;
-                    border: 1px solid #f3b632;
+                    color:#fff;
+                    border: none;
                 }
             }
             a {

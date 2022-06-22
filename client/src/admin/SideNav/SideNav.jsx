@@ -120,7 +120,9 @@ const SideNav = ({ sideNavRef }) => {
 
                 <div className="nav__dropdown-collapse">
                   <div className="nav__dropdown-content">
-                    <NavLink to="/admin/orders" className="nav__dropdown-item">
+                    <NavLink
+                      to="/admin/coupon-list"
+                      className="nav__dropdown-item">
                       Coupon List
                     </NavLink>
                   </div>

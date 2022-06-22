@@ -5,7 +5,7 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import ModeEditIcon from "@mui/icons-material/ModeEdit";
 
 import ProductEditModal from "./ProductEditModal";
-import Loader from "../../components/layouts/Loader/Loader";
+import CartLoader from "../../components/layouts/Loader/CartLoader";
 import MetaData from "../../components/layouts/MetaData";
 
 import {
@@ -69,7 +69,7 @@ const ProductList = () => {
     <div>
       <MetaData title="Product List-BDShop" />
       {loading ? (
-        <Loader />
+        <CartLoader />
       ) : (
         <>
           <div className="product-list">

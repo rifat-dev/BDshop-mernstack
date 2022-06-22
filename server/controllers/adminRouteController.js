@@ -1,6 +1,7 @@
 const Product = require("../model/productModel");
 const User = require("../model/userModel");
 const Order = require("../model/orderModel");
+const Coupon = require("../model/couponModel");
 const clud = require("cloudinary").v2;
 
 //*** */
@@ -216,6 +217,40 @@ exports.updateAdminOrder = async (req, res, next) => {
       message: "Order update success",
     });
   } catch (e) {
+    next(e);
+  }
+};
+
+//*** */
+// admin coupon routs controllers section
+//**** */
+
+exports.createCoupon = async (req, res, next) => {
+  try {
+    req.body.discountValue = Number(req.body.discountValue);
+    req.body.usageLimit = Number(req.body.usageLimit);
+    // console.log(req.body);
+    let coupon = await Coupon.create(req.body);
+    return res.status(201).json({
+      success: true,
+      coupon,
+    });
+  } catch (e) {
+    console.log(`create coupon error : ${e.message}`);
+    next(e);
+  }
+};
+
+exports.getAllCoupons = async (req, res, next) => {
+  try {
+    const coupons = await Coupon.find();
+    console.log(coupons);
+    return res.status(200).json({
+      success: true,
+      coupons,
+    });
+  } catch (e) {
+    console.log(`getAllCoupons error : ${e.message}`);
     next(e);
   }
 };

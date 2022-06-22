@@ -13,6 +13,7 @@ import OrderList from "../Order/OrderList";
 import UsersList from "../Users/UsersList";
 import NotFound from "../../components/layouts/404";
 import Coupon from "../Coupon/Coupon";
+import CouponList from "../Coupon/CouponList";
 
 const AdminDashbord = () => {
   const [show, setShow] = useState(true);
@@ -45,6 +46,7 @@ const AdminDashbord = () => {
           <Route path="/admin/newproduct" component={NewProduct} exact />
           <Route path="/admin/orders" component={OrderList} exact />
           <Route path="/admin/users" component={UsersList} exact />
+          <Route path="/admin/coupon-list" component={CouponList} exact />
           <Route path="/admin/coupon" component={Coupon} exact />
           <Route path="*" component={<NotFound />} exact />
         </Switch>
