@@ -25,11 +25,6 @@ const options = {
 const user = localStorage.getItem("user");
 
 if (user) {
-  // store.dispatch({
-  //   type: SET_USER,
-  //   payload: JSON.parse(user).user,
-  // });
-
   store.dispatch(getUser());
 }
 

@@ -44,8 +44,6 @@ const Home = () => {
           />
         ))}
       </div>
-
-      {/* <Products products={products[0]} /> */}
     </Fragment>
   );
 };

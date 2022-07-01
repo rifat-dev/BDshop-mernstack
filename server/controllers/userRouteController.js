@@ -1,5 +1,7 @@
+const stripe = require("stripe")("sk_test_4eC39HqLyjWDarjtT1zdp7dc");
 const User = require("../model/userModel");
 const Address = require("../model/userAddressModel");
+const Coupon = require("../model/couponModel");
 const clud = require("cloudinary").v2;
 const bcrypt = require("bcrypt");
 
@@ -157,6 +159,8 @@ exports.logoutUser = (req, res, next) => {
   });
 };
 
+// user addresses.
+
 exports.createBillingAddress = async (req, res, next) => {
   try {
     let address = [];
@@ -220,5 +224,41 @@ exports.getAddresses = async (req, res, next) => {
     });
   } catch (e) {
     next(e);
+  }
+};
+
+// user coupon
+exports.getValidCoupon = async (req, res, next) => {
+  try {
+    console.log(req.params);
+    const coupon = await Coupon.aggregate([
+      {
+        $match: {
+          code: req.params.couponCode,
+          usageLimit: {
+            $gte: 0,
+          },
+          status: "Enabled",
+          startDate: {
+            $lt: new Date(new Date().setHours(00, 00, 00)),
+          },
+          endDate: {
+            $gte: new Date(new Date().setHours(00, 00, 00)),
+          },
+        },
+      },
+    ]);
+    // console.log(coupon);
+    res.status(200).json({ success: true, coupon });
+  } catch (e) {
+    console.log(`Coupon error: ${e.message}`);
+    next(e);
+  }
+};
+
+exports.createPaymentIntent = async (req, res, next) => {
+  try {
+  } catch (e) {
+    console.log(`Payment error: ${e.message}`);
   }
 };

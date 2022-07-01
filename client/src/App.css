@@ -117,8 +117,7 @@ html {
 }
 
 
-/* steps shape */
-
+/* steps shape
 #pointerActive {
     width: 200px;
     height: 40px;
@@ -187,7 +186,7 @@ html {
     border-left: 20px solid gray;
     border-top: 20px solid transparent;
     border-bottom: 20px solid transparent;
-}
+} */
 
 @media only screen and (max-width: 768px) {
     /* width */

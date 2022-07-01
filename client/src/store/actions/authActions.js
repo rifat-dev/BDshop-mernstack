@@ -78,7 +78,8 @@ export const userLogout = () => async (dispatch) => {
       type: LOGOUT_USER_SUCCESS,
     });
 
-    localStorage.removeItem("user");
+    localStorage.clear();
+    sessionStorage.clear();
   } catch (e) {
     dispatch({
       type: LOGOUT_USER_FAIL,

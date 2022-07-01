@@ -6,6 +6,7 @@ import AddCircleIcon from "@mui/icons-material/AddCircle";
 import RemoveCircleIcon from "@mui/icons-material/RemoveCircle";
 import DeleteIcon from "@mui/icons-material/Delete";
 import LoginIcon from "@mui/icons-material/Login";
+import axios from "axios";
 
 import { useAlert } from "react-alert";
 import MetaData from "../layouts/MetaData";
@@ -14,7 +15,12 @@ import { addToCartItem, removeToCart } from "../../store/actions/cartActions";
 import emptyCartSvg from "../../assets/emptyCart.svg";
 
 const Cart = () => {
-  const [totalPrice, setTotalPrice] = useState(0);
+  const [couponCode, setCouponCode] = useState("");
+  const [subtotal, setSubtotal] = useState(0);
+  const [shipping, setShipping] = useState(0);
+  const [total, setTotal] = useState(0);
+  const [discount, setDiscount] = useState(0);
+  const [applyedCoupon, setApplyedCoupon] = useState({});
 
   const alert = useAlert();
   const dispatch = useDispatch();
@@ -29,12 +35,60 @@ const Cart = () => {
   };
 
   useEffect(() => {
-    let price = 0;
-    cartItems.map(
-      (product) => (price = price + product.price * product.quantity)
+    // Calculate Order Prices
+    const itemsPrice = cartItems.reduce(
+      (acc, item) => acc + item.price * item.quantity,
+      0
     );
-    setTotalPrice(price);
+    setSubtotal(itemsPrice);
   }, [cartItems, dispatch]);
+
+  // process coupon
+  const getCoupon = async () => {
+    const { data } = await axios.get(
+      `/api/user/coupon/${couponCode.toLocaleUpperCase()}`
+    );
+    // console.log(data);
+    if (data.coupon.length > 0) {
+      let coupon = data.coupon[0];
+      if (coupon.type === "Percentage") {
+        if (coupon.usageLimit > 0) {
+          setDiscount(
+            (Number(coupon.discountValue) / 100).toFixed(2) * subtotal
+          );
+          setApplyedCoupon(coupon);
+          alert.success(`Coupon code: ${coupon.code} Applyed success`);
+        }
+      } else {
+        if (coupon.usageLimit > 0) {
+          setDiscount(parseInt(coupon.discountValue));
+          setApplyedCoupon(coupon);
+          alert.success(`Coupon code: ${coupon.code} Applyed success`);
+        }
+      }
+    } else {
+      alert.error(`coupon code: ${couponCode} not valid`);
+    }
+  };
+
+  useEffect(() => {
+    let shippingPrice = subtotal > 2000 ? 0 : 50;
+    let totalAmount = Number((subtotal - discount + shippingPrice).toFixed(2));
+    setShipping(shippingPrice);
+    setTotal(totalAmount);
+  }, [subtotal, discount]);
+
+  const checkOutProcess = () => {
+    let cartInfo = {
+      subtotal,
+      shipping,
+      applyedCoupon,
+      discount,
+      total,
+    };
+
+    sessionStorage.setItem("cartInfo", JSON.stringify(cartInfo));
+  };
 
   return (
     <div className="cart table-responsive">
@@ -129,18 +183,21 @@ const Cart = () => {
             </table>
             <div className="row cart-bottom">
               <div className=" col-12 col-md-6">
-                <div class="coupon_code left">
+                <div className="coupon_code left">
                   <h3>Coupon</h3>
-                  <div class="coupon_inner">
+                  <div className="coupon_inner">
                     <p>Enter your coupon code if you have one.</p>
                     <form>
                       <input
-                        class="mb-2"
+                        className="mb-2"
                         placeholder="Coupon code"
                         type="text"
-                        required=""
+                        onChange={(e) => setCouponCode(e.target.value)}
                       />
-                      <button type="submit" class="">
+                      <button
+                        type="button"
+                        className=""
+                        onClick={() => getCoupon()}>
                         Apply coupon
                       </button>
                     </form>
@@ -148,27 +205,35 @@ const Cart = () => {
                 </div>
               </div>
               <div className="cart-total col-12 col-md-6">
-                <div class="coupon_code right">
+                <div className="coupon_code right">
                   <h3>Cart Total</h3>
-                  <div class="coupon_inner">
-                    <div class="cart_subtotal">
+                  <div className="coupon_inner">
+                    <div className="cart_subtotal">
                       <p>Subtotal</p>
-                      <p class="cart_amount">{`৳ ${totalPrice}`}</p>
+                      <p className="cart_amount">{`৳ ${subtotal}`}</p>
                     </div>
-                    <div class="cart_subtotal ">
+                    <div className="cart_subtotal ">
                       <p>Shipping</p>
-                      <p class="cart_amount">
-                        <span>Flat Rate:</span> ৳00
+                      <p className="cart_amount">
+                        <span>Flat Rate:</span> ৳ {shipping}
                       </p>
                     </div>
-                    <a href="#!">Calculate shipping</a>
-                    <div class="cart_subtotal">
+
+                    <div className="cart_subtotal ">
+                      <p>Discount Amount</p>
+                      <p className="cart_amount">{`৳ ${discount}`}</p>
+                    </div>
+
+                    <div className="cart_subtotal">
                       <p>Total</p>
-                      <p class="cart_amount">{`৳ ${totalPrice}`}</p>
+                      <p className="cart_amount">{`৳ ${total}`}</p>
                     </div>
                     {isAuthenticated ? (
-                      <Link to="/shipping">
-                        <button type="button" className="cart-btn">
+                      <Link to="/checkout">
+                        <button
+                          type="button"
+                          className="cart-btn"
+                          onClick={() => checkOutProcess()}>
                           Proceed to Checkout{" "}
                           <i className="fa fa-angle-right right"></i>
                         </button>

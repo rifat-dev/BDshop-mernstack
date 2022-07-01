@@ -124,7 +124,7 @@ const Shop = () => {
               <div className="row col-md-9 ">
                 {shopProducts.length > 0 &&
                   shopProducts.map((product) => (
-                    <div className="col-md-4" key={product._id}>
+                    <div className="col-md-4 mb-4" key={product._id}>
                       <div className="card card-body">
                         <ProductCardTow product={product} />
                       </div>
