@@ -1,32 +1,71 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import Payment from "./Payment";
+import { useAlert } from "react-alert";
+import StripeCheckout from "react-stripe-checkout";
 import { saveShippingInfo } from "../../store/actions/cartActions";
-import { Elements } from "@stripe/react-stripe-js";
-import { loadStripe } from "@stripe/stripe-js";
-const stripePromise = loadStripe("pk_test_TYooMQauvdEDq54NiTphI7jx");
+
+import { createNewOrder, cleareError } from "../../store/actions/orderActions";
+import { NEW_ORDER_CREATE_RESET } from "../../store/Types/orderTypes";
+import { CLEARE_CART } from "../../store/Types/cartType";
 
 const Shipping = ({ history }) => {
-  const [cartInfo, setCartInfo] = useState({});
+  const [cartInfo] = useState(() => {
+    try {
+      let data = sessionStorage.getItem("cartInfo")
+        ? JSON.parse(sessionStorage.getItem("cartInfo"))
+        : {};
+      return data;
+    } catch (e) {
+      console.log(e);
+      return {};
+    }
+  });
+
   const [city, setCity] = useState("");
   const [address, setAddress] = useState("");
   const [phone, setPhone] = useState("");
 
   const { cartItems, shippingInfo } = useSelector((state) => state.cart);
+  const { isCreated, loading, error } = useSelector((state) => state.newOrder);
   const dispatch = useDispatch();
+  const alert = useAlert();
 
   const submitHandler = (e) => {
     e.preventDefault();
     dispatch(saveShippingInfo({ city, address, phone }));
   };
 
+  const onToken = (token) => {
+    // console.log(token);
+    let newOrder = {
+      token,
+      items: cartItems,
+      shippingInfo,
+      coupon: cartInfo.applyedCoupon,
+      subtotal: cartInfo.subtotal,
+      shipping: cartInfo.shipping,
+      discount: cartInfo.discount,
+      totalAmount: cartInfo.total,
+    };
+    dispatch(createNewOrder(newOrder));
+  };
+
   useEffect(() => {
-    let data = sessionStorage.getItem("cartInfo")
-      ? JSON.parse(sessionStorage.getItem("cartInfo"))
-      : {};
-    console.log(data);
-    setCartInfo(data);
-  }, []);
+    if (error) {
+      alert.error(error);
+      dispatch(cleareError());
+    }
+
+    if (isCreated) {
+      alert.success("Order Created Successfully");
+      dispatch({ type: NEW_ORDER_CREATE_RESET });
+      dispatch({ type: CLEARE_CART });
+      localStorage.removeItem("bdshop_cartItems");
+      localStorage.removeItem("bdshop_shipping");
+      sessionStorage.removeItem("cartInfo");
+      history.push("/order-success");
+    }
+  }, [error, alert, dispatch, isCreated, history]);
 
   return (
     <div className="container-fluid my-5 shipping">
@@ -48,7 +87,7 @@ const Shipping = ({ history }) => {
                   id="city"
                   placeholder="city"
                   onChange={(e) => setCity(e.target.value)}
-                  value={city}
+                  value={shippingInfo.city && shippingInfo.city}
                 />
               </div>
               <div className="mb-3 form-group">
@@ -60,7 +99,7 @@ const Shipping = ({ history }) => {
                   name="address"
                   id="address"
                   onChange={(e) => setAddress(e.target.value)}
-                  value={address}
+                  value={shippingInfo.address && shippingInfo.address}
                   rows="3"></textarea>
               </div>
               <div className="mb-3 form-group">
@@ -74,10 +113,18 @@ const Shipping = ({ history }) => {
                   id="mobile"
                   placeholder="mobile"
                   onChange={(e) => setPhone(e.target.value)}
-                  value={phone}
+                  value={shippingInfo.phone && shippingInfo.phone}
                 />
               </div>
-              <button className="shipping-btn">Save</button>
+              <button
+                className="shipping-btn"
+                style={{
+                  backgroundColor: `${
+                    Object.keys(shippingInfo).length > 0 && "#2ECC71"
+                  }`,
+                }}>
+                Save
+              </button>
             </form>
           </div>
         </div>
@@ -134,13 +181,26 @@ const Shipping = ({ history }) => {
                   </tr>
                 </tfoot>
               </table>
-            </div>
-          </div>
 
-          <div className="payment my-5">
-            <Elements stripe={stripePromise}>
-              <Payment />
-            </Elements>
+              <StripeCheckout
+                token={onToken}
+                stripeKey="pk_test_51LH6jeCiKvgC8IeKM4rtYjbBJl7atZYw4nV2nEDTW3uT4O1M3zxIiRW9aSqUkC0gnzMjSjosB9bDxRZo3L9LwCNc00rFbC1in1"
+                amount={cartInfo.total}>
+                <button
+                  id="pay_btn"
+                  type="submit"
+                  className="shipping-btn  py-3"
+                  disabled={loading}>
+                  {loading ? (
+                    <div class="spinner-border text-warning" role="status">
+                      <span class="sr-only">Loading...</span>
+                    </div>
+                  ) : (
+                    `Pay - ${cartInfo && cartInfo.total} TK`
+                  )}
+                </button>
+              </StripeCheckout>
+            </div>
           </div>
         </div>
       </div>

@@ -1,90 +1,92 @@
-const { model, Schema } = require('mongoose')
+const { model, Schema } = require("mongoose");
 
-
-const orderSchema = Schema({
-    shippingInfo: {
-        address: {
-            type: String,
-            required: true
-        },
-        city: {
-            type: String,
-            required: true
-        },
-        country: {
-            type: String,
-            required: true
-        }
-    },
+const orderSchema = Schema(
+  {
     user: {
-        type: Schema.Types.ObjectId,
-        required: true,
-        ref: 'User'
+      type: Schema.Types.ObjectId,
+      required: true,
+      ref: "User",
     },
-    orderItems: [{
+    items: [
+      {
         name: {
-            type: String,
-            required: true
+          type: String,
+          required: true,
         },
         quantity: {
-            type: Number,
-            required: true
+          type: Number,
+          required: true,
         },
         image: {
-            type: String,
-            required: true
+          type: String,
+          required: true,
         },
         price: {
-            type: Number,
-            required: true
+          type: Number,
+          required: true,
         },
         _id: {
-            type: Schema.Types.ObjectId,
-            required: true,
-            ref: 'Product'
-        }
-    }],
-    paymentInfo: {
-        id: {
-            type: String
+          type: Schema.Types.ObjectId,
+          required: true,
+          ref: "Product",
         },
-        status: {
-            type: String
-        }
-    },
-    paidAt: {
-        type: Date
-    },
-    itemsPrice: {
-        type: Number,
-        required: true,
-        default: 0.0
-    },
-    shippingPrice: {
-        type: Number,
-        required: true,
-        default: 0.0
-    },
-    totalPrice: {
-        type: Number,
-        required: true,
-        default: 0.0
-    },
-    orderStatus: {
+      },
+    ],
+    shippingInfo: {
+      address: {
         type: String,
         required: true,
-        default: 'Processing'
+      },
+      city: {
+        type: String,
+        required: true,
+      },
+      phone: {
+        type: String,
+        required: true,
+      },
     },
-    deliveredAt: {
-        type: Date
-    },
-    createdAt: {
+    paymentInfo: {
+      transactionId: {
+        type: String,
+      },
+      paid: {
+        type: Boolean,
+        default: false,
+      },
+      paidAt: {
         type: Date,
-        default: Date.now
-    }
+      },
+    },
+    subtotal: {
+      type: Number,
+      required: true,
+      default: 0.0,
+    },
+    shipping: {
+      type: Number,
+      required: true,
+      default: 0.0,
+    },
+    discount: {
+      type: Number,
+      required: true,
+      default: 0.0,
+    },
+    total: {
+      type: Number,
+      required: true,
+      default: 0.0,
+    },
+    orderStatus: {
+      type: String,
+      required: true,
+      default: "Received",
+    },
+  },
+  { timestamps: true }
+);
 
-})
+const Order = model("Order", orderSchema);
 
-const Order = model('Order', orderSchema)
-
-module.exports = Order
+module.exports = Order;

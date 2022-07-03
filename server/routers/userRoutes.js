@@ -11,7 +11,6 @@ const {
   createShippingAddress,
   getAddresses,
   getValidCoupon,
-  createPaymentIntent,
 } = require("../controllers/userRouteController");
 
 const { isAuthintecated } = require("../midlewares/authMidleware");
@@ -30,7 +29,6 @@ router.post(
   isAuthintecated,
   createShippingAddress
 );
-router.post("/payment-intent", isAuthintecated, createPaymentIntent);
 
 router.get("/addresses", isAuthintecated, getAddresses);
 router.get("/coupon/:couponCode", isAuthintecated, getValidCoupon);

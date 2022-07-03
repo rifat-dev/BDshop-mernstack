@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useAlert } from "react-alert";
 import {
+  CardElement,
   CardNumberElement,
   CardExpiryElement,
   CardCvcElement,
@@ -13,6 +14,18 @@ import { NEW_ORDER_CREATE_RESET } from "../../store/Types/orderTypes";
 import { CLEARE_CART } from "../../store/Types/cartType";
 
 const Payment = ({ history }) => {
+  const [cartInfo, setCartInfo] = useState(() => {
+    try {
+      let data = sessionStorage.getItem("cartInfo")
+        ? JSON.parse(sessionStorage.getItem("cartInfo"))
+        : {};
+      return data;
+    } catch (e) {
+      console.log(e);
+      return {};
+    }
+  });
+
   const [cardNum, setCardNum] = useState("");
   const [cardExpir, setCardExpir] = useState("");
   const [cardCvc, setCardCvc] = useState("");
@@ -39,14 +52,21 @@ const Payment = ({ history }) => {
   const alert = useAlert();
   const dispatch = useDispatch();
 
-  const submitHandler = (e) => {
+  const submitHandler = async (e) => {
     e.preventDefault();
 
-    order.paymentInfo = {
-      id: 12435689,
-      status: "success",
-    };
-    dispatch(createNewOrder(order));
+    if (elements == null) {
+      return;
+    }
+
+    const { error, paymentMethod } = await stripe.createPaymentMethod({
+      type: "card",
+      card: elements.getElement(CardNumberElement),
+    });
+
+    console.log(paymentMethod);
+
+    // dispatch(createNewOrder(order));
   };
 
   useEffect(() => {
@@ -76,10 +96,8 @@ const Payment = ({ history }) => {
               <label htmlFor="card_num_field">Card Number</label>
               <CardNumberElement
                 type="text"
-                onChange={(e) => setCardNum(e.target.value)}
                 id="card_num_field"
                 className="form-control"
-                value={cardNum}
               />
             </div>
 
@@ -87,10 +105,8 @@ const Payment = ({ history }) => {
               <label htmlFor="card_exp_field">Card Expiry</label>
               <CardExpiryElement
                 type="text"
-                onChange={(e) => setCardExpir(e.target.value)}
                 id="card_exp_field"
                 className="form-control"
-                value={cardExpir}
               />
             </div>
 
@@ -98,8 +114,6 @@ const Payment = ({ history }) => {
               <label htmlFor="card_cvc_field">Card CVC</label>
               <CardCvcElement
                 type="text"
-                onChange={(e) => setCardCvc(e.target.value)}
-                value={cardCvc}
                 id="card_cvc_field"
                 className="form-control"
               />
@@ -109,8 +123,8 @@ const Payment = ({ history }) => {
               id="pay_btn"
               type="submit"
               className="shipping-btn  py-3 "
-              disabled={loding ? loding : false}>
-              Pay {` - ${orderInfo && orderInfo.totalPrice}`}
+              disabled={!stripe || !elements}>
+              Pay {` - ${cartInfo && cartInfo.total}`}
             </button>
           </form>
         </div>

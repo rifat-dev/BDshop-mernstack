@@ -7,7 +7,7 @@ import Shop from "./Shop/Shop";
 import SingleProduct from "../components/products/SingleProduct";
 import Cart from "../components/cart/Cart";
 import Checkout from "../components/cart/Checkout";
-import Payment from "../components/cart/Payment";
+import OrderSuccess from "../components/cart/OrderSuccess";
 
 import Footer from "../components/layouts/Footer";
 import NotFound from "../components/layouts/404";
@@ -41,7 +41,7 @@ const HomePage = () => {
         /> */}
 
         <ProtectedRoute path="/checkout" component={Checkout} exact />
-        <ProtectedRoute path="/payment" component={Payment} exact />
+        <ProtectedRoute path="/order-success" component={OrderSuccess} exact />
 
         <Route path="/login" component={Login} exact />
         <Route path="/register" component={Register} exact />

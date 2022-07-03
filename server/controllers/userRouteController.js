@@ -1,4 +1,6 @@
-const stripe = require("stripe")("sk_test_4eC39HqLyjWDarjtT1zdp7dc");
+const stripe = require("stripe")(
+  "sk_test_51LH6jeCiKvgC8IeKZfFnnm5sXzWTc8pmcATiUxUii2I2X9gic1Nh91JE99Hj2UBRA9BEWrG3SAptc4B74Pw8UcFN00ZaCxD6IQ"
+);
 const User = require("../model/userModel");
 const Address = require("../model/userAddressModel");
 const Coupon = require("../model/couponModel");
@@ -253,12 +255,5 @@ exports.getValidCoupon = async (req, res, next) => {
   } catch (e) {
     console.log(`Coupon error: ${e.message}`);
     next(e);
-  }
-};
-
-exports.createPaymentIntent = async (req, res, next) => {
-  try {
-  } catch (e) {
-    console.log(`Payment error: ${e.message}`);
   }
 };
