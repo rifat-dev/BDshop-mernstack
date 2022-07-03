@@ -20,9 +20,9 @@ const ProfileDashbordNav = () => {
         </li>
         <li>
           <NavLink
-            to="/profile/dashbord/downloads"
+            to="/profile/dashbord/change-password"
             className={(isActive) => (isActive ? "profile-nav-active" : "")}>
-            Downloads
+            Update Password
           </NavLink>
         </li>
         <li>

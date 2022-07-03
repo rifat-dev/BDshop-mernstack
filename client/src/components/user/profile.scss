@@ -143,3 +143,95 @@
         }
     }
 }
+
+.order-success{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+
+    .box-shadow {
+        box-shadow: 0 0 10px 0 rgb(0 0 0 / 7%);
+        padding: 8px 10px;
+    }
+    .goback-btn button{
+        margin: 6px;
+        border: none;
+        padding: 10px 20px;
+        background-color: #000;
+        color: #fff;
+        cursor: pointer;
+        text-transform: uppercase;
+    }
+    .order-success-info{
+        width: 100%;
+        padding:10px;
+        margin-top: 20px;
+        .group-image{
+            text-align: center;
+            margin-bottom:15px;
+            img{
+                max-width: 100%;
+                height:auto;
+                
+            }
+        }
+
+        .thankyou{
+            text-align: center;
+            margin-bottom:15px;
+            img{
+                max-width: 60px;
+                height:60px;
+                height:auto;
+                object-fit: cover;
+                margin-bottom: 10px;
+            }
+            h5{
+                text-transform: uppercase;
+            }
+        }
+
+        .messege,.tid{
+            text-align: center;
+        }
+
+        .order-delivered{
+            margin-top: 10px;
+            text-align: center;
+            
+        }
+
+        .order_review{
+            margin-top: 20px;
+            .check-heading{
+                text-align: center;
+                h3{
+                    text-transform: uppercase;
+                    margin: 10px 0;
+                }
+            }
+
+            .table{
+                border: 1px solid #ccc;
+            }
+        }
+
+        .address{
+            margin: 15px 0;
+            h5{
+                text-transform: uppercase;
+            }
+        }
+    }
+}
+
+.update-pass-btn{
+    margin: 6px;
+    border: none;
+    padding: 10px 20px;
+    background-color: #000;
+    color: #fff;
+    cursor: pointer;
+    text-transform: uppercase;
+}

@@ -1,7 +1,7 @@
 # **BDShop-Ecommarce, Website**
 
 <a  href="#">
-<img  width="100%"  height="100%"  src="https://res.cloudinary.com/rifat/image/upload/v1625287587/shopBanner_qufpn3.png"/>
+<img  width="100%"  height="100%"  src="./screenshot.png"/>
 </a>
 
 ## About & Features

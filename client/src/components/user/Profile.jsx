@@ -5,8 +5,10 @@ import { Switch, Route, Redirect } from "react-router-dom";
 
 import ProfileDashbordNav from "./ProfileDashbordNav";
 import MyOrders from "./MyOrders";
+import OrderDetails from "./OrderDetails";
 import Addresses from "./Addresses";
 import MyAccount from "./MyAccount";
+import UpdatePassword from "./UpdatePassword";
 
 import Loader from "../layouts/Loader/Loader";
 import MetaData from "../layouts/MetaData";
@@ -37,8 +39,13 @@ const Profile = () => {
                     exact
                   />
                   <Route
-                    path="/profile/dashbord/downloads"
-                    component={MyAccount}
+                    path="/profile/dashbord/orders/:orderId"
+                    component={OrderDetails}
+                    exact
+                  />
+                  <Route
+                    path="/profile/dashbord/change-password"
+                    component={UpdatePassword}
                     exact
                   />
                   <Route
