@@ -11,6 +11,8 @@ const {
   createShippingAddress,
   getAddresses,
   getValidCoupon,
+  sendUserOTP,
+  verifyUserOTP,
 } = require("../controllers/userRouteController");
 
 const { isAuthintecated } = require("../midlewares/authMidleware");
@@ -29,6 +31,9 @@ router.post(
   isAuthintecated,
   createShippingAddress
 );
+
+router.post("/sendOTP", sendUserOTP);
+router.post("/verifyOTP", verifyUserOTP);
 
 router.get("/addresses", isAuthintecated, getAddresses);
 router.get("/coupon/:couponCode", isAuthintecated, getValidCoupon);

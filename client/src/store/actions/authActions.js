@@ -35,7 +35,6 @@ export const userRegister = (formData) => async (dispatch) => {
     const { data } = await axios.post("/api/user/register", formData, config);
 
     localStorage.setItem("user", JSON.stringify(data));
-
     dispatch({
       type: REGISTER_USER_SUCCESS,
       payload: data.user,

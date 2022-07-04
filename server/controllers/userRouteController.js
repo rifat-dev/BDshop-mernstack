@@ -7,6 +7,8 @@ const Coupon = require("../model/couponModel");
 const clud = require("cloudinary").v2;
 const bcrypt = require("bcrypt");
 
+const createOTP = require("../utils/createOTP");
+const verifyOTP = require("../utils/verifyOTP");
 const sendToken = require("../utils/sendToken");
 
 // register user -> '/api/user/register'
@@ -254,6 +256,52 @@ exports.getValidCoupon = async (req, res, next) => {
     res.status(200).json({ success: true, coupon });
   } catch (e) {
     console.log(`Coupon error: ${e.message}`);
+    next(e);
+  }
+};
+
+exports.sendUserOTP = async (req, res, next) => {
+  let { email } = req.body;
+
+  try {
+    const user = await User.findOne({ email: email });
+
+    if (!user) {
+      return res.status(400).json({
+        success: false,
+        message: "Your email is not correct",
+      });
+    }
+
+    const { fullHash, isSend } = await createOTP(email);
+    if (!isSend) {
+      return res.status(504).json({
+        success: false,
+        message: "OTP send fail",
+      });
+    }
+    res.status(200).send({ hash: fullHash, email });
+  } catch (e) {
+    next(e);
+  }
+};
+
+exports.verifyUserOTP = async (req, res, next) => {
+  let { email, hash, otp } = req.body;
+
+  try {
+    const user = await User.findOne({ email: email });
+    const isVerified = verifyOTP(email, hash, otp);
+
+    if (!isVerified) {
+      return res.status(504).json({
+        verification: false,
+        message: "Please try again",
+      });
+    }
+
+    sendToken(user, 200, res);
+  } catch (e) {
     next(e);
   }
 };

@@ -14,6 +14,7 @@ import NotFound from "../components/layouts/404";
 
 import ProtectedRoute from "../components/route/ProtectedRoute";
 import Login from "./Login/Login";
+import OTPLogin from "./OTPLogin";
 import Register from "./Register/Register";
 
 const HomePage = () => {
@@ -26,24 +27,11 @@ const HomePage = () => {
         <Route path="/product/:id" component={SingleProduct} exact />
         <Route path="/cart" component={Cart} exact />
 
-        {/* 
-        <ProtectedRoute
-          path="/profile/me/update-password"
-          component={UpdatePassword}
-          exact
-        />
-
-        <ProtectedRoute path="/profile/me/orders" component={Orders} exact />
-        <ProtectedRoute
-          path="/profile/me/orders/:id"
-          component={OrderDetails}
-          exact
-        /> */}
-
         <ProtectedRoute path="/checkout" component={Checkout} exact />
         <ProtectedRoute path="/order-success" component={OrderSuccess} exact />
 
         <Route path="/login" component={Login} exact />
+        <Route path="/otp-login" component={OTPLogin} exact />
         <Route path="/register" component={Register} exact />
 
         <Route path="*">

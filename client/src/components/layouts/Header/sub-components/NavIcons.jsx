@@ -54,6 +54,9 @@ function NavIcons({ mobileNavToggle, cartOpen, setCartOpen }) {
                   <Link to="/login">Login</Link>
                 </li>
                 <li className="nav-item">
+                  <Link to="/otp-login">OTP Login</Link>
+                </li>
+                <li className="nav-item">
                   <Link to="/register">Register</Link>
                 </li>
               </>
