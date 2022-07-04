@@ -28,6 +28,7 @@ const OrderListCard = ({ order_list, index }) => {
   } else if (status === "Deliverd") {
     customColor = "Deliverd status_contain";
   }
+
   useEffect(() => {}, [status]);
 
   useEffect(() => {
@@ -45,12 +46,12 @@ const OrderListCard = ({ order_list, index }) => {
         setId("");
       }
     }
-  }, [isUpdated, error, alert, dispatch]);
+  }, [isUpdated, order_list._id, error, alert, dispatch]);
 
   return (
-    <div className="col-md-6 mt-3 mb-3 col-sm-6">
-      <div className="card m-0 p-1">
-        <div className="mb-2 d-flex align-items-center justify-content-between pt-3 pl-3">
+    <div className="col-12 col-md-6 mt-3 mb-3">
+      <div className="card m-2 p-1">
+        <div className="mb-2 d-flex align-items-center justify-content-between p-4">
           <h5>{index + 1}.</h5>
           <div className="status_Container">
             <select
@@ -75,38 +76,34 @@ const OrderListCard = ({ order_list, index }) => {
         </div>
         <div className="card-body order_list_card_body text-left">
           <div>
-            <p className="mt-0 mb-0">
+            <p className="mt-2 mb-2">
               <strong>Order ID: </strong>
               {order_list._id}
             </p>
-            <p className="mt-0 mb-0">
+            <p className="mt-2 mb-2">
               <strong>User ID: </strong>
               {order_list.user}
             </p>
-            <p className="mt-0 mb-0">
+            <p className="mt-2 mb-2">
               <strong>Order Date: </strong>
               {order_list.createdAt}
             </p>
           </div>
 
-          {/* <button className="btn btn-info ml-auto d-block see_more" type="button" data-toggle="collapse" data-target={'#' + order_list._id} aria-expanded="true" aria-controls={'#' + order_list._id}>
-                        Show Detail
-                    </button> */}
-
           <div id={order_list._id}>
             <div>
               <h5 style={{ color: "green" }}>Shipping Detail:</h5>
-              <p className="mt-0 mb-0">
+              <p className="mt-2 mb-2">
                 <strong>Address </strong>
                 {order_list.shippingInfo.address}
               </p>
-              <p className="mt-0 mb-0">
+              <p className="mt-2 mb-2">
                 <strong>City </strong>
                 {order_list.shippingInfo.city}
               </p>
-              <p className="mt-0 mb-0">
-                <strong>Country : </strong>
-                {order_list.shippingInfo.country}
+              <p className="mt-2 mb-2">
+                <strong>Phone : </strong>
+                {order_list.shippingInfo.phone}
               </p>
             </div>
             <div>
@@ -118,7 +115,7 @@ const OrderListCard = ({ order_list, index }) => {
                   <table className="table">
                     <thead className="thead-light">
                       <tr>
-                        <th scope="col">No</th>
+                        <th scope="col">Image</th>
                         <th scope="col">Product ID</th>
                         <th scope="col">Quantity</th>
                         <th scope="col">Price</th>
@@ -126,13 +123,19 @@ const OrderListCard = ({ order_list, index }) => {
                       </tr>
                     </thead>
                     <tbody>
-                      {order_list.orderItems.map((food, index) => (
+                      {order_list.items.map((item, index) => (
                         <tr key={index}>
-                          <th scope="row">{index + 1}</th>
-                          <td>{food._id}</td>
-                          <td className="text-center">{food.quantity}</td>
-                          <td>${food.price}</td>
-                          <td>${food.price * food.quantity}</td>
+                          <th scope="row">
+                            <img
+                              className="w-75 h-75"
+                              src={item.image}
+                              alt=""
+                            />
+                          </th>
+                          <td>{item._id}</td>
+                          <td className="text-center">{item.quantity}</td>
+                          <td>TK {item.price}</td>
+                          <td>TK {item.price * item.quantity}</td>
                         </tr>
                       ))}
                       <tr>
@@ -147,27 +150,33 @@ const OrderListCard = ({ order_list, index }) => {
                 </div>
               </div>
             </div>
-            <div>
-              <h5 style={{ color: "green" }} className="mb-0">
+            <div className="my-4">
+              <h5 style={{ color: "green" }} className="my-4">
                 Payment Info:
               </h5>
-              <p className="mt-0 mb-0">
-                <strong>Items Price </strong>${order_list.itemsPrice}
+              <p className="mt-2 mb-2">
+                <strong>subtotal </strong>TK {order_list.subtotal}
               </p>
-              <p className="mt-0 mb-0">
-                <strong>Shipping: </strong>${order_list.shippingPrice}
+              <p className="mt-2 mb-2">
+                <strong>shipping: </strong>TK {order_list.shipping}
               </p>
-              <p className="mt-0 mb-0">
-                <strong>Total: </strong>${order_list.totalPrice}
+              <p className="mt-2 mb-2">
+                <strong>discount: </strong>TK {order_list.discount}
+              </p>
+              <p className="mt-2 mb-2">
+                <strong>Total: </strong>TK {order_list.total}
               </p>
               <p
                 style={
-                  order_list.paymentInfo.status === "success"
+                  order_list.paymentInfo.paid
                     ? { color: "green" }
                     : { color: "red" }
                 }>
-                <strong style={{ color: "black" }}>Payment Status:</strong>{" "}
-                {order_list.paymentInfo.status}
+                <strong style={{ color: "black" }}>Payment Status:</strong> Paid
+              </p>
+              <p className="mt-2 mb-2">
+                <strong>TransactionId: </strong>{" "}
+                {order_list.paymentInfo.transactionId}
               </p>
             </div>
           </div>

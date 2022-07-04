@@ -20,7 +20,7 @@ const FeaturedProducts = ({ name, _id, products }) => {
         },
       },
       {
-        breakpoint: 600,
+        breakpoint: 860,
         settings: {
           slidesToShow: 2,
           slidesToScroll: 2,
