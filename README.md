@@ -9,8 +9,10 @@
 **BDshop** is a full-stack single-page ecommarce web app.
 
 - Login / Registration system , private routes and dashboard for admins .
+- OTP login by email
 - Users can order products, monitor their orderlist and create product review
-- Admin can add product, update and delete products.
+- Coupon code system
+- Admin can add product, category and update and delete products.
 - Admin can change the status of orderlist and can add new admins.
 
 ### Front-end Technology :
