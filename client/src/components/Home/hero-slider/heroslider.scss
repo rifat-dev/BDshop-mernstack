@@ -1,7 +1,7 @@
 
 .hero-slider-warpper{
     width: 100vw;
-    height: 100vh;
+    min-height: 100vh;
     background-color: #f0e0ff;
     padding-top:100px;
     .carousel {
@@ -37,7 +37,8 @@
         }
 
         .hero-slider-img{
-
+           width:100%;
+           display: block;
         }
 
         .carousel-control-prev-icon{
@@ -47,6 +48,141 @@
         .carousel-control-next-icon{
             font-size:28px;
             color: #000 !important;
+        }
+    }
+}
+
+@media only screen and (max-width: 992px) {
+    .hero-slider-warpper{
+        padding-top:50px;
+        .carousel {
+            width:100%;
+            height: auto;
+            .carousel-item{
+                margin:0;
+            }
+           
+            .container{
+                margin: 0 20px;
+                padding: 0;
+                width:100% !important;
+            }
+            .hero-slider-info{
+                z-index: 9;
+                padding:0;
+                h3{
+                    font-size: 20px;
+                    font-weight: 500;
+                    margin: 0;
+                }
+                h1{
+                    font-size: 45px;
+                    line-height: 70px;
+                    margin: 6px 0 30px;
+                    color: #010101;
+                }
+                button{
+                    font-size: 16px;
+                    line-height: 1;
+                    display: inline-block;
+                    padding: 14px 45px 16px;
+                    text-transform: uppercase;
+                    color: #010101;
+                    border: 1px solid #333;
+                    &:hover{
+                        color: #fff;
+                        border: 1px solid #f3b632;
+                        background: #f3b632;
+                    }
+                }
+            }
+    
+            .hero-slider-img{
+              padding:0;
+              img{
+                width:100%;
+                height:100%;
+                object-fit: cover;
+              }
+            }
+    
+            .carousel-control-prev-icon{
+                font-size:28px;
+                color: #000 !important;
+            }
+            .carousel-control-next-icon{
+                font-size:28px;
+                color: #000 !important;
+            }
+        }
+    }
+}
+
+@media only screen and (max-width: 450px) {
+    .hero-slider-warpper{
+        padding-top:50px;
+        min-height: 60vh;
+        .carousel {
+            width:100%;
+            height: auto;
+            .carousel-item{
+                margin:0;
+            }
+           
+            .container{
+                margin: 0 20px;
+                padding: 0;
+                width:100% !important;
+            }
+            .hero-slider-info{
+                z-index: 9;
+                padding:0;
+                margin-bottom: 15px;
+                h3{
+                    font-size: 16px;
+                    font-weight: 500;
+                    margin: 0;
+                }
+                h1{
+                    font-size: 32px;
+                    line-height: 70px;
+                    margin: 6px 0 20px;
+                    color: #010101;
+                }
+                button{
+                    font-size: 16px;
+                    line-height: 1;
+                    display: inline-block;
+                    padding: 10px 35px 10px;
+                    text-transform: uppercase;
+                    color: #010101;
+                    border: 1px solid #333;
+                    &:hover{
+                        color: #fff;
+                        border: 1px solid #f3b632;
+                        background: #f3b632;
+                    }
+                }
+            }
+    
+            .hero-slider-img{
+              padding:0;
+              margin-top: 20px;
+              img{
+                width:90%;
+                height:100%;
+                object-fit: cover;
+              }
+            }
+    
+            .carousel-control-prev-icon{
+                font-size:28px;
+                color: #000 !important;
+            }
+            .carousel-control-next-icon{
+                font-size:28px;
+                color: #000 !important;
+            }
         }
     }
 }

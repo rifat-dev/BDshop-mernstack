@@ -33,17 +33,13 @@ const HeroSlider = () => {
           <Carousel.Item key={key}>
             <div className="container">
               <div className="row">
-                <div className="col-md-6 hero-slider-info">
+                <div className="col-12 col-md-6 col-lg-6 hero-slider-info">
                   <h3 className="animate__animated ">{item.title}</h3>
                   <h1 className="animate__animated ">{item.subtitle}</h1>
                   <button className="animate__animated ">Shop Now</button>
                 </div>
-                <div className="col-md-6 hero-slider-img animate__animated ">
-                  <img
-                    className="d-block w-100"
-                    src={item.image}
-                    alt="First slide"
-                  />
+                <div className="col-12 col-md-6 col-lg-6 hero-slider-img animate__animated ">
+                  <img src={item.image} alt="First slide" />
                 </div>
               </div>
             </div>
