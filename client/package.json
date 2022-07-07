@@ -43,6 +43,7 @@
         "react-slick": "^0.29.0",
         "react-spinners-kit": "^1.9.1",
         "react-stripe-checkout": "^2.6.3",
+        "react-to-pdf": "^0.0.14",
         "react-toast-notifications": "^2.5.1",
         "redux": "^4.1.0",
         "redux-devtools-extension": "^2.13.9",

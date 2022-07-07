@@ -21,6 +21,8 @@ const AdminDashbord = () => {
   const mainRef = useRef();
   const sideNavRef = useRef();
 
+  console.log("admin page...");
+
   useEffect(() => {
     if (show) {
       mainRef.current.style.marginLeft = "180px";

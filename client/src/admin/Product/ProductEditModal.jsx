@@ -15,7 +15,7 @@ const ProductEditModal = ({ product, show, handleClose }) => {
   useEffect(() => {
     setName(product.name);
     setPrice(product.price);
-  });
+  }, [product.name, product.price]);
 
   const updateProduct = (e) => {
     e.preventDefault();

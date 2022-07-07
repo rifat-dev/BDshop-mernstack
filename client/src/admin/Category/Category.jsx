@@ -7,9 +7,8 @@ import CategoryModal from "./CategoryModal";
 import IsActive from "./IsActive";
 import ShowHome from "./ShowHome";
 
-const Category = (props) => {
+const Category = () => {
   const [created, setCreated] = useState(false);
-  const [rows, setRows] = useState([]);
   const [categorys, setCategorys] = useState([]);
   useEffect(() => {
     const getAllCategory = async () => {

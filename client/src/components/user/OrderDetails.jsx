@@ -8,12 +8,14 @@ import groupImage from "../../assets/order_seccess_people.png";
 import successImage from "../../assets/order_success.png";
 import orderDeliveredImage from "../../assets/orderdelivered.png";
 
+import Invoice from "../pdf/Invoice";
+import { PDFViewer, PDFDownloadLink } from "@react-pdf/renderer";
+
 const OrderDetails = (props) => {
   const { orderId } = props.match.params;
   const { singleOrder } = useSelector((state) => state.singleOrderDetails);
   const dispatch = useDispatch();
 
-  console.log(singleOrder);
   useEffect(() => {
     dispatch(getMySingleOrder(orderId));
   }, []);
@@ -21,9 +23,22 @@ const OrderDetails = (props) => {
     <>
       {Object.keys(singleOrder).length > 0 ? (
         <div className="order-success container-fluid">
-          {/* <div className="goback-btn">
-            <button>download PDF</button>
-          </div> */}
+          <div className="goback-btn">
+            <PDFDownloadLink
+              document={<Invoice images={groupImage} order={singleOrder} />}
+              fileName="order-details.pdf">
+              {({ blob, url, loading, error }) =>
+                loading ? (
+                  "Loading document..."
+                ) : (
+                  <button className="btn btn-primary">Download as pdf</button>
+                )
+              }
+            </PDFDownloadLink>
+          </div>
+          {/* <PDFViewer width="1000" height="600" className="app">
+            <Invoice images={groupImage} order={singleOrder} />
+          </PDFViewer> */}
           <div className="order-success-info box-shadow">
             <div className="group-image">
               <img src={groupImage} alt="groupImage" />

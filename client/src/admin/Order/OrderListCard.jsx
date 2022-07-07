@@ -46,7 +46,7 @@ const OrderListCard = ({ order_list, index }) => {
         setId("");
       }
     }
-  }, [isUpdated, order_list._id, error, alert, dispatch]);
+  }, [isUpdated, id, order_list._id, error, alert, updatedStatus, dispatch]);
 
   return (
     <div className="col-12 col-md-6 mt-3 mb-3">

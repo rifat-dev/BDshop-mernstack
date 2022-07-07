@@ -18,6 +18,7 @@ import OTPLogin from "./OTPLogin";
 import Register from "./Register/Register";
 
 const HomePage = () => {
+  console.log("home page...");
   return (
     <Fragment>
       <NavBar />

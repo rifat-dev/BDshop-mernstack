@@ -10,9 +10,9 @@ import draftToHtml from "draftjs-to-html";
 import axios from "axios";
 
 import MetaData from "../../components/layouts/MetaData";
-import ProductCategory from "../../utils/ProductCategory";
+// import ProductCategory from "../../utils/ProductCategory";
 
-import { newProductValidator } from "../../utils/validator";
+// import { newProductValidator } from "../../utils/validator";
 import {
   createAdminProduct,
   clearError,
@@ -46,7 +46,7 @@ const NewProduct = ({ history }) => {
   const [filter, setFilter] = useState("");
 
   const [imagesPreview, setImagesPreview] = useState([]);
-  const [errors, setError] = useState({});
+  // const [errors, setError] = useState({});
 
   const alert = useAlert();
   const dispatch = useDispatch();
@@ -64,8 +64,8 @@ const NewProduct = ({ history }) => {
 
   const onImageChange = (e) => {
     const files = [...e.target.files];
-    console.log(files);
-    files.map((file) => {
+
+    files.map((file) =>
       Compress.imageFileResizer(
         file, // the file from input
         480, // width
@@ -78,8 +78,8 @@ const NewProduct = ({ history }) => {
           setImages((prev) => [...prev, uri]);
         },
         "base64" // blob or base64 default base64
-      );
-    });
+      )
+    );
   };
 
   const submitHandler = () => {
@@ -375,11 +375,7 @@ const NewProduct = ({ history }) => {
                 {imagesPreview &&
                   imagesPreview.map((image, index) => (
                     <div className="col-md-4">
-                      <img
-                        style={{ width: "100%" }}
-                        src={image}
-                        alt="Product Image"
-                      />
+                      <img style={{ width: "100%" }} src={image} alt="" />
                     </div>
                   ))}
               </div>

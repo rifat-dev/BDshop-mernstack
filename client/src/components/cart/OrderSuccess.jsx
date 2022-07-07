@@ -5,17 +5,43 @@ import groupImage from "../../assets/order_seccess_people.png";
 import successImage from "../../assets/order_success.png";
 import orderDeliveredImage from "../../assets/orderdelivered.png";
 
-import MyDocument from "../pdf/Pdf";
-import { PDFDownloadLink } from "@react-pdf/renderer";
+import Invoice from "../pdf/Invoice";
+import { PDFDownloadLink, PDFViewer } from "@react-pdf/renderer";
 const OrderSuccess = () => {
+  const [order, setOrder] = useState(() => {
+    try {
+      let data = localStorage.getItem("order-success")
+        ? JSON.parse(localStorage.getItem("order-success"))
+        : {};
+      return data;
+    } catch (e) {
+      console.log(e);
+    }
+  });
   const { newOrder } = useSelector((state) => state.newOrder);
+
+  console.log(order);
+  useEffect(() => {
+    localStorage.setItem("order-success", JSON.stringify(newOrder));
+    setOrder(newOrder);
+  }, [newOrder]);
 
   return (
     <>
-      {Object.keys(newOrder).length > 0 ? (
+      {Object.keys(order).length > 0 ? (
         <div className="order-success container-fluid">
           <div className="goback-btn">
-            <button>download PDF</button>
+            <PDFDownloadLink
+              document={<Invoice images={groupImage} order={order} />}
+              fileName="order-details.pdf">
+              {({ blob, url, loading, error }) =>
+                loading ? (
+                  "Loading document..."
+                ) : (
+                  <button>Download as pdf</button>
+                )
+              }
+            </PDFDownloadLink>
           </div>
           <div className="order-success-info box-shadow">
             <div className="group-image">
@@ -29,7 +55,7 @@ const OrderSuccess = () => {
               Payment Is Successfully Processsed And Your Order Is On The Way
             </p>
             <p className="tid">
-              Transaction ID: {newOrder.paymentInfo.transactionId}
+              Transaction ID: {order.paymentInfo.transactionId}
             </p>
 
             <div className="order-delivered">
@@ -51,7 +77,7 @@ const OrderSuccess = () => {
                     </tr>
                   </thead>
                   <tbody>
-                    {newOrder.items.map((item) => (
+                    {order.items.map((item) => (
                       <tr>
                         <td>
                           <img src={item.image} alt="" className="w-50 h-50" />
@@ -67,21 +93,19 @@ const OrderSuccess = () => {
                   <tfoot>
                     <tr>
                       <th colSpan="3">SubTotal</th>
-                      <td className="product-subtotal">
-                        ৳ {newOrder.subtotal}{" "}
-                      </td>
+                      <td className="product-subtotal">৳ {order.subtotal} </td>
                     </tr>
                     <tr>
                       <th colSpan="3">Shipping</th>
-                      <td>৳ {newOrder.shipping}</td>
+                      <td>৳ {order.shipping}</td>
                     </tr>
                     <tr>
                       <th colSpan="3">Discount</th>
-                      <td>৳ {newOrder.discount}</td>
+                      <td>৳ {order.discount}</td>
                     </tr>
                     <tr>
                       <th colSpan="3">Total</th>
-                      <td className="product-subtotal">৳ {newOrder.total}</td>
+                      <td className="product-subtotal">৳ {order.total}</td>
                     </tr>
                   </tfoot>
                 </table>
@@ -91,28 +115,15 @@ const OrderSuccess = () => {
             <div className="address">
               <h5>Shipping Address</h5>
               <hr />
-              <p>City: {newOrder.shippingInfo.city} </p>
-              <p>Address: {newOrder.shippingInfo.address}</p>
-              <p>Phone: {newOrder.shippingInfo.phone}</p>
+              <p>City: {order.shippingInfo.city} </p>
+              <p>Address: {order.shippingInfo.address}</p>
+              <p>Phone: {order.shippingInfo.phone}</p>
             </div>
           </div>
         </div>
       ) : (
         <>
-          <h3 className="text-center my-5">
-            No order created
-            <PDFDownloadLink
-              document={<MyDocument images={groupImage} />}
-              fileName="order-details.pdf">
-              {({ blob, url, loading, error }) =>
-                loading ? (
-                  "Loading document..."
-                ) : (
-                  <button className="btn btn-primary">Download pdf</button>
-                )
-              }
-            </PDFDownloadLink>
-          </h3>
+          <h3 className="text-center my-5">No order created</h3>
         </>
       )}
     </>

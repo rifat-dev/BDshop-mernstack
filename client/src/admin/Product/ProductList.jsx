@@ -4,15 +4,15 @@ import { useAlert } from "react-alert";
 import DeleteIcon from "@mui/icons-material/Delete";
 import ModeEditIcon from "@mui/icons-material/ModeEdit";
 
-import ProductEditModal from "./ProductEditModal";
+// import ProductEditModal from "./ProductEditModal";
 import CartLoader from "../../components/layouts/Loader/CartLoader";
 import MetaData from "../../components/layouts/MetaData";
 
 import {
   getAdminProducts,
-  deleteAdminProduct,
+  // deleteAdminProduct,
 } from "../../store/actions/adminActions";
-import ProductCard from "./ProductCard";
+// import ProductCard from "./ProductCard";
 
 import { clearError } from "../../store/actions/adminActions";
 import {
@@ -21,8 +21,8 @@ import {
 } from "../../store/Types/adminType";
 
 const ProductList = () => {
-  const [pId, setPid] = useState("");
-  const [show, setShow] = useState(false);
+  // const [pId, setPid] = useState("");
+  // const [show, setShow] = useState(false);
 
   const dispatch = useDispatch();
   const alert = useAlert();
