@@ -34,6 +34,7 @@ const Home = () => {
   return (
     <Fragment>
       <MetaData title={"Home-BDShop"} />
+
       <HeroSlider />
       <div className="container">
         {featuredProducts.map((res, key) => (

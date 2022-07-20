@@ -6,10 +6,12 @@ const Address = require("../model/userAddressModel");
 const Coupon = require("../model/couponModel");
 const clud = require("cloudinary").v2;
 const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
 
 const createOTP = require("../utils/createOTP");
 const verifyOTP = require("../utils/verifyOTP");
 const sendToken = require("../utils/sendToken");
+const { sendEmail } = require("../utils/sendTokenInEmail");
 
 // register user -> '/api/user/register'
 exports.registerUser = async (req, res, next) => {
@@ -46,6 +48,7 @@ exports.registerUser = async (req, res, next) => {
       },
     });
 
+    await sendEmail(user.email);
     sendToken(user, 200, res);
   } catch (e) {
     next(e);
@@ -302,6 +305,45 @@ exports.verifyUserOTP = async (req, res, next) => {
 
     sendToken(user, 200, res);
   } catch (e) {
+    next(e);
+  }
+};
+
+exports.sendTokenInEmail = async (req, res, next) => {
+  try {
+    await sendEmail(req.user.email);
+    res
+      .status(200)
+      .json({ success: true, message: "Send token in email successfully" });
+  } catch (e) {
+    console.log(e.message);
+    next(e);
+  }
+};
+
+exports.emailVerify = async (req, res, next) => {
+  try {
+    let { token } = req.body;
+    const decoded = jwt.verify(token, process.env.SECRET_KEY);
+
+    if (req.user.email !== decoded.email) {
+      return res.status(404).json({ message: "Invalid verification token" });
+    }
+
+    await User.findByIdAndUpdate(
+      { _id: req.user._id },
+      { isVerified: true },
+      {
+        new: true,
+      }
+    );
+
+    res.status(200).json({
+      success: true,
+      message: "Email verification success",
+    });
+  } catch (e) {
+    console.log("Error verifying email", e.message);
     next(e);
   }
 };

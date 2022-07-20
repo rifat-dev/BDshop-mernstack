@@ -1,5 +1,8 @@
 import { Fragment } from "react";
 import { Switch, Route } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { useAlert } from "react-alert";
+import axios from "axios";
 
 import NavBar from "../components/layouts/Header/NavBar";
 import Home from "../components/Home";
@@ -17,11 +20,38 @@ import Login from "./Login/Login";
 import OTPLogin from "./OTPLogin";
 import Register from "./Register/Register";
 
+
 const HomePage = () => {
-  console.log("home page...");
+  const { user } = useSelector((state) => state.auth);
+
+  const alert = useAlert();
+  const onClick = async () => {
+    try {
+      const { data } = await axios.post("/api/user/sendTokenInEmail");
+      console.log(data);
+      alert.success("Check Email !");
+    } catch (e) {
+      console.log(e);
+    }
+  };
   return (
     <Fragment>
       <NavBar />
+      {user && !user.isVerified && (
+        <div className="container">
+          <div
+            class="alert alert-danger mt-5 d-flex  justify-content-between align-items-center"
+            role="alert">
+            <p>Please verify your email address !</p>
+            <button
+              type="button"
+              class="btn btn-danger"
+              onClick={() => onClick()}>
+              Send Verify Token
+            </button>
+          </div>
+        </div>
+      )}
       <Switch>
         <Route path="/" component={Home} exact />
         <Route path="/shop" component={Shop} exact />

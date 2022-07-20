@@ -4,6 +4,7 @@ import React, { Suspense } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 import CartLoader from "./components/layouts/Loader/CartLoader";
+import VerifyEmail from "./pages/VerifyEmail";
 
 const HomePage = React.lazy(() => import("./pages/HomePage"));
 const Profile = React.lazy(() => import("./components/user/Profile"));
@@ -25,6 +26,7 @@ function App() {
         <BottomButton />
         <Router>
           <Switch>
+            <Route path="/verify/:token" component={VerifyEmail} />
             <ProtectedRoute path="/profile/dashbord" component={Profile} />
             <ProtectedRoute
               isAdmin={true}
