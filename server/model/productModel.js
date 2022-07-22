@@ -7,18 +7,22 @@ const productSchema = new Schema(
       required: [true, "please enter name"],
       trim: true,
       maxLength: [100, "Product name cannot extcecd 100 char"],
+      text: true,
     },
     summary: {
       type: String,
       trim: true,
+      text: true,
     },
     description: {
       type: String,
       trim: true,
+      text: true,
     },
     additionalInformation: {
       type: String,
       trim: true,
+      text: true,
     },
     costPrice: {
       // The price in which shop owner purchased

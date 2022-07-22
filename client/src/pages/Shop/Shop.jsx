@@ -6,33 +6,33 @@ import Radio from "@mui/material/Radio";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import RadioGroup from "@mui/material/RadioGroup";
 import Slider from "@mui/material/Slider";
-
 import axios from "axios";
 
-import Loader from "../../components/layouts/Loader/Loader";
+import CartLoader from "../../components/layouts/Loader/CartLoader";
 import MetaData from "../../components/layouts/MetaData";
 import NotFound from "../../components/layouts/404";
-import Category from "../../utils/ProductCategory";
+import ProductCardTow from "../../components/ProductsCard/ProductCardTow";
 import { getAllProducts, clearError } from "../../store/actions/productActions";
 
-import "./Shop.css";
-import ProductCardTow from "../../components/ProductsCard/ProductCardTow";
 const Shop = () => {
   const [shopProducts, setShopProducts] = useState([]);
   const [categorys, setCategorys] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
+  const [currentPage, setCurrentPage] = useState(1);
 
   const dispatch = useDispatch();
-  const { products, loading, error } = useSelector((state) => state.products);
+  const { products, totalPage, loading, error } = useSelector(
+    (state) => state.products
+  );
 
   useEffect(() => {
-    dispatch(getAllProducts());
+    dispatch(getAllProducts("", currentPage, searchTerm));
     const getAllCategorys = async () => {
       let { data } = await axios.get("/api/category/all");
       setCategorys(data.categorys);
     };
     getAllCategorys();
-  }, [dispatch]);
+  }, [dispatch, currentPage]);
 
   useEffect(() => {
     if (error) {
@@ -45,29 +45,31 @@ const Shop = () => {
     setShopProducts(products);
   }, [products]);
 
+  const onSearchedProducts = () => {
+    // dispatch(getAllProducts("", 1, searchTerm));
+  };
+
+  const pagination = () => {
+    let rows = [];
+    for (let i = 0; i < totalPage; i++) {
+      rows.push(
+        <li className="page-item" onClick={() => setCurrentPage(i + 1)}>
+          <a className="page-link" href="#">
+            {i + 1}
+          </a>
+        </li>
+      );
+    }
+    return rows;
+  };
+
   return (
     <div className="shop">
       {loading ? (
-        <Loader />
+        <CartLoader />
       ) : (
         <>
           <MetaData title={"Shop page- BDshop"} />
-
-          {/* <div className="search_filter container-fluid my-5">
-            <div className=" col-md-3">
-              <select className="select_shop">
-                <option value="All">All</option>
-              </select>
-            </div>
-            <div className="col-md-3 ">
-              <input
-                className="search_shop"
-                type="text"
-                placeholder="search by name , category"
-                onChange={(e) => setSearchTerm(e.target.value)}
-              />
-            </div>
-          </div> */}
 
           <div className="shop_body container-fluid mb-5">
             <div className="row">
@@ -78,8 +80,9 @@ const Shop = () => {
                     name="search"
                     id="search"
                     placeholder="Search product"
+                    onChange={(e) => setSearchTerm(e.target.value)}
                   />
-                  <SearchIcon />
+                  <SearchIcon onClick={() => onSearchedProducts()} />
                 </div>
 
                 <div className="shop-category">
@@ -130,6 +133,25 @@ const Shop = () => {
                       </div>
                     </div>
                   ))}
+                {totalPage > 0 && (
+                  <nav aria-label="Page navigation example mt-5 ">
+                    <ul className="pagination justify-content-center ">
+                      <li className="page-item">
+                        <a className="page-link" href="#" aria-label="Previous">
+                          <span aria-hidden="true">&laquo;</span>
+                          <span className="sr-only">Previous</span>
+                        </a>
+                      </li>
+                      {pagination()}
+                      <li className="page-item">
+                        <a className="page-link" href="#" aria-label="Next">
+                          <span aria-hidden="true">&raquo;</span>
+                          <span className="sr-only">Next</span>
+                        </a>
+                      </li>
+                    </ul>
+                  </nav>
+                )}
               </div>
             </div>
           </div>

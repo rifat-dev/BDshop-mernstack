@@ -20,12 +20,12 @@ const ProductCardTow = ({ product }) => {
             <img
               className="default-img"
               src={product.images ? product.images[0].url : ""}
-              alt="Product Image"
+              alt=""
             />
             <img
               className="hover-img"
               src={product.images.length > 1 ? product.images[1].url : ""}
-              alt="Product Image"
+              alt=""
             />
           </Link>
           <div className="product-img-badges">
