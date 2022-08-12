@@ -28,12 +28,18 @@ const category = require("./routers/categoryRoutes");
 const product = require("./routers/productRoutes");
 const order = require("./routers/orderRoute");
 
+// import midlewares
+const errorHandler = require("./midlewares/error-handeler.midleware");
+
 // use all routers
 app.use("/api/user", user);
 app.use("/api/category", category);
 app.use("/api/products", product);
 app.use("/api/order", order);
 app.use("/api/admin", admin);
+
+// error handling
+app.use(errorHandler);
 
 if (process.env.NODE_ENV === "production") {
   app.use(express.static(path.join(__dirname, "../client/build")));
