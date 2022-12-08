@@ -12,7 +12,6 @@ const transporter = mailer.createTransport({
   },
 });
 
-// https://bdshop-ecommarce.herokuapp.com
 // http://localhost:3000
 
 exports.sendEmail = async (email) => {

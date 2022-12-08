@@ -8,7 +8,7 @@ const SendEmailUtility = async (EmailTo, EmailText, EmailSubject) => {
     secure: false,
     auth: {
       user: "mdr585643@gmail.com",
-      pass: "iowwrpfbnhryrgsx",
+      pass: process.env.email_password,
     },
     tls: {
       rejectUnauthorized: false,

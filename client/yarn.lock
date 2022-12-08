@@ -10836,6 +10836,15 @@ react-chartjs-2@2.9.0:
     lodash "^4.17.4"
     prop-types "^15.5.8"
 
+react-code-input@^3.10.1:
+  version "3.10.1"
+  resolved "https://registry.yarnpkg.com/react-code-input/-/react-code-input-3.10.1.tgz#959e1504a911c69ada098d9432d00cc59d5732f3"
+  integrity sha512-B1RqSc32BzFP9eoV5LWhRTmbJ8I3rKs+6E01yaJwDqcVBE4kKgRJHBmPcXRD58qkCPssnF/Aq5UDNzIiTw7eNg==
+  dependencies:
+    classnames "^2.2.5"
+    react "^16.3.2"
+    react-dom "^16.3.2"
+
 react-dev-utils@^11.0.3:
   version "11.0.4"
   resolved "https://registry.npmjs.org/react-dev-utils/-/react-dev-utils-11.0.4.tgz"
@@ -10875,7 +10884,7 @@ react-dom@17.0.1:
     object-assign "^4.1.1"
     scheduler "^0.20.1"
 
-react-dom@^16.12.0:
+react-dom@^16.12.0, react-dom@^16.3.2:
   version "16.14.0"
   resolved "https://registry.npmjs.org/react-dom/-/react-dom-16.14.0.tgz"
   integrity sha512-1gCeQXDLoIqMgqD3IO2Ah9bnf0w9kzhwN5q4FGnHZ67hBm9yePzB5JJAIQCc8x3pFnNlwFq4RidZggNAAkzWWw==
@@ -11267,7 +11276,7 @@ react-transition-group@^4.4.2:
     loose-envify "^1.4.0"
     prop-types "^15.6.2"
 
-"react@15.x.x - 16.x.x", react@^16.12.0:
+"react@15.x.x - 16.x.x", react@^16.12.0, react@^16.3.2:
   version "16.14.0"
   resolved "https://registry.npmjs.org/react/-/react-16.14.0.tgz"
   integrity sha512-0X2CImDkJGApiAlcf0ODKIneSwBPhqJawOa5wCtKbu7ZECrmS26NvtSILynQ66cgkT/RJ4LidJOc3bUESwmU8g==

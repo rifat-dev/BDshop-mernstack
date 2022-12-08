@@ -1,20 +1,22 @@
 # **BDShop-Ecommarce, Website**
 
-<a  href="#">
-<img  width="100%"  height="100%"  src="./screenshot.png"/>
-</a>
-
-## About & Features
+## Top Features
 
 **BDshop** is a full-stack single-page ecommarce web app.
 
 - Login / Registration system , private routes and dashboard for admins .
 - OTP login by email
+- Email verify
+- Forgot password
 - User can download invoice as pdf
 - Users can order products, monitor their orderlist and create product review
 - Coupon code system
 - Admin can add product, category and update and delete products.
 - Admin can change the status of orderlist and can add new admins.
+
+<a  href="#">
+<img  width="100%"  height="100%"  src="./screenshot.png"/>
+</a>
 
 ### Front-end Technology :
 

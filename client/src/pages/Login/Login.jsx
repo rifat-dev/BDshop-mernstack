@@ -96,6 +96,9 @@ const Login = ({ history }) => {
                   Don't Have Account? Please{" "}
                   <Link to="/register">Register</Link>
                 </p>
+                <p className="mt-3">
+                  <Link to="/recoverEmail"> Forget Password</Link>
+                </p>
               </div>
             </div>
           </div>
