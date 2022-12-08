@@ -112,6 +112,13 @@ const productSchema = new Schema(
   { timestamps: true }
 );
 
+productSchema.index({
+  name: "text",
+  summary: "text",
+  description: "text",
+  additionalInformation: "text",
+});
+
 const Product = model("Product", productSchema);
 
 module.exports = Product;

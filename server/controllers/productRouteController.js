@@ -4,19 +4,19 @@ const Categories = require("../model/categoryModel");
 // get all products -> '/api/products'
 exports.getProducts = async (req, res, next) => {
   try {
-    console.log(req.query);
-    let filter = {};
+    // console.log(req.query.searchTerm);
     let searchTerm = req.query.searchTerm;
     let itemPerPage = parseInt(req.query.perPage);
-    filter.category = req.query.ctg;
     let currentPage = parseInt(req.query.page);
 
+    // { $text: { $search: searchTerm } }
     const products = await Product.find()
       .sort("createdAt")
       .skip(currentPage * itemPerPage - itemPerPage)
-      .limit(itemPerPage);
+      .limit(itemPerPage)
+      .exec();
 
-    let totalProduct = await Product.countDocuments();
+    let totalProduct = await Product.countDocuments().exec();
     let totalPage = totalProduct / itemPerPage;
     // console.log(products);
     // console.log(Math.round(totalPage));
