@@ -10,6 +10,7 @@
 
 - Login / Registration system , private routes and dashboard for admins .
 - OTP login by email
+- User can download invoice as pdf
 - Users can order products, monitor their orderlist and create product review
 - Coupon code system
 - Admin can add product, category and update and delete products.
