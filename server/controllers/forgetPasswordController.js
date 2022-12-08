@@ -1,5 +1,7 @@
+const bcrypt = require("bcrypt");
 const OTP = require("../model/OTP");
 const User = require("../model/userModel");
+
 const SendEmailUtility = require("../utility/SendEmailUtility");
 
 exports.RecoverVerifyEmail = async (req, res) => {
@@ -70,10 +72,11 @@ exports.RecoverResetPass = async (req, res) => {
       { $count: "total" },
     ]);
     if (OTPUsedCount.length > 0) {
+      const hashPass = await bcrypt.hash(NewPass, 11);
       let PassUpdate = await User.updateOne(
         { email: email },
         {
-          password: NewPass,
+          password: hashPass,
         }
       );
       await OTP.deleteOne({ email: email, otp: OTPCode, status: statusUpdate });

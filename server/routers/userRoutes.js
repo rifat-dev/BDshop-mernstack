@@ -17,6 +17,12 @@ const {
   emailVerify,
 } = require("../controllers/userRouteController");
 
+const {
+  RecoverVerifyEmail,
+  RecoverVerifyOTP,
+  RecoverResetPass,
+} = require("../controllers/forgetPasswordController");
+
 const { isAuthintecated } = require("../midlewares/authMidleware");
 //login , signup, logout
 router.post("/register", registerUser);
@@ -41,4 +47,9 @@ router.post("/emailVerify", isAuthintecated, emailVerify);
 
 router.get("/addresses", isAuthintecated, getAddresses);
 router.get("/coupon/:couponCode", isAuthintecated, getValidCoupon);
+
+// forget pass
+router.get("/recoverVerifyEmail/:email", RecoverVerifyEmail);
+router.get("/recoverVerifyOTP/:email/:otp", RecoverVerifyOTP);
+router.post("/RecoverResetPass", RecoverResetPass);
 module.exports = router;

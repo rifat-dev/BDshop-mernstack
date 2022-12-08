@@ -19,7 +19,9 @@ import ProtectedRoute from "../components/route/ProtectedRoute";
 import Login from "./Login/Login";
 import OTPLogin from "./OTPLogin";
 import Register from "./Register/Register";
-
+import SendOTP from "./ForgetPassword/Send-OTP";
+import VerifyOTP from "./ForgetPassword/Verify-OTP";
+import CreatePassword from "./ForgetPassword/Create-Password";
 
 const HomePage = () => {
   const { user } = useSelector((state) => state.auth);
@@ -57,13 +59,14 @@ const HomePage = () => {
         <Route path="/shop" component={Shop} exact />
         <Route path="/product/:id" component={SingleProduct} exact />
         <Route path="/cart" component={Cart} exact />
-
         <ProtectedRoute path="/checkout" component={Checkout} exact />
         <ProtectedRoute path="/order-success" component={OrderSuccess} exact />
-
         <Route path="/login" component={Login} exact />
         <Route path="/otp-login" component={OTPLogin} exact />
         <Route path="/register" component={Register} exact />
+        <Route path="/recoverEmail" component={SendOTP} exact />
+        <Route path="/VerifyOTP" component={VerifyOTP} exact />
+        <Route path="/CreatePassword" component={CreatePassword} exact />
 
         <Route path="*">
           <NotFound />
