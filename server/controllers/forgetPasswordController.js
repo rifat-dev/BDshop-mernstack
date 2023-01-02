@@ -13,13 +13,14 @@ exports.RecoverVerifyEmail = async (req, res) => {
       { $match: { email: email } },
       { $count: "total" },
     ]);
+
     if (UserCount.length > 0) {
       // OTP Insert
       let CreateOTP = await OTP.create({ email: email, otp: OTPCode });
       // Email Send
       let SendEmail = await SendEmailUtility(
         email,
-        "Your PIN Code is= " + OTPCode,
+        OTPCode,
         "Task Manager PIN Verification"
       );
       res.status(200).json({ status: "success", data: SendEmail });
@@ -27,6 +28,7 @@ exports.RecoverVerifyEmail = async (req, res) => {
       res.status(200).json({ status: "fail", data: "No User Found" });
     }
   } catch (e) {
+    console.log(e);
     res.status(200).json({ status: "fail", data: e });
   }
 };
