@@ -7,6 +7,7 @@
 - Login / Registration system , private routes and dashboard for admins .
 - OTP login by email
 - Email verify
+- User get notification when order status change
 - Forgot password By OTP
 - Send email template into email.
 - User can download invoice as pdf
