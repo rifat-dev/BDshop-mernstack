@@ -212,6 +212,12 @@ exports.updateAdminOrder = async (req, res, next) => {
       useFindAndModify: false,
     });
 
+    global.io.emit("notification", {
+      type: "order_status",
+      user: order.user,
+      message: req.body.orderStatus,
+    });
+
     res.status(200).json({
       success: true,
       message: "Order update success",

@@ -1,5 +1,6 @@
 const express = require("express");
 const bodyParser = require("body-parser");
+const http = require("http");
 const cors = require("cors");
 const morgan = require("morgan");
 const cookieParser = require("cookie-parser");
@@ -7,6 +8,7 @@ const fileUploder = require("express-fileupload");
 const path = require("path");
 // app setup
 const app = express();
+const server = http.createServer(app);
 
 // bodyParser setup
 app.use(express.json());
@@ -50,4 +52,5 @@ if (process.env.NODE_ENV === "production") {
 }
 
 // exports app for listen server
-module.exports = app;
+
+module.exports = server;
