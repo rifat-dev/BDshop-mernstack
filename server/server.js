@@ -1,12 +1,31 @@
 const mongoose = require("mongoose");
-const app = require("./app");
+const server = require("./app");
 const dotenv = require("dotenv");
 const cloudinary = require("cloudinary").v2;
+
+// socket io
+const io = require("socket.io")(server, {
+  pingTimeout: 60000,
+  cors: {
+    origin: "http://localhost:3000",
+  },
+});
+global.io = io;
 
 // env config setup
 if (process.env.NODE_ENV !== "production") {
   dotenv.config({ path: "server/config/.env" });
 }
+
+// socket io connection
+io.on("connection", (socket) => {
+  console.log("Connected to client");
+
+  socket.on("message", (message) => {
+    console.log("Message received:", message);
+    io.emit("message", message);
+  });
+});
 
 // cloudinary config setup
 cloudinary.config({
@@ -28,7 +47,7 @@ mongoose
   })
   .then(() => {
     const port = process.env.PORT || 4000;
-    app.listen(port, () => {
+    server.listen(port, () => {
       console.log(`Server Started on PORT ${port}`);
       console.log("Database Connect Success");
     });

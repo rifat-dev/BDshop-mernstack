@@ -32,6 +32,7 @@
         "nodemailer": "^6.7.6",
         "otp-generator": "^4.0.0",
         "simple-react-validator": "^1.6.0",
+        "socket.io": "^4.6.0",
         "stripe": "^9.11.0",
         "twilio": "^3.78.0",
         "validator": "^13.6.0"
